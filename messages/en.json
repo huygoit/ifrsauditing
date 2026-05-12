@@ -116,10 +116,22 @@
       "noImage": "No image",
       "readMore": "Read more",
       "items": {
-        "safe": { "title": "Safe", "desc": "Family-friendly design for daily use." },
-        "effective": { "title": "Effective", "desc": "Helps keep odors under control consistently." },
-        "easy": { "title": "Easy to place", "desc": "No electricity — place it and it works." },
-        "multi": { "title": "Multi-space", "desc": "Shoes, bathroom, car, wardrobe, bedroom… flexible." }
+        "safe": {
+          "title": "Safe",
+          "desc": "Family-friendly design for daily use."
+        },
+        "effective": {
+          "title": "Effective",
+          "desc": "Helps keep odors under control consistently."
+        },
+        "easy": {
+          "title": "Easy to place",
+          "desc": "No electricity — place it and it works."
+        },
+        "multi": {
+          "title": "Multi-space",
+          "desc": "Shoes, bathroom, car, wardrobe, bedroom… flexible."
+        }
       }
     },
     "useCases": {
@@ -141,38 +153,95 @@
         }
       },
       "items": {
-        "shoe": { "title": "Shoe cabinet", "desc": "Helps reduce damp odor and keeps things fresher." },
-        "wc": { "title": "Bathroom", "desc": "Helps control odors without overpowering fragrance." },
-        "car": { "title": "Car", "desc": "More comfortable rides, neat in the cabin." },
-        "closet": { "title": "Wardrobe", "desc": "Helps reduce damp smell and keeps clothes fresher." },
-        "bed": { "title": "Bedroom", "desc": "A lighter, cleaner feel." },
-        "multi": { "title": "Multi-purpose", "desc": "Kitchen corner, storage, gear cabinet… flexible as needed." },
-
-        "biogas": { "title": "Biogas odor filtration", "desc": "Helps reduce odors around biogas/organic processing areas." },
-        "farm": { "title": "Livestock farms", "desc": "Helps control odors in barns and farming areas." },
-        "fishingBoat": { "title": "Fishing boats", "desc": "Compact for cabins and storage areas on trips." },
-        "factory": { "title": "Factories", "desc": "Helps reduce odors in production/workshop zones." },
-        "restaurant": { "title": "Restaurants", "desc": "Helps keep kitchens and dining spaces more comfortable." },
-        "exhaust": { "title": "Exhaust treatment systems", "desc": "Use in exhaust treatment/technical rooms as needed." }
+        "shoe": {
+          "title": "Shoe cabinet",
+          "desc": "Helps reduce damp odor and keeps things fresher."
+        },
+        "wc": {
+          "title": "Bathroom",
+          "desc": "Helps control odors without overpowering fragrance."
+        },
+        "car": {
+          "title": "Car",
+          "desc": "More comfortable rides, neat in the cabin."
+        },
+        "closet": {
+          "title": "Wardrobe",
+          "desc": "Helps reduce damp smell and keeps clothes fresher."
+        },
+        "bed": {
+          "title": "Bedroom",
+          "desc": "A lighter, cleaner feel."
+        },
+        "multi": {
+          "title": "Multi-purpose",
+          "desc": "Kitchen corner, storage, gear cabinet… flexible as needed."
+        },
+        "biogas": {
+          "title": "Biogas odor filtration",
+          "desc": "Helps reduce odors around biogas/organic processing areas."
+        },
+        "farm": {
+          "title": "Livestock farms",
+          "desc": "Helps control odors in barns and farming areas."
+        },
+        "fishingBoat": {
+          "title": "Fishing boats",
+          "desc": "Compact for cabins and storage areas on trips."
+        },
+        "factory": {
+          "title": "Factories",
+          "desc": "Helps reduce odors in production/workshop zones."
+        },
+        "restaurant": {
+          "title": "Restaurants",
+          "desc": "Helps keep kitchens and dining spaces more comfortable."
+        },
+        "exhaust": {
+          "title": "Exhaust treatment systems",
+          "desc": "Use in exhaust treatment/technical rooms as needed."
+        }
       }
     },
     "faq": {
       "title": "FAQ",
       "subtitle": "Common questions before choosing ENSO.",
       "items": {
-        "q1": { "q": "How long does it last?", "a": "Depends on environment & humidity. Replace when effectiveness drops (placeholder)." },
-        "q2": { "q": "Where should I place it?", "a": "Place in a dry, ventilated spot: shoe cabinet corner, car compartment, bathroom shelf, wardrobe drawer… Avoid direct water." },
-        "q3": { "q": "Does it have a strong scent?", "a": "Designed to feel clean, not overpowering (placeholder)." },
-        "q4": { "q": "When should I replace it?", "a": "When odor returns noticeably or after a usage cycle (placeholder)." },
-        "q5": { "q": "How do you ship?", "a": "Fast local / nationwide shipping (placeholder). ENSO calls to confirm before sending." },
-        "q6": { "q": "How does return work?", "a": "Support returns per policy (placeholder) if defective/wrong order." }
+        "q1": {
+          "q": "How long does it last?",
+          "a": "Depends on environment & humidity. Replace when effectiveness drops (placeholder)."
+        },
+        "q2": {
+          "q": "Where should I place it?",
+          "a": "Place in a dry, ventilated spot: shoe cabinet corner, car compartment, bathroom shelf, wardrobe drawer… Avoid direct water."
+        },
+        "q3": {
+          "q": "Does it have a strong scent?",
+          "a": "Designed to feel clean, not overpowering (placeholder)."
+        },
+        "q4": {
+          "q": "When should I replace it?",
+          "a": "When odor returns noticeably or after a usage cycle (placeholder)."
+        },
+        "q5": {
+          "q": "How do you ship?",
+          "a": "Fast local / nationwide shipping (placeholder). ENSO calls to confirm before sending."
+        },
+        "q6": {
+          "q": "How does return work?",
+          "a": "Support returns per policy (placeholder) if defective/wrong order."
+        }
       }
     },
     "pricing": {
       "title": "Combo / Pricing",
       "subtitle": "Pick a plan — save more and cover more spaces at home.",
       "bestSave": "Best savings",
-      "trust": { "cod": "COD", "return": "Returns", "advice": "Consultation" },
+      "trust": {
+        "cod": "COD",
+        "return": "Returns",
+        "advice": "Consultation"
+      },
       "selectPlan": "Choose this plan",
       "selected": "Selected: {name}",
       "goToOrder": "Go to order"
@@ -297,7 +366,10 @@
           "i2": "Best window: 10am – 2pm"
         },
         "warnTitle": "Important notes",
-        "warnItems": { "i1": "Do not let the bag contact water", "i2": "Granules dissolve in water" },
+        "warnItems": {
+          "i1": "Do not let the bag contact water",
+          "i2": "Granules dissolve in water"
+        },
         "lifeTitle": "Lifecycle",
         "lifeItems": {
           "i1": "Fabric bag biodegrades over time",
@@ -318,9 +390,15 @@
           "caption": "Avoid direct sunlight | Sunlight evaporates fragrance faster"
         },
         "timeTitle": "Effective duration",
-        "timeItems": { "i1": "Effective: 3–6 months", "i2": "Optimal condition: ~25°C" },
+        "timeItems": {
+          "i1": "Effective: 3–6 months",
+          "i2": "Optimal condition: ~25°C"
+        },
         "noSunTitle": "DO NOT sun-dry",
-        "noSunItems": { "i1": "Do NOT place under direct sunlight", "i2": "Sunlight evaporates fragrance faster" },
+        "noSunItems": {
+          "i1": "Do NOT place under direct sunlight",
+          "i2": "Sunlight evaporates fragrance faster"
+        },
         "whenScentLessTitle": "When fragrance fades",
         "whenScentLessItems": {
           "i1": "Brief sun-dry to remove moisture",
@@ -335,9 +413,18 @@
       "viewCert": "View certificate",
       "modalTitleFallback": "Certificate",
       "fallback": {
-        "ocop": { "title": "OCOP 3-star", "subtitle": "Meets product standards (placeholder)" },
-        "iso": { "title": "ISO 9001:2015", "subtitle": "International standard certification (placeholder)" },
-        "acv": { "title": "ACV partner", "subtitle": "Working together for growth (placeholder)" }
+        "ocop": {
+          "title": "OCOP 3-star",
+          "subtitle": "Meets product standards (placeholder)"
+        },
+        "iso": {
+          "title": "ISO 9001:2015",
+          "subtitle": "International standard certification (placeholder)"
+        },
+        "acv": {
+          "title": "ACV partner",
+          "subtitle": "Working together for growth (placeholder)"
+        }
       }
     },
     "certifications": {
@@ -432,7 +519,7 @@
     "qtyMinus": "Decrease quantity",
     "qtyPlus": "Increase quantity",
     "ctaOrder": "Contact now",
-    "ctaCall": "Call 085 279 5939",
+    "ctaCall": "Call +(84)0779.195.577",
     "metaLine": "{category} · {size}",
     "infoCategory": "Best for",
     "infoSize": "Size",
@@ -459,6 +546,355 @@
     "zoomHint": "Enlarge",
     "lightboxAria": "Enlarged product image",
     "lightboxClose": "Close"
+  },
+  "ifrs": {
+    "ctaConsult": "Request a consultation",
+    "ctaExplore": "Explore services",
+    "logoAlt": "IFRS Auditing",
+    "nav": {
+      "about": "About",
+      "services": "Services",
+      "ifrs": "IFRS",
+      "insights": "Insights",
+      "careers": "Careers",
+      "contact": "Contact"
+    },
+    "topBar": {
+      "emailAria": "Send email",
+      "phoneAria": "Call hotline"
+    },
+    "hero": {
+      "headline": "Audit, tax and corporate advisory — delivered with discipline",
+      "desc": "IFRS Auditing supports financial statement audits, tax consulting, accounting, valuation, IFRS/VAS and compliance-related advisory — aligned with your governance needs.",
+      "badgeIndependence": "Independence",
+      "badgeTransparency": "Transparency",
+      "badgeEfficiency": "Efficiency",
+      "visualKpi1": "FS",
+      "visualKpi1Lead": "Financial statements",
+      "visualKpi2": "Compliance",
+      "visualKpi3": "IFRS/VAS",
+      "checklist1": "Data review",
+      "checklist2": "Policy alignment",
+      "checklist3": "Risk notes",
+      "dashboardTitle": "Financial statements",
+      "dashboardSub": "Audit overview"
+    },
+    "trustBar": {
+      "title": "How we work",
+      "items": {
+        "i1": {
+          "title": "Deep technical expertise"
+        },
+        "i2": {
+          "title": "Big-firm & multinational exposure"
+        },
+        "i3": {
+          "title": "End-to-end engagement"
+        },
+        "i4": {
+          "title": "Fit for local & FDI contexts"
+        }
+      }
+    },
+    "about": {
+      "title": "A professional partner for transparent financial governance",
+      "body": "IFRS Auditing provides audit, tax, accounting, valuation, IFRS/VAS and corporate advisory — focused on clear reporting, robust processes and decision-ready information.",
+      "cards": {
+        "c1": {
+          "title": "Independence",
+          "desc": "Objective mindset and clear separation of roles within assurance engagements."
+        },
+        "c2": {
+          "title": "Transparency",
+          "desc": "Explicit scope, methods and deliverables throughout the project."
+        },
+        "c3": {
+          "title": "Efficiency",
+          "desc": "Practical recommendations aligned with your timelines and resources."
+        }
+      }
+    },
+    "why": {
+      "title": "Why IFRS Auditing",
+      "items": {
+        "i1": {
+          "title": "Hands-on specialists",
+          "desc": "Comfortable with reporting cycles, tax positions and operating realities."
+        },
+        "i2": {
+          "title": "Focused advice",
+          "desc": "Prioritises legal and financial issues that matter at each stage."
+        },
+        "i3": {
+          "title": "Consistent support",
+          "desc": "Before, during and after service delivery."
+        },
+        "i4": {
+          "title": "Compliance cost awareness",
+          "desc": "Balances control depth with your internal capacity."
+        },
+        "i5": {
+          "title": "Local regulatory context",
+          "desc": "Grounded in Vietnamese rules and market practice."
+        },
+        "i6": {
+          "title": "FDI & domestic companies",
+          "desc": "Flexible collaboration models with finance and accounting teams."
+        }
+      }
+    },
+    "services": {
+      "title": "Services",
+      "subtitle": "Audit, tax, accounting and advisory — structured for clarity.",
+      "viewDetails": "View details",
+      "drawer": {
+        "close": "Close",
+        "dialogTitle": "Service details",
+        "fitFor": "Typically relevant for",
+        "cta": "Request a consultation"
+      },
+      "items": {
+        "audit": {
+          "title": "Audit & assurance",
+          "subtitle": "Financial statement audits and assurance engagements",
+          "desc": "Audit procedures for financial statements within an agreed scope of work.",
+          "b1": "Risk-based audit planning",
+          "b2": "Evidence gathering and reconciliations",
+          "b3": "Reporting and management dialogue",
+          "t1": "Joint stock companies",
+          "t2": "Groups with multiple entities"
+        },
+        "tax": {
+          "title": "Tax consulting",
+          "subtitle": "Compliance, technical positions and filings",
+          "desc": "Support on tax positions, filing processes and documentation for enquiries.",
+          "b1": "Transaction-driven tax impact review",
+          "b2": "Standardisation of supporting documents",
+          "b3": "Coordination with in-house accounting",
+          "t1": "Scaling businesses",
+          "t2": "Complex related-party transactions"
+        },
+        "accounting": {
+          "title": "Accounting services",
+          "subtitle": "Bookkeeping and management reporting",
+          "desc": "Operational accounting support, ledger hygiene and periodic management reporting.",
+          "b1": "Consistent booking policies",
+          "b2": "Balance sheet reviews",
+          "b3": "Clear handover documentation",
+          "t1": "SMEs strengthening back-office",
+          "t2": "System migration periods"
+        },
+        "valuation": {
+          "title": "Valuation services",
+          "subtitle": "Valuations for transactions and reporting",
+          "desc": "Analysis and structured documentation for transactions or financial reporting mandates.",
+          "b1": "Assumptions and market data",
+          "b2": "Method selection by industry context",
+          "b3": "Structured working papers",
+          "t1": "M&A and restructuring",
+          "t2": "Shareholder reporting needs"
+        },
+        "transferPricing": {
+          "title": "Transfer pricing documentation",
+          "subtitle": "Related-party documentation and analysis",
+          "desc": "Preparation support and analysis for related-party transactions under current guidance.",
+          "b1": "Functional / risk / asset analysis",
+          "b2": "Market benchmarking narrative",
+          "b3": "Documentation pack completion",
+          "t1": "Cross-border groups",
+          "t2": "Tax authority readiness"
+        },
+        "advisory": {
+          "title": "Corporate advisory",
+          "subtitle": "Governance, process and compliance projects",
+          "desc": "Financial governance, internal processes and compliance topics — project-based.",
+          "b1": "Clarify objectives and scope",
+          "b2": "Implementation roadmap",
+          "b3": "Post-go-live follow-up",
+          "t1": "Leadership needing independent views",
+          "t2": "Restructuring programmes"
+        },
+        "training": {
+          "title": "Training & recruitment support",
+          "subtitle": "Upskilling programmes and hiring support",
+          "desc": "Technical training programmes and recruitment support for audit, accounting and tax roles.",
+          "b1": "Audience-specific curriculum",
+          "b2": "Materials and practical cases",
+          "b3": "Post-course feedback loop",
+          "t1": "Finance teams upskilling",
+          "t2": "Growth hiring phases"
+        },
+        "ifrsVas": {
+          "title": "IFRS / VAS advisory",
+          "subtitle": "Conversion, accounting policies and disclosures",
+          "desc": "Conversion support, accounting policy reviews and reporting assistance under IFRS or VAS.",
+          "b1": "Gap analysis vs standards",
+          "b2": "Conversion roadmap",
+          "b3": "Pre-issuance numeric checks",
+          "t1": "Listing or fundraising readiness",
+          "t2": "Parent–subsidiary reporting alignment"
+        }
+      }
+    },
+    "ifrsHighlight": {
+      "title": "IFRS/VAS reporting and accounting systems",
+      "body": "We help design and refine accounting systems under IFRS/VAS, review financial statements and strengthen processes — for transparency, compliance and better decisions.",
+      "matrixTitle": "Compliance lens",
+      "matrixRows": {
+        "r1": {
+          "label": "Accounting policies",
+          "status": "Review"
+        },
+        "r2": {
+          "label": "Financial statements",
+          "status": "Standardise"
+        },
+        "r3": {
+          "label": "Internal control",
+          "status": "Recommend"
+        },
+        "r4": {
+          "label": "Disclosures",
+          "status": "Support"
+        }
+      }
+    },
+    "process": {
+      "title": "Engagement process",
+      "subtitle": "Clear steps — close coordination with your team.",
+      "steps": {
+        "s1": {
+          "title": "Intake"
+        },
+        "s2": {
+          "title": "Scoping & risk"
+        },
+        "s3": {
+          "title": "Fieldwork"
+        },
+        "s4": {
+          "title": "Reporting & follow-up"
+        }
+      }
+    },
+    "industries": {
+      "title": "Industries & common needs",
+      "subtitle": "No client logos — described by business context.",
+      "items": {
+        "i1": {
+          "title": "FDI enterprises",
+          "desc": "Reporting, tax and group-policy alignment."
+        },
+        "i2": {
+          "title": "Manufacturing",
+          "desc": "Inventory, costing and related-party flows."
+        },
+        "i3": {
+          "title": "Trade & services",
+          "desc": "Cash cycles, margins and VAT compliance."
+        },
+        "i4": {
+          "title": "Construction & real estate",
+          "desc": "Long-term projects, revenue recognition and contracts."
+        },
+        "i5": {
+          "title": "FS audit mandates",
+          "desc": "Listing, lending or shareholder requirements."
+        },
+        "i6": {
+          "title": "Accounting / tax clean-up",
+          "desc": "System changes or inspection readiness."
+        }
+      }
+    },
+    "insights": {
+      "title": "IFRS, accounting & tax perspectives",
+      "subtitle": "Editorial entry points — links to your existing news area.",
+      "cards": {
+        "c1": {
+          "title": "News",
+          "desc": "Short updates and firm news.",
+          "cta": "Open news"
+        },
+        "c2": {
+          "title": "IFRS",
+          "desc": "Standards and presentation topics.",
+          "cta": "Open IFRS topics"
+        },
+        "c3": {
+          "title": "Accounting & audit",
+          "desc": "Processes, controls and assurance.",
+          "cta": "Open accounting"
+        },
+        "c4": {
+          "title": "Tax & compliance",
+          "desc": "Policies and documentation readiness.",
+          "cta": "Open tax"
+        }
+      }
+    },
+    "recruitment": {
+      "title": "Build your career with IFRS Auditing",
+      "subtitle": "Opportunities for audit, accounting, tax and advisory professionals who value technical depth.",
+      "cta": "View opportunities",
+      "note": "Apply and discuss details via the contact section."
+    },
+    "contact": {
+      "title": "Request a consultation with IFRS Auditing",
+      "subtitle": "Tell us your business needs. Our team will contact you shortly.",
+      "chip": "Service of interest: {service}",
+      "cards": {
+        "hotline": "Hotline",
+        "email": "Email",
+        "hq": "Head office",
+        "repHcmc": "Rep. office · HCMC",
+        "repVt": "Rep. office · Vung Tau"
+      },
+      "fields": {
+        "name": "Full name",
+        "phone": "Phone number",
+        "email": "Email",
+        "company": "Company",
+        "service": "Service of interest",
+        "message": "How can we help?",
+        "servicePlaceholder": "Select or describe briefly",
+        "messagePlaceholder": "Describe your needs and preferred timing…"
+      },
+      "submit": "Submit",
+      "success": "Thank you. IFRS Auditing has recorded your consultation request.",
+      "successHint": "Our team will reach out by phone or email during business hours.",
+      "errors": {
+        "name": "Please enter your full name (at least 2 characters).",
+        "phone": "Invalid phone number.",
+        "email": "Invalid email address.",
+        "company": "Please enter a company or organisation name.",
+        "service": "Please select or describe a service.",
+        "message": "Please enter your message (at least 10 characters)."
+      }
+    },
+    "footer": {
+      "brandTitle": "IFRS Auditing Company Limited",
+      "brandDesc": "Audit, tax, accounting, valuation and corporate advisory.",
+      "servicesTitle": "Services",
+      "infoTitle": "Information",
+      "contactTitle": "Contact",
+      "copyright": "© {year} IFRS Auditing Company Limited. All rights reserved.",
+      "links": {
+        "about": "About",
+        "services": "Services",
+        "careers": "Careers",
+        "news": "News",
+        "privacy": "Privacy policy",
+        "terms": "Terms of use"
+      }
+    },
+    "sticky": {
+      "call": "Call now",
+      "consult": "Request consultation"
+    },
+    "header": {
+      "menuAria": "Main navigation menu",
+      "logoShort": "IFRS Auditing"
+    }
   }
 }
-

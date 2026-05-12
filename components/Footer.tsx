@@ -1,173 +1,157 @@
- "use client";
+"use client";
 
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
-import { MapPin, Phone, Mail } from "lucide-react";
-import { HOTLINE, ZALO_URL, ADDRESS, EMAIL } from "@/lib/constants";
 import { useTranslations } from "next-intl";
+import { IfrsBrandLogo } from "@/components/IfrsBrandLogo";
+import { SITE } from "@/lib/site";
 
-function SocialLink({
-  href,
-  label,
-  d
-}: {
-  href: string;
-  label: string;
-  d: string;
-}) {
+function IconMail({ className }: { className?: string }) {
   return (
-    <a
-      href={href}
-      className="group inline-flex items-center gap-2 rounded-xl px-2 py-2 text-sm font-semibold text-slate-700 transition hover:text-emerald-700 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noreferrer" : undefined}
-    >
-      <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm transition group-hover:border-slate-300 group-hover:bg-slate-50 group-hover:text-emerald-700">
-        <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-          <path d={d} fill="currentColor" opacity="0.75" />
-        </svg>
-      </span>
-      <span className="underline-offset-4 group-hover:underline">{label}</span>
-    </a>
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M4 6h16v12H4V6zm0 0l8 6 8-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconPhone({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M6.6 10.8c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.3-.3.7-.4 1.1-.3 1.2.4 2.4.6 3.7.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.4 0 .8-.3 1.1l-1.9 1.9z"
+        fill="currentColor"
+        opacity="0.85"
+      />
+    </svg>
+  );
+}
+
+function IconPin({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M12 21s7-4.35 7-10a7 7 0 10-14 0c0 5.65 7 10 7 10zm0-9.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
+        fill="currentColor"
+        opacity="0.85"
+      />
+    </svg>
   );
 }
 
 export function Footer() {
-  const tFooter = useTranslations("home.footer");
+  const t = useTranslations("ifrs.footer");
   const pathname = usePathname();
   const homeBase = useMemo(() => {
     if (pathname?.startsWith("/en")) return "/en";
     if (pathname?.startsWith("/vi")) return "/vi";
-    return "/";
+    return "/vi";
   }, [pathname]);
 
-  function resolveHref(href: string) {
-    if (href.startsWith("#")) return `${homeBase}${href}`;
-    return href;
+  function h(target: string) {
+    return `${homeBase}${target}`;
   }
 
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
+    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200">
       <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-4">
-          {/* BRAND */}
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <a href={homeBase} className="inline-flex items-center gap-3 rounded-xl">
-              <img src="/logo.png" alt="ENSO – Hạt khử mùi" className="h-9 w-auto" />
+            <a href={homeBase} className="inline-flex flex-col rounded-xl text-white outline-none ring-offset-2 ring-offset-slate-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-amber-400/60">
+              <IfrsBrandLogo className="h-9 w-auto sm:h-10" />
+              <span className="mt-2 text-xs text-slate-400">{t("brandTitle")}</span>
             </a>
-            <p className="mt-4 text-sm font-semibold text-slate-900">{tFooter("brandTitle")}</p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              {tFooter("brandSubtitle")}
-            </p>
+            <p className="mt-4 text-sm leading-relaxed text-slate-400">{t("brandDesc")}</p>
           </div>
 
-          {/* LIÊN HỆ */}
-          <div className="text-sm text-slate-600">
-            <p className="text-sm font-semibold text-slate-900">{tFooter("contactTitle")}</p>
-            <div className="mt-3 space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
-                  <MapPin className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(ADDRESS + ", Vietnam")}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-slate-800 underline-offset-4 hover:text-emerald-700 hover:underline"
-                >
-                  {ADDRESS}, Vietnam
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
-                  <Phone className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <a href={`tel:${HOTLINE}`} className="font-medium text-slate-800 underline-offset-4 hover:text-emerald-700 hover:underline">
-                  {HOTLINE.replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")}
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
-                  <Mail className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <a href={`mailto:${EMAIL}`} className="font-medium text-slate-800 underline-offset-4 hover:text-emerald-700 hover:underline">
-                  {EMAIL}
-                </a>
-              </div>
-              <p className="mt-2 flex items-center gap-2 pl-11">
-                {tFooter("zaloLabel")}{" "}
-                <a className="font-semibold text-slate-900 underline-offset-4 hover:text-emerald-700 hover:underline" href={ZALO_URL} target="_blank" rel="noreferrer">
-                  {tFooter("zaloChatNow")}
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* HỖ TRỢ */}
-          <div className="text-sm text-slate-600">
-            <p className="text-sm font-semibold text-slate-900">{tFooter("supportTitle")}</p>
-            <div className="mt-3 grid gap-2">
-              {[
-                { label: tFooter("supportLinks.howToUse"), href: resolveHref("#cach-dung") },
-                { label: tFooter("supportLinks.faq"), href: resolveHref("#faq") },
-                { label: tFooter("supportLinks.becomeDealer"), href: resolveHref("#lien-he") }
-              ].map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="inline-flex w-fit rounded-xl text-sm font-semibold text-slate-700 underline-offset-4 transition hover:text-emerald-700 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-                >
-                  {l.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* KẾT NỐI */}
           <div>
-            <p className="text-sm font-semibold text-slate-900">{tFooter("connectTitle")}</p>
-            <div className="mt-3 grid gap-1">
-              <SocialLink
-                href="https://www.facebook.com/people/H%E1%BA%A1t-kh%E1%BB%AD-m%C3%B9i-ENSO/61556722591113/"
-                label="Facebook"
-                d="M14 8h2V5h-2c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8c0-.6.2-1 1-1z"
-              />
-              
-              <SocialLink
-                href="https://youtube.com/@ensodana?si=ugl9m3fs1B-LUQeJ"
-                label={tFooter("youtubeLabel")}
-                d="M21 8s0-2-2-2H5C3 6 3 8 3 8v8s0 2 2 2h14c2 0 2-2 2-2V8zm-11 9V7l7 5-7 5z"
-              />
-            </div>
+            <p className="text-sm font-semibold text-white">{t("servicesTitle")}</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#dich-vu")}>
+                  {t("links.services")}
+                </a>
+              </li>
+              <li>
+                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#ifrs")}>
+                  IFRS / VAS
+                </a>
+              </li>
+              <li>
+                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#tuyen-dung")}>
+                  {t("links.careers")}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold text-white">{t("infoTitle")}</p>
+            <ul className="mt-4 space-y-2 text-sm">
+              <li>
+                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#gioi-thieu")}>
+                  {t("links.about")}
+                </a>
+              </li>
+              <li>
+                <a className="text-slate-400 transition hover:text-emerald-300" href={`${homeBase}/news`}>
+                  {t("links.news")}
+                </a>
+              </li>
+              <li>
+                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#lien-he")}>
+                  {t("links.privacy")}
+                </a>
+              </li>
+              <li>
+                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#lien-he")}>
+                  {t("links.terms")}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-sm font-semibold text-white">{t("contactTitle")}</p>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li className="flex gap-3">
+                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-emerald-300">
+                  <IconPhone className="h-4 w-4" />
+                </span>
+                <a href={`tel:${SITE.hotlineTel}`} className="font-medium text-slate-200 hover:text-white">
+                  {SITE.hotlineDisplay}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-emerald-300">
+                  <IconMail className="h-4 w-4" />
+                </span>
+                <a href={`mailto:${SITE.email}`} className="font-medium text-slate-200 hover:text-white">
+                  {SITE.email}
+                </a>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-emerald-300">
+                  <IconPin className="h-4 w-4" />
+                </span>
+                <span className="text-slate-400">{SITE.hqAddressVi}</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-slate-200 pt-6">
-          <div className="flex flex-col gap-3 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} ENSO</p>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <a
-                  href={resolveHref("#lien-he")}
-                className="rounded-xl font-semibold text-slate-700 underline-offset-4 transition hover:text-emerald-700 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-              >
-                {tFooter("policies.shipping")}
-              </a>
-              <span className="text-slate-300">|</span>
-              <a
-                  href={resolveHref("#lien-he")}
-                className="rounded-xl font-semibold text-slate-700 underline-offset-4 transition hover:text-emerald-700 hover:underline focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-              >
-                {tFooter("policies.returns")}
-              </a>
-            </div>
-          </div>
-          <p className="mt-3 text-xs text-slate-600">
-            {tFooter("ecoNote")}
-          </p>
+        <div className="mt-10 border-t border-white/10 pt-6 text-xs text-slate-500">
+          <p>{t("copyright", { year })}</p>
         </div>
       </div>
     </footer>
   );
 }
-
-

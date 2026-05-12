@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" role="img" aria-labelledby="ifrsLogoTitle">
+  <title id="ifrsLogoTitle">IFRS Auditing</title>
+  <text
+    x="0"
+    y="36"
+    fill="#166534"
+    font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+    font-size="38"
+    font-weight="700"
+    letter-spacing="-0.03em"
+  >IFRS</text>
+  <text
+    x="112"
+    y="22"
+    fill="#166534"
+    font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+    font-size="17.5"
+    font-weight="600"
+    letter-spacing="-0.02em"
+  >Auditing</text>
+  <rect x="112" y="28" width="108" height="5.5" fill="#c62828" rx="0.5" />
+</svg>

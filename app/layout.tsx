@@ -20,43 +20,55 @@ const METADATA_VI: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   alternates: { canonical: SEO.siteUrl },
   openGraph: {
-    title: "ENSO – Hạt khử mùi",
-    description:
-      "Sạch mùi, thoáng khí, đơn giản mỗi ngày. Bộ sưu tập sản phẩm + combo tối ưu cho từng không gian.",
+    title: "IFRS Auditing | Kiểm toán, Thuế, Kế toán & Tư vấn doanh nghiệp",
+    description: SEO.defaultDescription,
     type: "website",
     locale: "vi_VN",
     siteName: SEO.siteName,
     url: SEO.siteUrl,
-    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "ENSO – Hạt khử mùi" }]
+    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "IFRS Auditing" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "ENSO – Hạt khử mùi",
-    description: "Eco premium, tối giản, tối ưu chuyển đổi.",
+    title: "IFRS Auditing",
+    description: SEO.defaultDescription,
     images: ["/og.svg"]
   }
 };
 
 const METADATA_EN: Metadata = {
   metadataBase: new URL(SEO.siteUrl),
-  title: "ENSO – Odor absorber | Fresh air, simple every day",
+  title: {
+    default: "IFRS Auditing | Audit, Tax, Accounting & Corporate Advisory",
+    template: "%s | IFRS Auditing"
+  },
   description:
-    "ENSO – eco premium odor absorber for shoe cabinets, rooms, cars, bathrooms, wardrobes. Choose the right product, combos and order fast.",
-  keywords: ["odor absorber", "deodorizer", "shoe cabinet", "car odor", "bathroom odor"],
+    "IFRS Auditing provides financial statement audits, tax consulting, accounting, valuation, IFRS/VAS and corporate advisory services in Vietnam.",
+  keywords: [
+    "audit",
+    "IFRS",
+    "VAS",
+    "tax consulting",
+    "accounting",
+    "valuation",
+    "Vietnam",
+    "advisory"
+  ],
   robots: { index: true, follow: true },
   openGraph: {
-    title: "ENSO – Odor absorber",
-    description: "Fresh air, simple every day. Product range + combos for every space.",
+    title: "IFRS Auditing | Audit, Tax, Accounting & Advisory",
+    description:
+      "Professional audit, tax, accounting, valuation and IFRS/VAS advisory for Vietnamese and FDI enterprises.",
     type: "website",
     locale: "en_US",
     siteName: SEO.siteName,
     url: SEO.siteUrl,
-    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "ENSO – Odor absorber" }]
+    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "IFRS Auditing" }]
   },
   twitter: {
     card: "summary_large_image",
-    title: "ENSO – Odor absorber",
-    description: "Eco premium, minimal, optimized.",
+    title: "IFRS Auditing",
+    description: "Audit, tax, accounting & advisory in Vietnam.",
     images: ["/og.svg"]
   }
 };

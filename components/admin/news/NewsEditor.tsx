@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { EditorContent, Tiptap, TiptapBubbleMenu, useEditor, type JSONContent } from "@tiptap/react";
+import { EditorContent, useEditor, type JSONContent } from "@tiptap/react";
+import { BubbleMenu } from "@tiptap/react/menus";
+import BubbleMenuExtension from "@tiptap/extension-bubble-menu";
 import type { Lang } from "@prisma/client";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -48,7 +50,8 @@ export function NewsEditor({
       Link.configure({ openOnClick: false, autolink: true, linkOnPaste: true, HTMLAttributes: { rel: "noreferrer", target: "_blank" } }),
       Image.configure({ inline: false, allowBase64: false }),
       TextAlign.configure({ types: ["heading", "paragraph"] }),
-      Placeholder.configure({ placeholder: tAdmin(lang, "admin.posts.form.content") + "…" })
+      Placeholder.configure({ placeholder: tAdmin(lang, "admin.posts.form.content") + "…" }),
+      BubbleMenuExtension
     ],
     [lang]
   );
@@ -122,16 +125,18 @@ export function NewsEditor({
         </div>
       </div>
 
-      {/* bubble menu */}
-      <Tiptap instance={editor}>
-        <TiptapBubbleMenu className="flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-950 px-2 py-2 shadow-xl">
+      {editor ? (
+        <BubbleMenu
+          editor={editor}
+          className="flex items-center gap-2 rounded-2xl border border-slate-700 bg-slate-950 px-2 py-2 shadow-xl"
+        >
           <button
             type="button"
             className={cn(
               "inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800",
-              editor?.isActive("bold") ? "ring-2 ring-emerald-400/70" : ""
+              editor.isActive("bold") ? "ring-2 ring-emerald-400/70" : ""
             )}
-            onClick={() => editor?.chain().focus().toggleBold().run()}
+            onClick={() => editor.chain().focus().toggleBold().run()}
             aria-label={tAdmin(lang, "admin.posts.editor.toolbar.bold")}
           >
             <Bold className="h-4 w-4" />
@@ -140,9 +145,9 @@ export function NewsEditor({
             type="button"
             className={cn(
               "inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800",
-              editor?.isActive("italic") ? "ring-2 ring-emerald-400/70" : ""
+              editor.isActive("italic") ? "ring-2 ring-emerald-400/70" : ""
             )}
-            onClick={() => editor?.chain().focus().toggleItalic().run()}
+            onClick={() => editor.chain().focus().toggleItalic().run()}
             aria-label={tAdmin(lang, "admin.posts.editor.toolbar.italic")}
           >
             <Italic className="h-4 w-4" />
@@ -151,9 +156,9 @@ export function NewsEditor({
             type="button"
             className={cn(
               "inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800",
-              editor?.isActive("underline") ? "ring-2 ring-emerald-400/70" : ""
+              editor.isActive("underline") ? "ring-2 ring-emerald-400/70" : ""
             )}
-            onClick={() => editor?.chain().focus().toggleUnderline().run()}
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
             aria-label={tAdmin(lang, "admin.posts.editor.toolbar.underline")}
           >
             <UnderlineIcon className="h-4 w-4" />
@@ -162,10 +167,9 @@ export function NewsEditor({
             type="button"
             className={cn(
               "inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-700 bg-slate-900/70 text-slate-100 hover:bg-slate-800",
-              editor?.isActive("link") ? "ring-2 ring-emerald-400/70" : ""
+              editor.isActive("link") ? "ring-2 ring-emerald-400/70" : ""
             )}
             onClick={() => {
-              if (!editor) return;
               const prev = editor.getAttributes("link")?.href ?? "";
               const href = window.prompt(tAdmin(lang, "admin.posts.editor.toolbar.link_prompt"), prev);
               if (href === null) return;
@@ -177,8 +181,8 @@ export function NewsEditor({
           >
             <LinkIcon className="h-4 w-4" />
           </button>
-        </TiptapBubbleMenu>
-      </Tiptap>
+        </BubbleMenu>
+      ) : null}
 
       <EditorContent editor={editor} />
 

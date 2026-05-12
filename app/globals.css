@@ -15,9 +15,10 @@ body {
   @apply bg-white text-slate-900 antialiased;
 }
 
-/* Smooth anchor scrolling */
+/* Cuộn mượt + chừa khoảng cho header dính (topbar + thanh điều hướng) */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6.75rem;
 }
 
 /* Selection */

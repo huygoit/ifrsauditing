@@ -116,10 +116,22 @@
       "noImage": "Chưa có ảnh",
       "readMore": "Xem chi tiết",
       "items": {
-        "safe": { "title": "An toàn", "desc": "Thiết kế thân thiện, dễ dùng mỗi ngày cho cả gia đình." },
-        "effective": { "title": "Hiệu quả", "desc": "Hỗ trợ kiểm soát mùi ổn định, giảm cảm giác bí mùi." },
-        "easy": { "title": "Dễ đặt – dễ dùng", "desc": "Không cần điện, chỉ đặt đúng vị trí là sẵn sàng hoạt động." },
-        "multi": { "title": "Đa dụng nhiều không gian", "desc": "Tủ giày, toilet, xe hơi, tủ quần áo, phòng ngủ… linh hoạt." }
+        "safe": {
+          "title": "An toàn",
+          "desc": "Thiết kế thân thiện, dễ dùng mỗi ngày cho cả gia đình."
+        },
+        "effective": {
+          "title": "Hiệu quả",
+          "desc": "Hỗ trợ kiểm soát mùi ổn định, giảm cảm giác bí mùi."
+        },
+        "easy": {
+          "title": "Dễ đặt – dễ dùng",
+          "desc": "Không cần điện, chỉ đặt đúng vị trí là sẵn sàng hoạt động."
+        },
+        "multi": {
+          "title": "Đa dụng nhiều không gian",
+          "desc": "Tủ giày, toilet, xe hơi, tủ quần áo, phòng ngủ… linh hoạt."
+        }
       }
     },
     "useCases": {
@@ -143,38 +155,95 @@
         }
       },
       "items": {
-        "shoe": { "title": "Tủ giày", "desc": "Giảm mùi ẩm mốc, giữ góc giày sạch cảm giác." },
-        "wc": { "title": "Nhà vệ sinh", "desc": "Hỗ trợ kiểm soát mùi, không át mùi nồng." },
-        "car": { "title": "Xe hơi", "desc": "Dễ chịu khi di chuyển, gọn gàng trong cabin." },
-        "closet": { "title": "Tủ quần áo", "desc": "Hạn chế mùi ẩm, giúp tủ áo thoáng hơn." },
-        "bed": { "title": "Phòng ngủ", "desc": "Tạo cảm giác trong lành, nhẹ mùi." },
-        "multi": { "title": "Không gian đa dụng", "desc": "Góc bếp, kho đồ, tủ đồ… linh hoạt theo nhu cầu." },
-
-        "biogas": { "title": "Lọc mùi biogas", "desc": "Hỗ trợ giảm mùi tại khu biogas/khu xử lý hữu cơ." },
-        "farm": { "title": "Trang trại chăn nuôi", "desc": "Hỗ trợ kiểm soát mùi trong chuồng trại và khu chăn nuôi." },
-        "fishingBoat": { "title": "Tàu cá", "desc": "Gọn nhẹ, dùng cho khoang tàu & khu bảo quản (đi biển)." },
-        "factory": { "title": "Nhà máy", "desc": "Hỗ trợ giảm mùi tại khu sản xuất/nhà xưởng." },
-        "restaurant": { "title": "Nhà hàng", "desc": "Giữ khu bếp/không gian phục vụ dễ chịu hơn." },
-        "exhaust": { "title": "Hệ thống xử lý khí thải", "desc": "Ứng dụng tại khu xử lý khí thải/phòng kỹ thuật theo nhu cầu." }
+        "shoe": {
+          "title": "Tủ giày",
+          "desc": "Giảm mùi ẩm mốc, giữ góc giày sạch cảm giác."
+        },
+        "wc": {
+          "title": "Nhà vệ sinh",
+          "desc": "Hỗ trợ kiểm soát mùi, không át mùi nồng."
+        },
+        "car": {
+          "title": "Xe hơi",
+          "desc": "Dễ chịu khi di chuyển, gọn gàng trong cabin."
+        },
+        "closet": {
+          "title": "Tủ quần áo",
+          "desc": "Hạn chế mùi ẩm, giúp tủ áo thoáng hơn."
+        },
+        "bed": {
+          "title": "Phòng ngủ",
+          "desc": "Tạo cảm giác trong lành, nhẹ mùi."
+        },
+        "multi": {
+          "title": "Không gian đa dụng",
+          "desc": "Góc bếp, kho đồ, tủ đồ… linh hoạt theo nhu cầu."
+        },
+        "biogas": {
+          "title": "Lọc mùi biogas",
+          "desc": "Hỗ trợ giảm mùi tại khu biogas/khu xử lý hữu cơ."
+        },
+        "farm": {
+          "title": "Trang trại chăn nuôi",
+          "desc": "Hỗ trợ kiểm soát mùi trong chuồng trại và khu chăn nuôi."
+        },
+        "fishingBoat": {
+          "title": "Tàu cá",
+          "desc": "Gọn nhẹ, dùng cho khoang tàu & khu bảo quản (đi biển)."
+        },
+        "factory": {
+          "title": "Nhà máy",
+          "desc": "Hỗ trợ giảm mùi tại khu sản xuất/nhà xưởng."
+        },
+        "restaurant": {
+          "title": "Nhà hàng",
+          "desc": "Giữ khu bếp/không gian phục vụ dễ chịu hơn."
+        },
+        "exhaust": {
+          "title": "Hệ thống xử lý khí thải",
+          "desc": "Ứng dụng tại khu xử lý khí thải/phòng kỹ thuật theo nhu cầu."
+        }
       }
     },
     "faq": {
       "title": "FAQ",
       "subtitle": "Những câu hỏi thường gặp khi sử dụng sản phẩm ENSO.",
       "items": {
-        "q1": { "q": "Dùng được bao lâu?", "a": "Tuỳ môi trường & độ ẩm. Khi cảm thấy hiệu quả giảm, bạn thay mới để duy trì (placeholder)." },
-        "q2": { "q": "Đặt ở đâu là tốt nhất?", "a": "Đặt nơi khô thoáng: góc tủ giày, hộc xe, kệ toilet, ngăn tủ áo… Tránh nơi nước trực tiếp." },
-        "q3": { "q": "Có mùi không?", "a": "Thiết kế hướng đến cảm giác sạch mùi, không át mùi nồng (placeholder)." },
-        "q4": { "q": "Khi nào cần thay?", "a": "Khi mùi quay lại rõ rệt hoặc sau chu kỳ sử dụng tuỳ nhu cầu (placeholder)." },
-        "q5": { "q": "Giao hàng thế nào?", "a": "Giao nhanh nội thành / toàn quốc (placeholder). ENSO gọi xác nhận trước khi gửi." },
-        "q6": { "q": "Đổi trả ra sao?", "a": "Hỗ trợ đổi trả theo chính sách (placeholder) nếu sản phẩm lỗi/không đúng đơn." }
+        "q1": {
+          "q": "Dùng được bao lâu?",
+          "a": "Tuỳ môi trường & độ ẩm. Khi cảm thấy hiệu quả giảm, bạn thay mới để duy trì (placeholder)."
+        },
+        "q2": {
+          "q": "Đặt ở đâu là tốt nhất?",
+          "a": "Đặt nơi khô thoáng: góc tủ giày, hộc xe, kệ toilet, ngăn tủ áo… Tránh nơi nước trực tiếp."
+        },
+        "q3": {
+          "q": "Có mùi không?",
+          "a": "Thiết kế hướng đến cảm giác sạch mùi, không át mùi nồng (placeholder)."
+        },
+        "q4": {
+          "q": "Khi nào cần thay?",
+          "a": "Khi mùi quay lại rõ rệt hoặc sau chu kỳ sử dụng tuỳ nhu cầu (placeholder)."
+        },
+        "q5": {
+          "q": "Giao hàng thế nào?",
+          "a": "Giao nhanh nội thành / toàn quốc (placeholder). ENSO gọi xác nhận trước khi gửi."
+        },
+        "q6": {
+          "q": "Đổi trả ra sao?",
+          "a": "Hỗ trợ đổi trả theo chính sách (placeholder) nếu sản phẩm lỗi/không đúng đơn."
+        }
       }
     },
     "pricing": {
       "title": "Combo / Pricing",
       "subtitle": "Chọn gói phù hợp — tiết kiệm hơn và phủ nhiều không gian trong nhà.",
       "bestSave": "Tiết kiệm nhất",
-      "trust": { "cod": "COD", "return": "Đổi trả", "advice": "Tư vấn" },
+      "trust": {
+        "cod": "COD",
+        "return": "Đổi trả",
+        "advice": "Tư vấn"
+      },
       "selectPlan": "Chọn gói này",
       "selected": "Đã chọn: {name}",
       "goToOrder": "Đi tới đặt hàng"
@@ -299,7 +368,10 @@
           "i2": "Khung giờ tốt nhất: 10h – 14h"
         },
         "warnTitle": "Lưu ý quan trọng",
-        "warnItems": { "i1": "Không để túi tiếp xúc với nước", "i2": "Hạt sẽ tan khi gặp nước" },
+        "warnItems": {
+          "i1": "Không để túi tiếp xúc với nước",
+          "i2": "Hạt sẽ tan khi gặp nước"
+        },
         "lifeTitle": "Vòng đời",
         "lifeItems": {
           "i1": "Túi vải tự phân huỷ theo thời gian",
@@ -320,9 +392,15 @@
           "caption": "Tránh nắng trực tiếp | Nắng làm bay mùi tinh dầu nhanh"
         },
         "timeTitle": "Thời gian hiệu quả",
-        "timeItems": { "i1": "Hiệu quả: 03 – 06 tháng", "i2": "Điều kiện tối ưu: ~25°C" },
+        "timeItems": {
+          "i1": "Hiệu quả: 03 – 06 tháng",
+          "i2": "Điều kiện tối ưu: ~25°C"
+        },
         "noSunTitle": "KHÔNG phơi nắng",
-        "noSunItems": { "i1": "KHÔNG đặt nơi có ánh nắng chiếu trực tiếp", "i2": "Nắng làm bay mùi tinh dầu nhanh" },
+        "noSunItems": {
+          "i1": "KHÔNG đặt nơi có ánh nắng chiếu trực tiếp",
+          "i2": "Nắng làm bay mùi tinh dầu nhanh"
+        },
         "whenScentLessTitle": "Khi mùi tinh dầu giảm",
         "whenScentLessItems": {
           "i1": "Phơi nắng ngắn để tách ẩm",
@@ -337,9 +415,18 @@
       "viewCert": "Xem chứng chỉ",
       "modalTitleFallback": "Chứng chỉ",
       "fallback": {
-        "ocop": { "title": "OCOP 3 Sao", "subtitle": "Đạt chuẩn sản phẩm (placeholder)" },
-        "iso": { "title": "ISO 9001:2015", "subtitle": "Chứng nhận theo tiêu chuẩn quốc tế (placeholder)" },
-        "acv": { "title": "Đối tác ACV", "subtitle": "Hợp tác cùng phát triển (placeholder)" }
+        "ocop": {
+          "title": "OCOP 3 Sao",
+          "subtitle": "Đạt chuẩn sản phẩm (placeholder)"
+        },
+        "iso": {
+          "title": "ISO 9001:2015",
+          "subtitle": "Chứng nhận theo tiêu chuẩn quốc tế (placeholder)"
+        },
+        "acv": {
+          "title": "Đối tác ACV",
+          "subtitle": "Hợp tác cùng phát triển (placeholder)"
+        }
       }
     },
     "certifications": {
@@ -434,7 +521,7 @@
     "qtyMinus": "Giảm số lượng",
     "qtyPlus": "Tăng số lượng",
     "ctaOrder": "Liên hệ ngay",
-    "ctaCall": "Gọi 085 279 5939",
+    "ctaCall": "Gọi +(84)0779.195.577",
     "metaLine": "{category} · {size}",
     "infoCategory": "Phù hợp",
     "infoSize": "Quy cách",
@@ -461,6 +548,355 @@
     "zoomHint": "Phóng to",
     "lightboxAria": "Ảnh sản phẩm phóng to",
     "lightboxClose": "Đóng"
+  },
+  "ifrs": {
+    "ctaConsult": "Đăng ký tư vấn ngay",
+    "ctaExplore": "Khám phá dịch vụ",
+    "logoAlt": "IFRS Auditing",
+    "nav": {
+      "about": "Giới thiệu",
+      "services": "Dịch vụ",
+      "ifrs": "IFRS",
+      "insights": "Tin tức",
+      "careers": "Tuyển dụng",
+      "contact": "Liên hệ"
+    },
+    "topBar": {
+      "emailAria": "Gửi email",
+      "phoneAria": "Gọi hotline"
+    },
+    "hero": {
+      "headline": "Dịch vụ kiểm toán, thuế và tư vấn doanh nghiệp chuẩn mực",
+      "desc": "IFRS Auditing đồng hành cùng doanh nghiệp trong kiểm toán báo cáo tài chính, tư vấn thuế, kế toán, thẩm định giá, IFRS/VAS và các giải pháp tuân thủ tài chính.",
+      "badgeIndependence": "Độc lập",
+      "badgeTransparency": "Minh bạch",
+      "badgeEfficiency": "Hiệu quả",
+      "visualKpi1": "BCTC",
+      "visualKpi1Lead": "Báo cáo tài chính",
+      "visualKpi2": "Tuân thủ",
+      "visualKpi3": "IFRS/VAS",
+      "checklist1": "Rà soát số liệu",
+      "checklist2": "Đối chiếu chính sách",
+      "checklist3": "Khuyến nghị rủi ro",
+      "dashboardTitle": "Báo cáo tài chính",
+      "dashboardSub": "Tổng quan kiểm toán"
+    },
+    "trustBar": {
+      "title": "Nền tảng vận hành chuyên nghiệp",
+      "items": {
+        "i1": {
+          "title": "Đội ngũ chuyên môn giàu kinh nghiệm"
+        },
+        "i2": {
+          "title": "Kinh nghiệm từ công ty kiểm toán lớn & tập đoàn đa quốc gia"
+        },
+        "i3": {
+          "title": "Dịch vụ xuyên suốt trước – trong – sau triển khai"
+        },
+        "i4": {
+          "title": "Giải pháp phù hợp cho doanh nghiệp Việt Nam & FDI"
+        }
+      }
+    },
+    "about": {
+      "title": "Đối tác chuyên môn cho quản trị tài chính minh bạch",
+      "body": "IFRS Auditing là đơn vị kiểm toán và tư vấn chuyên nghiệp, cung cấp kiểm toán báo cáo tài chính, tư vấn thuế, dịch vụ kế toán, thẩm định giá, IFRS/VAS và tư vấn doanh nghiệp — hướng tới báo cáo rõ ràng, quy trình vững và hỗ trợ quyết định.",
+      "cards": {
+        "c1": {
+          "title": "Độc lập",
+          "desc": "Tư duy khách quan, tách bạch lợi ích trong phạm vi dịch vụ đảm bảo."
+        },
+        "c2": {
+          "title": "Minh bạch",
+          "desc": "Trao đổi phạm vi, phương pháp và kết quả một cách rõ ràng."
+        },
+        "c3": {
+          "title": "Hiệu quả",
+          "desc": "Tập trung giải pháp thực thi, tối ưu nguồn lực và thời gian."
+        }
+      }
+    },
+    "why": {
+      "title": "Vì sao chọn IFRS Auditing",
+      "items": {
+        "i1": {
+          "title": "Chuyên gia thực chiến",
+          "desc": "Đội ngũ quen với báo cáo, thuế và vận hành doanh nghiệp thực tế."
+        },
+        "i2": {
+          "title": "Tư vấn đúng trọng tâm",
+          "desc": "Ưu tiên vấn đề pháp lý và tài chính then chốt của từng giai đoạn."
+        },
+        "i3": {
+          "title": "Đồng hành xuyên suốt",
+          "desc": "Hỗ trợ trước, trong và sau khi triển khai dịch vụ."
+        },
+        "i4": {
+          "title": "Tối ưu chi phí tuân thủ",
+          "desc": "Cân bằng mức độ kiểm soát với nguồn lực nội bộ của khách hàng."
+        },
+        "i5": {
+          "title": "Hiểu môi trường pháp lý Việt Nam",
+          "desc": "Bám sát quy định hiện hành và thông lệ thị trường."
+        },
+        "i6": {
+          "title": "Phù hợp FDI & doanh nghiệp nội địa",
+          "desc": "Linh hoạt mô hình phối hợp với bộ phận tài chính — kế toán."
+        }
+      }
+    },
+    "services": {
+      "title": "Dịch vụ",
+      "subtitle": "Kiểm toán, thuế, kế toán và tư vấn — trình bày gọn, dễ đối chiếu.",
+      "viewDetails": "Xem chi tiết",
+      "drawer": {
+        "close": "Đóng",
+        "dialogTitle": "Chi tiết dịch vụ",
+        "fitFor": "Phù hợp với",
+        "cta": "Đăng ký tư vấn ngay"
+      },
+      "items": {
+        "audit": {
+          "title": "Kiểm toán & dịch vụ đảm bảo",
+          "subtitle": "Kiểm toán và dịch vụ đảm bảo",
+          "desc": "Thực hiện và hỗ trợ các thủ tục kiểm toán báo cáo tài chính theo phạm vi thỏa thuận.",
+          "b1": "Lập kế hoạch kiểm toán theo rủi ro trọng yếu",
+          "b2": "Thu thập bằng chứng và đối chiếu số liệu",
+          "b3": "Báo cáo kết quả và thảo luận với quản trị",
+          "t1": "Công ty cổ phần",
+          "t2": "Nhóm có nhiều đơn vị thành viên"
+        },
+        "tax": {
+          "title": "Tư vấn thuế",
+          "subtitle": "Tư vấn thuế doanh nghiệp",
+          "desc": "Hỗ trợ rà soát nghĩa vụ thuế, tối ưu quy trình kê khai và chuẩn bị hồ sơ giải trình khi cần.",
+          "b1": "Đánh giá tác động thuế theo giao dịch",
+          "b2": "Chuẩn hóa hồ sơ và chứng từ liên quan",
+          "b3": "Phối hợp với bộ phận kế toán nội bộ",
+          "t1": "Doanh nghiệp mở rộng quy mô",
+          "t2": "Giao dịch liên kết phức tạp"
+        },
+        "accounting": {
+          "title": "Dịch vụ kế toán",
+          "subtitle": "Kế toán và báo cáo quản trị",
+          "desc": "Hỗ trợ vận hành kế toán, củng cố sổ sách và báo cáo định kỳ theo yêu cầu quản trị.",
+          "b1": "Thiết lập quy trình hạch toán nhất quán",
+          "b2": "Đối soát số dư và báo cáo quản trị",
+          "b3": "Bàn giao hồ sơ rõ ràng",
+          "t1": "Doanh nghiệp nhỏ cần củng cố bộ phận hỗ trợ",
+          "t2": "Giai đoạn chuyển đổi hệ thống"
+        },
+        "valuation": {
+          "title": "Thẩm định giá",
+          "subtitle": "Định giá doanh nghiệp và tài sản",
+          "desc": "Phân tích và trình bày cơ sở định giá phục vụ giao dịch hoặc báo cáo tài chính theo phạm vi ủy quyền.",
+          "b1": "Thu thập giả định và dữ liệu thị trường",
+          "b2": "Lựa chọn phương pháp phù hợp ngành",
+          "b3": "Tài liệu trình bày có cấu trúc",
+          "t1": "M&A và tái cấu trúc",
+          "t2": "Báo cáo theo yêu cầu cổ đông"
+        },
+        "transferPricing": {
+          "title": "Báo cáo giao dịch liên kết",
+          "subtitle": "Hồ sơ và phân tích giá giao dịch liên kết",
+          "desc": "Hỗ trợ chuẩn bị hồ sơ và phân tích giao dịch nội bộ theo hướng dẫn hiện hành.",
+          "b1": "Phân tích chức năng — rủi ro — tài sản",
+          "b2": "So sánh điều kiện thị trường",
+          "b3": "Hoàn thiện bộ hồ sơ theo phạm vi",
+          "t1": "Doanh nghiệp có giao dịch xuyên biên giới",
+          "t2": "Cần chuẩn bị làm việc với cơ quan thuế"
+        },
+        "advisory": {
+          "title": "Tư vấn & giải pháp doanh nghiệp",
+          "subtitle": "Tư vấn quản trị và tuân thủ",
+          "desc": "Tư vấn quản trị tài chính, quy trình nội bộ và các chủ đề liên quan đến tuân thủ — theo từng dự án.",
+          "b1": "Làm rõ mục tiêu và phạm vi dự án",
+          "b2": "Đề xuất lộ trình thực thi",
+          "b3": "Theo dõi sau triển khai",
+          "t1": "Ban lãnh đạo cần góc nhìn độc lập",
+          "t2": "Dự án tái cấu trúc"
+        },
+        "training": {
+          "title": "Đào tạo & tuyển dụng nhân sự",
+          "subtitle": "Đào tạo chuyên môn và hỗ trợ tuyển dụng",
+          "desc": "Chương trình đào tạo chuyên môn và hỗ trợ tuyển dụng vị trí kiểm toán — kế toán — thuế theo nhu cầu.",
+          "b1": "Thiết kế nội dung theo đối tượng",
+          "b2": "Tài liệu và case thực tế",
+          "b3": "Đánh giá sau khóa học",
+          "t1": "Đội ngũ tài chính cần nâng cấp kỹ năng",
+          "t2": "Giai đoạn tăng trưởng nhân sự"
+        },
+        "ifrsVas": {
+          "title": "Tư vấn kế toán IFRS / VAS",
+          "subtitle": "Chuyển đổi, chính sách và trình bày báo cáo",
+          "desc": "Tư vấn chuyển đổi, soát xét chính sách kế toán và hỗ trợ trình bày báo cáo theo IFRS hoặc VAS.",
+          "b1": "So sánh chính sách hiện tại với chuẩn mục",
+          "b2": "Lộ trình chuyển đổi hệ thống",
+          "b3": "Hỗ trợ kiểm tra số liệu trước phát hành",
+          "t1": "Chuẩn bị niêm yết hoặc gọi vốn",
+          "t2": "Công ty mẹ — con cần thống nhất báo cáo"
+        }
+      }
+    },
+    "ifrsHighlight": {
+      "title": "Chuẩn hóa báo cáo và hệ thống kế toán theo IFRS/VAS",
+      "body": "Chúng tôi hỗ trợ thiết lập và tối ưu hệ thống kế toán theo IFRS/VAS, soát xét báo cáo tài chính và củng cố quy trình — hướng tới minh bạch, tuân thủ và thông tin phục vụ quyết định.",
+      "matrixTitle": "Khung tuân thủ",
+      "matrixRows": {
+        "r1": {
+          "label": "Chính sách kế toán",
+          "status": "Rà soát"
+        },
+        "r2": {
+          "label": "Báo cáo tài chính",
+          "status": "Chuẩn hóa"
+        },
+        "r3": {
+          "label": "Kiểm soát nội bộ",
+          "status": "Đề xuất"
+        },
+        "r4": {
+          "label": "Công bố thông tin",
+          "status": "Hỗ trợ"
+        }
+      }
+    },
+    "process": {
+      "title": "Quy trình làm việc",
+      "subtitle": "Rõ ràng từng bước — phối hợp chặt với phía khách hàng.",
+      "steps": {
+        "s1": {
+          "title": "Tiếp nhận nhu cầu"
+        },
+        "s2": {
+          "title": "Đánh giá phạm vi & rủi ro"
+        },
+        "s3": {
+          "title": "Triển khai bởi đội ngũ chuyên môn"
+        },
+        "s4": {
+          "title": "Báo cáo, khuyến nghị & hỗ trợ sau dịch vụ"
+        }
+      }
+    },
+    "industries": {
+      "title": "Lĩnh vực & nhu cầu phổ biến",
+      "subtitle": "Không sử dụng logo khách hàng — mô tả theo ngữ cảnh nghiệp vụ.",
+      "items": {
+        "i1": {
+          "title": "Doanh nghiệp FDI",
+          "desc": "Phối hợp báo cáo, thuế và chính sách nhóm công ty."
+        },
+        "i2": {
+          "title": "Sản xuất",
+          "desc": "Tồn kho, chi phí và giao dịch liên kết cần kiểm soát."
+        },
+        "i3": {
+          "title": "Thương mại – dịch vụ",
+          "desc": "Dòng tiền, biên lợi nhuận và tuân thủ thuế GTGT."
+        },
+        "i4": {
+          "title": "Xây dựng – bất động sản",
+          "desc": "Dự án dài hạn, ghi nhận doanh thu và hợp đồng."
+        },
+        "i5": {
+          "title": "Doanh nghiệp cần kiểm toán BCTC",
+          "desc": "Niêm yết, vay vốn hoặc yêu cầu cổ đông."
+        },
+        "i6": {
+          "title": "Chuẩn hóa kế toán / thuế",
+          "desc": "Giai đoạn chuyển đổi hệ thống hoặc thanh tra."
+        }
+      }
+    },
+    "insights": {
+      "title": "Góc nhìn IFRS & cập nhật kế toán – thuế",
+      "subtitle": "Định hướng đọc — liên kết tới khu vực tin tức hiện có trên website.",
+      "cards": {
+        "c1": {
+          "title": "Tin tức",
+          "desc": "Cập nhật ngắn gọn về thị trường và nội bộ công ty.",
+          "cta": "Mở mục tin"
+        },
+        "c2": {
+          "title": "IFRS",
+          "desc": "Chủ đề chuẩn mực và trình bày báo cáo.",
+          "cta": "Mở mục IFRS"
+        },
+        "c3": {
+          "title": "Kế toán – kiểm toán",
+          "desc": "Quy trình, kiểm soát và kiểm toán nội bộ.",
+          "cta": "Mở mục kế toán"
+        },
+        "c4": {
+          "title": "Thuế & tuân thủ",
+          "desc": "Chính sách và chuẩn bị hồ sơ.",
+          "cta": "Mở mục thuế"
+        }
+      }
+    },
+    "recruitment": {
+      "title": "Phát triển sự nghiệp cùng IFRS Auditing",
+      "subtitle": "Cơ hội cho nhân sự kiểm toán, kế toán, thuế và tư vấn tài chính muốn phát triển trong môi trường chuyên môn cao.",
+      "cta": "Xem cơ hội nghề nghiệp",
+      "note": "Ứng tuyển và trao đổi chi tiết qua mục liên hệ."
+    },
+    "contact": {
+      "title": "Đăng ký tư vấn cùng IFRS Auditing",
+      "subtitle": "Vui lòng cho biết nhu cầu — đội ngũ sẽ liên hệ lại trong thời gian sớm nhất.",
+      "chip": "Dịch vụ quan tâm: {service}",
+      "cards": {
+        "hotline": "Hotline",
+        "email": "Email",
+        "hq": "Trụ sở",
+        "repHcmc": "VP đại diện · TP.HCM",
+        "repVt": "VP đại diện · Vũng Tàu"
+      },
+      "fields": {
+        "name": "Họ và tên",
+        "phone": "Số điện thoại",
+        "email": "Email",
+        "company": "Doanh nghiệp",
+        "service": "Dịch vụ quan tâm",
+        "message": "Nội dung cần tư vấn",
+        "servicePlaceholder": "Chọn hoặc mô tả ngắn",
+        "messagePlaceholder": "Mô tả nhu cầu, thời gian mong muốn làm việc…"
+      },
+      "submit": "Gửi thông tin",
+      "success": "Cảm ơn anh/chị. IFRS Auditing đã ghi nhận thông tin tư vấn.",
+      "successHint": "Đội ngũ sẽ liên hệ qua điện thoại hoặc email trong giờ làm việc.",
+      "errors": {
+        "name": "Vui lòng nhập họ và tên (ít nhất 2 ký tự).",
+        "phone": "Số điện thoại không hợp lệ.",
+        "email": "Email không hợp lệ.",
+        "company": "Vui lòng nhập tên doanh nghiệp hoặc tổ chức.",
+        "service": "Vui lòng chọn hoặc mô tả dịch vụ.",
+        "message": "Vui lòng nhập nội dung cần tư vấn (ít nhất 10 ký tự)."
+      }
+    },
+    "footer": {
+      "brandTitle": "Công ty TNHH Kiểm toán IFRS",
+      "brandDesc": "Kiểm toán, thuế, kế toán, thẩm định giá và tư vấn doanh nghiệp theo chuẩn mực chuyên nghiệp.",
+      "servicesTitle": "Dịch vụ",
+      "infoTitle": "Thông tin",
+      "contactTitle": "Liên hệ",
+      "copyright": "© {year} Công ty TNHH Kiểm toán IFRS. Mọi quyền được bảo lưu.",
+      "links": {
+        "about": "Giới thiệu",
+        "services": "Dịch vụ",
+        "careers": "Tuyển dụng",
+        "news": "Tin tức",
+        "privacy": "Chính sách bảo mật",
+        "terms": "Điều khoản sử dụng"
+      }
+    },
+    "sticky": {
+      "call": "Gọi ngay",
+      "consult": "Đăng ký tư vấn"
+    },
+    "header": {
+      "menuAria": "Menu điều hướng chính",
+      "logoShort": "IFRS Auditing"
+    }
   }
 }
-
