@@ -1,0 +1,464 @@
+{
+  "common": {
+    "all": "All",
+    "close": "Close",
+    "openMenu": "Open menu",
+    "menu": "Menu",
+    "mainNav": "Main",
+    "hotline": "Hotline",
+    "contactNow": "Contact now",
+    "callHotlineAria": "Call hotline {hotline}",
+    "callHotline": "Call {hotline}",
+    "callNow": "Call now",
+    "chatZalo": "Chat Zalo",
+    "viewAll": "View all",
+    "viewAllArrow": "View all →",
+    "loadingProducts": "Loading products",
+    "openVideoAria": "Open video: {title}",
+    "quickViewAria": "Quick view {name}",
+    "openProductDetailAria": "Open product page: {name}",
+    "usedFor": "Used for:",
+    "savePct": "Save {pct}%",
+    "saveVsRetail": "Save {pct}% vs single items",
+    "priceIncludes": "Price includes consultation & order support",
+    "viewDetails": "View details",
+    "certification": "Certification",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "clickImageTo": "Click the image to {action}.",
+    "lang": {
+      "vi": "Vietnamese",
+      "en": "English",
+      "switchToVi": "Switch to Vietnamese",
+      "switchToEn": "Switch to English"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "benefits": "Benefits",
+    "howToUse": "How to use",
+    "video": "Video",
+    "news": "News",
+    "faq": "FAQ"
+  },
+  "home": {
+    "socialProof": {
+      "aria": "Social proof",
+      "ariaRating": "Rating",
+      "customersTrusted": "{count}+ customers trust ENSO",
+      "tags": {
+        "partners": "Partners",
+        "certifications": "Certifications",
+        "eco": "Eco",
+        "trusted": "Trusted"
+      }
+    },
+    "products": {
+      "title": "Choose the right product",
+      "subtitle": "Filter by needs and space. Quick view to pick the right one — order in 1 minute.",
+      "empty": "No matching products. Try another category or keyword.",
+      "quickCategories": {
+        "car": "Car",
+        "shoe": "Shoes",
+        "wc": "Bathroom"
+      }
+    },
+    "hero": {
+      "rating": "4.9/5 (placeholder)",
+      "customersTrusted": "1,000+ customers trust ENSO",
+      "headlineHighlight": "Fresh air, no odors",
+      "headlineRest": "simple every day",
+      "desc": "Use it for shoe cabinets, rooms, cars, bathrooms, wardrobes… Designed for modern families: clean and minimalist for contemporary living spaces.",
+      "bullets": {
+        "b1Title": "Comfortable freshness",
+        "b1Desc": "helps reduce damp and stale odors.",
+        "b2Title": "Safe & minimal",
+        "b2Desc": "family-friendly, no electricity needed.",
+        "b3Title": "Fast purchase",
+        "b3Desc": "Free consultation before ordering."
+      },
+      "cta": {
+        "contactNow": "Contact now",
+        "hours": "7:30 - 22:00"
+      },
+      "badges": {
+        "b1": "Safe & easy",
+        "b2": "No electricity",
+        "b3": "Compact & versatile",
+        "b4": "Family-friendly"
+      },
+      "claims": {
+        "c1": "ISO 9001 - 2015 (placeholder)",
+        "c2": "OCOP 3-star award (placeholder)",
+        "c3": "Natural materials"
+      },
+      "imageAlt": "ENSO – Odor absorber",
+      "imageChips": {
+        "c1": "Eco-friendly",
+        "c2": "Long-lasting",
+        "c3": "Effective odor control"
+      }
+    },
+    "newsSlider": {
+      "aria": "News — horizontal list",
+      "title": "News",
+      "viewAll": "View all",
+      "readMore": "Read more",
+      "prev": "Scroll left",
+      "next": "Scroll right"
+    },
+    "benefits": {
+      "eyebrow": "Product strengths",
+      "title": "Key benefits",
+      "subtitle": "Focused on experience: minimal, refined, and easy to use across spaces.",
+      "empty": "No items yet. In admin, create a site content category whose slug is “cong-dung-noi-bat” (any locale) and add published pages.",
+      "noImage": "No image",
+      "readMore": "Read more",
+      "items": {
+        "safe": { "title": "Safe", "desc": "Family-friendly design for daily use." },
+        "effective": { "title": "Effective", "desc": "Helps keep odors under control consistently." },
+        "easy": { "title": "Easy to place", "desc": "No electricity — place it and it works." },
+        "multi": { "title": "Multi-space", "desc": "Shoes, bathroom, car, wardrobe, bedroom… flexible." }
+      }
+    },
+    "useCases": {
+      "title": "Where can you use it?",
+      "subtitle": "Compact and minimal — place it in the right spot, no extra steps.",
+      "personalEmpty": "No items yet. In admin, create a site content category with slug “khong-gian-danh-cho-ca-nhan-gia-dinh” and add published pages.",
+      "commercialEmpty": "No items yet. In admin, create a site content category with slug “khong-gian-thuong-mai-cong-nghiep” and add published pages.",
+      "noThumb": "No image",
+      "personalEyebrow": "Space ideas",
+      "personalCta": "Explore",
+      "groups": {
+        "g1": {
+          "title": "Home & personal spaces",
+          "subtitle": "Optimized for compact, enclosed spaces that need daily freshness."
+        },
+        "g2": {
+          "title": "High-odor & operational environments",
+          "subtitle": "For service, production, and dedicated odor/exhaust treatment areas."
+        }
+      },
+      "items": {
+        "shoe": { "title": "Shoe cabinet", "desc": "Helps reduce damp odor and keeps things fresher." },
+        "wc": { "title": "Bathroom", "desc": "Helps control odors without overpowering fragrance." },
+        "car": { "title": "Car", "desc": "More comfortable rides, neat in the cabin." },
+        "closet": { "title": "Wardrobe", "desc": "Helps reduce damp smell and keeps clothes fresher." },
+        "bed": { "title": "Bedroom", "desc": "A lighter, cleaner feel." },
+        "multi": { "title": "Multi-purpose", "desc": "Kitchen corner, storage, gear cabinet… flexible as needed." },
+
+        "biogas": { "title": "Biogas odor filtration", "desc": "Helps reduce odors around biogas/organic processing areas." },
+        "farm": { "title": "Livestock farms", "desc": "Helps control odors in barns and farming areas." },
+        "fishingBoat": { "title": "Fishing boats", "desc": "Compact for cabins and storage areas on trips." },
+        "factory": { "title": "Factories", "desc": "Helps reduce odors in production/workshop zones." },
+        "restaurant": { "title": "Restaurants", "desc": "Helps keep kitchens and dining spaces more comfortable." },
+        "exhaust": { "title": "Exhaust treatment systems", "desc": "Use in exhaust treatment/technical rooms as needed." }
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "subtitle": "Common questions before choosing ENSO.",
+      "items": {
+        "q1": { "q": "How long does it last?", "a": "Depends on environment & humidity. Replace when effectiveness drops (placeholder)." },
+        "q2": { "q": "Where should I place it?", "a": "Place in a dry, ventilated spot: shoe cabinet corner, car compartment, bathroom shelf, wardrobe drawer… Avoid direct water." },
+        "q3": { "q": "Does it have a strong scent?", "a": "Designed to feel clean, not overpowering (placeholder)." },
+        "q4": { "q": "When should I replace it?", "a": "When odor returns noticeably or after a usage cycle (placeholder)." },
+        "q5": { "q": "How do you ship?", "a": "Fast local / nationwide shipping (placeholder). ENSO calls to confirm before sending." },
+        "q6": { "q": "How does return work?", "a": "Support returns per policy (placeholder) if defective/wrong order." }
+      }
+    },
+    "pricing": {
+      "title": "Combo / Pricing",
+      "subtitle": "Pick a plan — save more and cover more spaces at home.",
+      "bestSave": "Best savings",
+      "trust": { "cod": "COD", "return": "Returns", "advice": "Consultation" },
+      "selectPlan": "Choose this plan",
+      "selected": "Selected: {name}",
+      "goToOrder": "Go to order"
+    },
+    "combos": {
+      "prefix": "Combo: {name}",
+      "plans": {
+        "single": {
+          "name": "Single pack",
+          "items": {
+            "i1": "1 product of your choice",
+            "i2": "Great for trying out",
+            "i3": "Compact for 1 space"
+          }
+        },
+        "save": {
+          "name": "Savings combo",
+          "items": {
+            "i1": "2 versatile products",
+            "i2": "Covers 2–3 spaces",
+            "i3": "Cost-optimized"
+          }
+        },
+        "family": {
+          "name": "Family combo",
+          "badge": "Best value",
+          "items": {
+            "i1": "3 versatile products",
+            "i2": "Covers more areas",
+            "i3": "Family-friendly"
+          }
+        }
+      }
+    },
+    "order": {
+      "title": "Contact",
+      "subtitle": "Conversion-focused: concise info, quick confirmation. ENSO prioritizes a clean and refined experience.",
+      "quickTitle": "Contact now",
+      "quickSubtitle": "Leave your info — ENSO will reach out to consult and support you shortly.",
+      "secure": "Privacy protected",
+      "chosen": "Selected: {selection}",
+      "successTitle": "Received!",
+      "successSubtitle": "ENSO will call to confirm.",
+      "orderLine": "Order: {selection} · Qty {qty}",
+      "fields": {
+        "name": "Full name",
+        "phone": "Phone",
+        "address": "Address",
+        "selection": "Choose product/combo",
+        "quantity": "Quantity",
+        "note": "Note"
+      },
+      "placeholders": {
+        "name": "John Doe",
+        "phone": "0900 000 000",
+        "address": "Street, ward, district…",
+        "note": "Deliver during office hours, call before delivery… (optional)"
+      },
+      "submit": "Send contact",
+      "badgesLine": "✅ COD • ✅ Fast shipping • ✅ Returns if defective • ✅ Privacy",
+      "demoNote": "* This is a client-side demo. Data may be saved to localStorage for illustration.",
+      "errors": {
+        "name": "Please enter your name (min 2 characters).",
+        "phone": "Phone number must be 10–11 digits.",
+        "address": "Please enter your address (min 6 characters).",
+        "selection": "Please select a product/combo.",
+        "quantity": "Quantity must be between 1 and 10."
+      },
+      "infoItems": {
+        "i1": "Confirmation call before delivery (placeholder)",
+        "i2": "Neat, aesthetic packaging",
+        "i3": "Free consultation to pick the right product",
+        "i4": "Returns per policy (placeholder)"
+      }
+    },
+    "testimonials": {
+      "title": "What customers say",
+      "subtitle": "Real reviews (placeholder) — focused on freshness, ease of use, and minimalist aesthetics.",
+      "rating": "⭐ {rating}/5",
+      "count": "{count} reviews",
+      "starsAria": "{n} stars",
+      "imageAlt": "Customer photo {name}",
+      "fallback": {
+        "tag": "Shoe cabinet",
+        "name": "Anh Thu",
+        "loc": "Ho Chi Minh City",
+        "date": "01/2026",
+        "text": "My shoe cabinet smells much better—feels cleaner. The pack is compact and easy to place."
+      }
+    },
+    "videoProof": {
+      "title": "ENSO videos",
+      "modalLabel": "Video",
+      "primaryLabel": "Primary",
+      "clickToWatch": "Click to watch",
+      "featured": "Featured",
+      "youtube": "YouTube",
+      "mp4": "MP4",
+      "closeNote": "Close the modal to stop playback (iframe/video will be unmounted).",
+      "viewMore": "View more videos",
+      "viewMoreAria": "View more videos"
+    },
+    "howToUse": {
+      "modalTitle": "How-to video",
+      "sectionTitle": "How to use & store",
+      "sectionSubtitle": "Use it correctly for optimal odor control",
+      "cardA": {
+        "tag": "Odor absorber (no essential oils)",
+        "steps": {
+          "s1": "Place the bag where odor needs control",
+          "s2": "Place it and use immediately",
+          "s3": "No need to open the bag"
+        },
+        "videoLabel": "Sun-drying the right way",
+        "video": {
+          "title": "Sun-drying the right way",
+          "caption": "Sun dry 30 minutes | 10am–2pm | Helps restore absorption"
+        },
+        "sunBoxTitle": "Sun dry monthly",
+        "sunBoxItems": {
+          "i1": "Time: ~30 minutes",
+          "i2": "Best window: 10am – 2pm"
+        },
+        "warnTitle": "Important notes",
+        "warnItems": { "i1": "Do not let the bag contact water", "i2": "Granules dissolve in water" },
+        "lifeTitle": "Lifecycle",
+        "lifeItems": {
+          "i1": "Fabric bag biodegrades over time",
+          "i2": "Usage time: ~18 months",
+          "i3": "Too frequent sun-drying may shorten lifecycle (~12 months)"
+        }
+      },
+      "cardB": {
+        "tag": "Odor absorber with essential oil scent",
+        "steps": {
+          "s1": "Place in a dry, ventilated area",
+          "s2": "No sun-drying while scent remains",
+          "s3": "Odor control with natural fragrance"
+        },
+        "videoLabel": "DO NOT sun-dry while scent remains",
+        "video": {
+          "title": "DO NOT sun-dry while scent remains",
+          "caption": "Avoid direct sunlight | Sunlight evaporates fragrance faster"
+        },
+        "timeTitle": "Effective duration",
+        "timeItems": { "i1": "Effective: 3–6 months", "i2": "Optimal condition: ~25°C" },
+        "noSunTitle": "DO NOT sun-dry",
+        "noSunItems": { "i1": "Do NOT place under direct sunlight", "i2": "Sunlight evaporates fragrance faster" },
+        "whenScentLessTitle": "When fragrance fades",
+        "whenScentLessItems": {
+          "i1": "Brief sun-dry to remove moisture",
+          "i2": "Then continue using for better odor control",
+          "i3": "Total odor-control time may extend to ~1 year"
+        }
+      }
+    },
+    "trustStrip": {
+      "aria": "Certifications & partners",
+      "label": "Certifications & partners",
+      "viewCert": "View certificate",
+      "modalTitleFallback": "Certificate",
+      "fallback": {
+        "ocop": { "title": "OCOP 3-star", "subtitle": "Meets product standards (placeholder)" },
+        "iso": { "title": "ISO 9001:2015", "subtitle": "International standard certification (placeholder)" },
+        "acv": { "title": "ACV partner", "subtitle": "Working together for growth (placeholder)" }
+      }
+    },
+    "certifications": {
+      "title": "Certifications, awards & trusted partners",
+      "subtitle": "Proof points to help you feel confident choosing ENSO: transparent, easy to understand, and focused on real experience.",
+      "whyTitle": "Why it matters",
+      "whyDesc": "Certifications/partners are trust signals — helping you feel confident about origin, process, and quality.",
+      "view": "View certificate",
+      "modalFallbackTitle": "Certification"
+    },
+    "footer": {
+      "brandTitle": "Eco premium odor control",
+      "brandSubtitle": "Safe for living spaces – Long-lasting effectiveness over time",
+      "contactTitle": "Contact",
+      "supportTitle": "Support",
+      "connectTitle": "Connect",
+      "hotlineLabel": "Hotline:",
+      "zaloLabel": "Zalo:",
+      "zaloChatNow": "Chat now",
+      "shippingLine": "Nationwide delivery – COD",
+      "supportLinks": {
+        "howToUse": "How to use",
+        "shipping": "Shipping",
+        "returns": "Returns",
+        "faq": "FAQ",
+        "becomeDealer": "Become an ENSO agent"
+      },
+      "policies": {
+        "shipping": "Shipping policy",
+        "returns": "Return policy"
+      },
+      "ecoNote": "Eco-friendly product – No toxic chemicals",
+      "youtubeLabel": "YouTube (How to use)"
+    },
+    "header": {
+      "productPill": "Odor absorber",
+      "hotline": "Hotline",
+      "menuDialog": "Menu",
+      "close": "Close",
+      "closeMenu": "Close menu",
+      "callHotline": "Call {hotline}"
+    },
+    "search": {
+      "label": "Search products",
+      "placeholder": "Search by name…",
+      "clear": "Clear search"
+    },
+    "stickyBar": {
+      "callNow": "Call now",
+      "chatZalo": "Chat Zalo"
+    },
+    "productModal": {
+      "highlights": "Highlights",
+      "usage": "How to use",
+      "selectThis": "Select this product",
+      "note": "Note: effectiveness depends on environment & usage frequency (placeholder).",
+      "tipDrawer": "Tip: tap the backdrop or press Esc to close."
+    }
+  },
+  "videos": {
+    "title": "ENSO videos",
+    "subtitle": "A curated collection of guides, real-life tests, and tips to help you control odors more effectively.",
+    "empty": "No videos yet."
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "Knowledge, guides & product stories",
+    "all": "All",
+    "backHome": "← Back to home",
+    "backAll": "← All news",
+    "updatedAt": "Updated:",
+    "publishedAt": "Published:",
+    "empty": "No news yet.",
+    "emptyCategory": "No posts in this category yet.",
+    "contentUpdating": "This article is being updated.",
+    "breadcrumbHome": "Home",
+    "breadcrumbNews": "News",
+    "relatedPosts": "Related posts",
+    "recentPosts": "Recent posts"
+  },
+  "siteContent": {
+    "breadcrumbHome": "Home",
+    "breadcrumbSection": "Content",
+    "publishedAt": "Published:",
+    "contentUpdating": "This page is being updated."
+  },
+  "productDetail": {
+    "breadcrumbHome": "Home",
+    "breadcrumbProducts": "Products",
+    "galleryThumb": "Image",
+    "quantity": "Quantity",
+    "qtyMinus": "Decrease quantity",
+    "qtyPlus": "Increase quantity",
+    "ctaOrder": "Contact now",
+    "ctaCall": "Call 085 279 5939",
+    "metaLine": "{category} · {size}",
+    "infoCategory": "Best for",
+    "infoSize": "Size",
+    "infoSku": "SKU",
+    "highlightsTitle": "Highlights",
+    "detailTitle": "Full description",
+    "detailHint": "Formatted in the admin editor — same rich text styles as the preview.",
+    "usageTitle": "How to use",
+    "relatedTitle": "Related products",
+    "backAll": "View all",
+    "orderTitle": "Contact now",
+    "orderSubtitle": "Leave your details — ENSODANA will confirm your order.",
+    "subnavAria": "In-page navigation",
+    "navOverview": "Overview",
+    "navHighlights": "Highlights",
+    "navDetail": "Details",
+    "navUsage": "How to use",
+    "navOrder": "Contact now",
+    "navRelated": "Related",
+    "featuredPill": "Featured",
+    "shortLeadLabel": "At a glance",
+    "trustLine": "Price updates with quantity. Secure checkout — we call back to confirm.",
+    "openLightbox": "View large image",
+    "zoomHint": "Enlarge",
+    "lightboxAria": "Enlarged product image",
+    "lightboxClose": "Close"
+  }
+}
+

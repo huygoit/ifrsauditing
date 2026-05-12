@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-900 antialiased;
+}
+
+/* Smooth anchor scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: rgb(16 185 129 / 0.2);
+}
+
+/* Subtle noise-free focus ring */
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.55), 0 0 0 6px rgb(16 185 129 / 0.14);
+  border-radius: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Hide horizontal scrollbar (used for TrustStrip on mobile) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Tiêu đề section trang chủ — đồng bộ màu CTA (emerald) */
+@layer components {
+  .home-section-heading {
+    @apply text-2xl font-semibold tracking-tight text-emerald-700 md:text-3xl;
+  }
+}
+
+/* Restore list markers (Tailwind preflight resets them) */
+.ProseMirror ul {
+  list-style: disc;
+  list-style-position: outside;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+.ProseMirror ol {
+  list-style: decimal;
+  list-style-position: outside;
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+.ProseMirror li {
+  margin: 0.25rem 0;
+}
+
+/* Ensure preview (prose) shows bullets/numbers even without typography plugin */
+.prose ul {
+  list-style: disc;
+  list-style-position: outside;
+  padding-left: 1.25rem;
+}
+.prose ol {
+  list-style: decimal;
+  list-style-position: outside;
+  padding-left: 1.25rem;
+}
+
+/*
+ * Mô tả chi tiết sản phẩm — nền sáng, thứ bậc heading rõ (1 / 2 / 3 cấp khác nhau).
+ * ol/ul: bắt buộc display:list-item + đủ padding — tránh bị cắt marker khi cha có overflow:hidden.
+ */
+.product-detail-html > * + * {
+  margin-top: 0.85em;
+}
+.product-detail-html h1,
+.product-detail-html h2,
+.product-detail-html h3,
+.product-detail-html h4 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: rgb(15 23 42);
+  line-height: 1.25;
+}
+.product-detail-html h1 {
+  margin-top: 1.35em;
+  margin-bottom: 0.4em;
+  font-size: 1.625rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid rgb(16 185 129);
+}
+.product-detail-html h2 {
+  margin-top: 1.2em;
+  margin-bottom: 0.35em;
+  font-size: 1.35rem;
+  color: rgb(15 23 42);
+}
+.product-detail-html h3 {
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  font-size: 1.125rem;
+  color: rgb(30 41 59);
+}
+.product-detail-html h4 {
+  margin-top: 0.85em;
+  margin-bottom: 0.25em;
+  font-size: 1rem;
+  color: rgb(51 65 85);
+}
+.product-detail-html h5 {
+  margin-top: 0.75em;
+  margin-bottom: 0.2em;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: rgb(71 85 105);
+}
+.product-detail-html h6 {
+  margin-top: 0.65em;
+  margin-bottom: 0.2em;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: rgb(100 116 139);
+}
+.product-detail-html h1:first-child,
+.product-detail-html h2:first-child,
+.product-detail-html h3:first-child,
+.product-detail-html h4:first-child,
+.product-detail-html h5:first-child,
+.product-detail-html h6:first-child {
+  margin-top: 0;
+}
+.product-detail-html table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.product-detail-html th,
+.product-detail-html td {
+  border: 1px solid rgb(226 232 240);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.product-detail-html th {
+  background: rgb(248 250 252);
+  font-weight: 700;
+  color: rgb(15 23 42);
+}
+.product-detail-html p {
+  margin: 0.45em 0;
+}
+.product-detail-html a {
+  color: rgb(5 150 105);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.product-detail-html a:hover {
+  color: rgb(4 120 87);
+}
+.product-detail-html blockquote {
+  margin: 0.85rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid rgb(16 185 129);
+  background: rgb(236 253 245 / 0.65);
+  border-radius: 0 0.75rem 0.75rem 0;
+  color: rgb(51 65 85);
+}
+/*
+ * Danh sách có thứ tự: TipTap hay tạo nhiều <ol> liền nhau, mỗi <ol> chỉ 1 <li>
+ * → trình duyệt luôn hiện "1." (mỗi list đếm lại từ 1). Admin ProseMirror có thể gộp 1 <ol> nên trông đúng.
+ * Fix: counter pd-ol-main trên toàn khối mô tả, chỉ áp cho li là con trực tiếp của ol
+ * nằm ngay dưới .product-detail-html hoặc dưới div con trực tiếp (cấu trúc thường gặp của TipTap).
+ */
+.product-detail-html {
+  counter-reset: pd-ol-main;
+}
+.product-detail-html ul,
+.product-detail-html ol {
+  margin: 0.6rem 0;
+}
+.product-detail-html ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 0;
+  padding-inline-start: 1.5rem;
+}
+/* ol cấp ngoài: tắt marker mặc định, dùng số từ counter để nối tiếp qua nhiều <ol> */
+.product-detail-html > ol,
+.product-detail-html > div > ol,
+.product-detail-html > div > div > ol {
+  list-style: none;
+  padding-left: 0;
+  padding-inline-start: 0;
+}
+.product-detail-html > ol > li,
+.product-detail-html > div > ol > li,
+.product-detail-html > div > div > ol > li {
+  counter-increment: pd-ol-main;
+  display: block;
+  list-style: none;
+  position: relative;
+  margin: 0.4rem 0;
+  padding-left: 1.85rem;
+  min-height: 1.25em;
+}
+.product-detail-html > ol > li::before,
+.product-detail-html > div > ol > li::before,
+.product-detail-html > div > div > ol > li::before {
+  content: counter(pd-ol-main) ". ";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-weight: 700;
+  color: rgb(15 23 42);
+  min-width: 1.5rem;
+}
+/* ol lồng bên trong một mục (không phải ol “ngang hàng” ngoài cùng): giữ a, b, c */
+.product-detail-html ol ol {
+  list-style-type: lower-alpha;
+  list-style-position: outside;
+  padding-inline-start: 1.35rem;
+  margin: 0.35rem 0 0.35rem 0;
+}
+.product-detail-html ol ol > li {
+  display: list-item;
+  padding-left: 0.15rem;
+}
+.product-detail-html ol ol > li::before {
+  content: none;
+}
+.product-detail-html ol ol ol {
+  list-style-type: lower-roman;
+}
+/* ul trong mục: bullet chuẩn */
+.product-detail-html ol ul,
+.product-detail-html ul ul {
+  margin: 0.35rem 0;
+  padding-inline-start: 1.35rem;
+}
+.product-detail-html ul li {
+  display: list-item;
+  list-style-position: outside;
+  margin: 0.25rem 0;
+}
+.product-detail-html li > p {
+  margin: 0.2em 0;
+}
+.product-detail-html pre {
+  margin: 0.85rem 0;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  background: rgb(15 23 42);
+  border: 1px solid rgb(51 65 85);
+  color: rgb(226 232 240);
+  font-size: 0.8125rem;
+  overflow-x: auto;
+}
+.product-detail-html code {
+  font-size: 0.9em;
+  padding: 0.12em 0.35em;
+  border-radius: 0.35rem;
+  background: rgb(241 245 249);
+  color: rgb(15 23 42);
+}
+.product-detail-html pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+.product-detail-html img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 0.85rem 0;
+  border: 1px solid rgb(226 232 240);
+}
+.product-detail-html hr {
+  margin: 1.35rem 0;
+  border: 0;
+  border-top: 1px solid rgb(226 232 240);
+}
+.product-detail-html strong {
+  font-weight: 700;
+  color: rgb(15 23 42);
+}
+.product-detail-html em {
+  font-style: italic;
+}

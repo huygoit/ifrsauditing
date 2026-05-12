@@ -1,0 +1,5 @@
+# Deploy folder
+.env
+out/
+.next/
+node_modules/

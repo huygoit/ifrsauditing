@@ -1,0 +1,633 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Lang {
+  vi
+  en
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+  HIDDEN
+  ACTIVE
+  INACTIVE
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  CSKH
+}
+
+enum CertificationType {
+  CERTIFICATION
+  AWARD
+}
+
+enum PartnerGroup {
+  PARTNER
+  DISTRIBUTOR
+  CUSTOMER
+}
+
+enum VideoType {
+  YOUTUBE
+  MP4
+}
+
+enum VideoPlacement {
+  VIDEO_PROOF
+  HOW_TO_USE
+  OTHER
+}
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  HIDDEN
+}
+
+enum FaqStatus {
+  VISIBLE
+  HIDDEN
+}
+
+enum OrderStatus {
+  NEW
+  CALLING
+  CONFIRMED
+  CANCELED
+}
+
+model User {
+  id           String    @id @default(cuid())
+  username     String    @unique
+  passwordHash String
+  role         Role      @default(ADMIN)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  sessions  Session[]
+  auditLogs AuditLog[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  revokedAt DateTime?
+
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+  @@map("session")
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  actorUserId String
+  actor       User     @relation(fields: [actorUserId], references: [id], onDelete: Cascade)
+  entity      String
+  entityId    String?
+  action      String
+  summary     String
+  diffJson    Json?
+  createdAt   DateTime @default(now())
+
+  @@index([actorUserId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+  @@map("auditlog")
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  iconKey   String
+  sortOrder Int      @default(0)
+  status    Status   @default(ACTIVE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations CategoryTranslation[]
+  products     Product[]
+
+  @@index([status])
+  @@index([sortOrder])
+  @@map("category")
+}
+
+model CategoryTranslation {
+  id          String @id @default(cuid())
+  categoryId  String
+  lang        Lang
+  name        String
+  description String?
+
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, lang])
+  @@index([lang])
+  @@map("categorytranslation")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  priceVnd    Int
+  salePriceVnd Int?
+  sizeTag     String
+  badges      Json?
+  status      Status   @default(ACTIVE)
+  featured    Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  thumbnailSrc String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  translations ProductTranslation[]
+  images       ProductImage[]
+  comboItems   ComboItem[]
+  orders       Order[]
+
+  @@index([categoryId])
+  @@index([status])
+  @@index([featured])
+  @@index([sortOrder])
+  @@map("product")
+}
+
+model ProductTranslation {
+  id                 String   @id @default(cuid())
+  productId          String
+  lang               Lang
+  name               String
+  shortDesc          String?
+  descriptionJson    Json?
+  descriptionMarkdown String? @db.LongText
+  highlights         Json?
+  usage              String?
+  seoTitle           String?
+  seoDesc            String?
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, lang])
+  @@index([lang])
+  @@map("producttranslation")
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  src       String
+  alt       String?
+  sortOrder Int     @default(0)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([sortOrder])
+  @@map("productimage")
+}
+
+model Combo {
+  id          String   @id @default(cuid())
+  priceVnd    Int
+  salePriceVnd Int?
+  badge       String?
+  status      Status   @default(ACTIVE)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  translations ComboTranslation[]
+  items        ComboItem[]
+  orders       Order[]
+
+  @@index([status])
+  @@index([sortOrder])
+  @@map("combo")
+}
+
+model ComboTranslation {
+  id          String @id @default(cuid())
+  comboId     String
+  lang        Lang
+  title       String
+  subtitle    String?
+  includes    Json?
+  savingsLine String?
+  seoTitle    String?
+  seoDesc     String?
+
+  combo Combo @relation(fields: [comboId], references: [id], onDelete: Cascade)
+
+  @@unique([comboId, lang])
+  @@index([lang])
+  @@map("combotranslation")
+}
+
+model ComboItem {
+  id        String @id @default(cuid())
+  comboId   String
+  productId String
+  quantity  Int    @default(1)
+  sortOrder Int    @default(0)
+
+  combo   Combo   @relation(fields: [comboId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([comboId])
+  @@index([productId])
+  @@index([sortOrder])
+  @@map("comboitem")
+}
+
+model Certification {
+  id                  String            @id @default(cuid())
+  type                CertificationType @default(CERTIFICATION)
+  logoSrc             String
+  certificateImageSrc String?
+  issuedDate          DateTime?
+  issuer              String?
+  status              Status            @default(PUBLISHED)
+  sortOrder           Int               @default(0)
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  translations CertificationTranslation[]
+
+  @@index([type])
+  @@index([status])
+  @@index([sortOrder])
+  @@map("certification")
+}
+
+model CertificationTranslation {
+  id              String @id @default(cuid())
+  certificationId String
+  lang            Lang
+  title           String
+  description     String?
+  note            String?
+
+  certification Certification @relation(fields: [certificationId], references: [id], onDelete: Cascade)
+
+  @@unique([certificationId, lang])
+  @@index([lang])
+  @@map("certificationtranslation")
+}
+
+model Partner {
+  id        String       @id @default(cuid())
+  logoSrc   String
+  link      String?
+  group     PartnerGroup @default(PARTNER)
+  status    Status       @default(PUBLISHED)
+  sortOrder Int          @default(0)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  translations PartnerTranslation[]
+
+  @@index([group])
+  @@index([status])
+  @@index([sortOrder])
+  @@map("partner")
+}
+
+model PartnerTranslation {
+  id        String @id @default(cuid())
+  partnerId String
+  lang      Lang
+  name      String
+  shortDesc String?
+
+  partner Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+
+  @@unique([partnerId, lang])
+  @@index([lang])
+  @@map("partnertranslation")
+}
+
+model Video {
+  id           String         @id @default(cuid())
+  type         VideoType      @default(YOUTUBE)
+  src          String
+  thumbnailSrc String
+  duration     String
+  placement    VideoPlacement @default(VIDEO_PROOF)
+  status       Status         @default(PUBLISHED)
+  sortOrder    Int            @default(0)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  translations VideoTranslation[]
+
+  @@index([placement])
+  @@index([status])
+  @@index([sortOrder])
+  @@map("video")
+}
+
+model VideoTranslation {
+  id      String @id @default(cuid())
+  videoId String
+  lang    Lang
+  title   String
+  caption String?
+
+  video Video @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@unique([videoId, lang])
+  @@index([lang])
+  @@map("videotranslation")
+}
+
+model Post {
+  id          String     @id @default(cuid())
+  coverImage  String?
+  author      String?
+  publishedAt DateTime?
+  status      PostStatus @default(DRAFT)
+  tags        Json?
+  postCategoryId String?
+  sortOrder   Int        @default(0)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  translations PostTranslation[]
+  postCategory PostCategory? @relation(fields: [postCategoryId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([publishedAt])
+  @@index([postCategoryId])
+  @@index([sortOrder])
+  @@map("post")
+}
+
+model PostCategory {
+  id        String @id @default(cuid())
+  status    Status @default(ACTIVE)
+  sortOrder Int    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations PostCategoryTranslation[]
+  posts        Post[]
+
+  @@index([status])
+  @@index([sortOrder])
+  @@map("postcategory")
+}
+
+model PostCategoryTranslation {
+  id            String @id @default(cuid())
+  postCategoryId String
+  lang          Lang
+  name          String
+  slug          String
+  description   String? @db.Text
+  seoTitle      String?
+  seoDesc       String? @db.Text
+
+  postCategory PostCategory @relation(fields: [postCategoryId], references: [id], onDelete: Cascade)
+
+  @@unique([postCategoryId, lang])
+  @@unique([lang, slug])
+  @@index([lang])
+  @@map("postcategorytranslation")
+}
+
+model PostTranslation {
+  id              String @id @default(cuid())
+  postId          String
+  lang            Lang
+  slug            String
+  title           String
+  excerpt         String? @db.Text
+  contentMarkdown String? @db.LongText
+  contentJson     Json?
+  seoTitle        String?
+  seoDesc         String?
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, lang])
+  @@unique([lang, slug])
+  @@index([lang])
+  @@map("posttranslation")
+}
+
+// --- Quản trị nội dung website (danh mục + bài), tách khỏi tin tức ---
+model SiteContentCategory {
+  id        String   @id @default(cuid())
+  status    Status   @default(ACTIVE)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations SiteContentCategoryTranslation[]
+  siteContents SiteContent[]
+
+  @@index([status])
+  @@index([sortOrder])
+  @@map("sitecontentcategory")
+}
+
+model SiteContentCategoryTranslation {
+  id                    String  @id @default(cuid())
+  siteContentCategoryId String
+  lang                  Lang
+  name                  String
+  slug                  String
+  description           String? @db.Text
+  seoTitle              String?
+  seoDesc               String? @db.Text
+
+  siteContentCategory SiteContentCategory @relation(fields: [siteContentCategoryId], references: [id], onDelete: Cascade)
+
+  @@unique([siteContentCategoryId, lang])
+  @@unique([lang, slug])
+  @@index([lang])
+  @@map("sitecontentcategorytranslation")
+}
+
+model SiteContent {
+  id                    String     @id @default(cuid())
+  coverImage            String?
+  author                String?
+  publishedAt           DateTime?
+  status                PostStatus @default(DRAFT)
+  tags                  Json?
+  siteContentCategoryId String?
+  sortOrder             Int        @default(0)
+  createdAt             DateTime   @default(now())
+  updatedAt             DateTime   @updatedAt
+
+  translations        SiteContentTranslation[]
+  siteContentCategory   SiteContentCategory? @relation(fields: [siteContentCategoryId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([publishedAt])
+  @@index([siteContentCategoryId])
+  @@index([sortOrder])
+  @@map("sitecontent")
+}
+
+model SiteContentTranslation {
+  id              String  @id @default(cuid())
+  siteContentId   String
+  lang            Lang
+  slug            String
+  title           String
+  excerpt         String? @db.Text
+  contentMarkdown String? @db.LongText
+  contentJson     Json?
+  seoTitle        String?
+  seoDesc         String? @db.Text
+
+  siteContent SiteContent @relation(fields: [siteContentId], references: [id], onDelete: Cascade)
+
+  @@unique([siteContentId, lang])
+  @@unique([lang, slug])
+  @@index([lang])
+  @@map("sitecontenttranslation")
+}
+
+model Faq {
+  id         Int       @id @default(autoincrement())
+  status     FaqStatus @default(VISIBLE)
+  sortOrder  Int       @default(0)
+  sectionKey String?   @db.VarChar(40)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  translations FaqTranslation[]
+
+  @@index([status])
+  @@index([sortOrder])
+  @@index([sectionKey])
+  @@map("faq")
+}
+
+model FaqTranslation {
+  id       String @id @default(cuid())
+  faqId    Int
+  lang     Lang
+  question String @db.VarChar(180)
+  answer   String @db.LongText
+
+  faq Faq @relation(fields: [faqId], references: [id], onDelete: Cascade)
+
+  @@unique([faqId, lang])
+  @@index([lang])
+  @@index([faqId])
+  @@map("faqtranslation")
+}
+
+model Review {
+  id        String       @id @default(cuid())
+  rating    Int
+  avatar    String?
+  location  String?
+  status    ReviewStatus @default(PENDING)
+  images    Json?
+  createdAt DateTime     @default(now())
+
+  translations ReviewTranslation[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("review")
+}
+
+model ReviewTranslation {
+  id       String @id @default(cuid())
+  reviewId String
+  lang     Lang
+  name     String
+  content  String
+
+  review Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+
+  @@unique([reviewId, lang])
+  @@index([lang])
+  @@map("reviewtranslation")
+}
+
+model Order {
+  id           String      @id @default(cuid())
+  name         String
+  phone        String
+  address      String
+  productId    String?
+  comboId      String?
+  quantity     Int         @default(1)
+  note         String?
+  status       OrderStatus @default(NEW)
+  internalNote String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  product Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+  combo   Combo?   @relation(fields: [comboId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([phone])
+  @@map("order")
+}
+
+model Setting {
+  id           String   @id @default("default")
+  hotline      String
+  zaloUrl      String
+  address      String?
+  socialLinks  Json?
+  ordersEnabled Boolean @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  translations SettingTranslation[]
+
+  @@map("setting")
+}
+
+model SettingTranslation {
+  id            String @id @default(cuid())
+  settingId     String
+  lang          Lang
+  topBarMessage String?
+  shippingPolicy String?
+  returnPolicy  String?
+  seoTitle      String?
+  seoDesc       String?
+
+  setting Setting @relation(fields: [settingId], references: [id], onDelete: Cascade)
+
+  @@unique([settingId, lang])
+  @@index([lang])
+  @@map("settingtranslation")
+}
+
+

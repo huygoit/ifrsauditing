@@ -1,0 +1,466 @@
+{
+  "common": {
+    "all": "Tất cả",
+    "close": "Đóng",
+    "openMenu": "Mở menu",
+    "menu": "Menu",
+    "mainNav": "Chính",
+    "hotline": "Hotline",
+    "contactNow": "Liên hệ ngay",
+    "callHotlineAria": "Gọi hotline {hotline}",
+    "callHotline": "Gọi {hotline}",
+    "callNow": "Gọi ngay",
+    "chatZalo": "Chat Zalo",
+    "viewAll": "Xem tất cả",
+    "viewAllArrow": "Xem tất cả →",
+    "loadingProducts": "Đang tải sản phẩm",
+    "openVideoAria": "Mở video: {title}",
+    "quickViewAria": "Xem nhanh {name}",
+    "openProductDetailAria": "Mở trang chi tiết: {name}",
+    "usedFor": "Dùng cho:",
+    "savePct": "Tiết kiệm {pct}%",
+    "saveVsRetail": "Tiết kiệm {pct}% so với mua lẻ",
+    "priceIncludes": "Giá đã gồm tư vấn & hỗ trợ đặt hàng",
+    "viewDetails": "Xem chi tiết",
+    "certification": "Chứng nhận",
+    "zoomIn": "Phóng to",
+    "zoomOut": "Thu nhỏ",
+    "clickImageTo": "Bấm vào ảnh để {action}.",
+    "lang": {
+      "vi": "Tiếng Việt",
+      "en": "Tiếng Anh",
+      "switchToVi": "Chuyển sang Tiếng Việt",
+      "switchToEn": "Chuyển sang Tiếng Anh"
+    }
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "products": "Sản phẩm",
+    "benefits": "Công dụng",
+    "howToUse": "Cách dùng",
+    "video": "Video",
+    "news": "Tin tức",
+    "faq": "FAQ"
+  },
+  "home": {
+    "socialProof": {
+      "aria": "Social proof",
+      "ariaRating": "Đánh giá",
+      "customersTrusted": "{count}+ khách hàng tin dùng",
+      "tags": {
+        "partners": "Đối tác",
+        "certifications": "Chứng nhận",
+        "eco": "Eco",
+        "trusted": "Đáng tin cậy"
+      }
+    },
+    "products": {
+      "title": "Sản phẩm khử mùi Enso",
+      "subtitle": "Chọn sản phẩm theo không gian sống và khu vực sản xuất, kinh doanh của bạn.",
+      "empty": "Không tìm thấy sản phẩm phù hợp. Thử đổi danh mục hoặc từ khoá.",
+      "quickCategories": {
+        "car": "Xe hơi",
+        "shoe": "Tủ giày",
+        "wc": "Nhà vệ sinh"
+      }
+    },
+    "hero": {
+      "rating": "4.9/5 (placeholder)",
+      "customersTrusted": "1.000+ khách hàng tin dùng",
+      "headlineHighlight": "Sạch mùi, thoáng khí",
+      "headlineRest": "đơn giản mỗi ngày",
+      "desc": "Dùng cho tủ giày, phòng, xe hơi, nhà vệ sinh, tủ quần áo… Thiết kế phù hợp gia đình hiện đại, sạch sẽ và tối giản cho không gian sống hiện đại.",
+      "bullets": {
+        "b1Title": "Sạch mùi dễ chịu",
+        "b1Desc": "hỗ trợ giảm mùi ẩm mốc & bí mùi.",
+        "b2Title": "An toàn & tối giản",
+        "b2Desc": "phù hợp gia đình, không cần điện.",
+        "b3Title": "Mua nhanh",
+        "b3Desc": "Tư vấn miễn phí trước khi đặt."
+      },
+      "cta": {
+        "contactNow": "Liên hệ ngay",
+        "hours": "7:30 - 22:00"
+      },
+      "badges": {
+        "b1": "An toàn – dễ dùng",
+        "b2": "Không cần điện",
+        "b3": "Nhỏ gọn – đa dụng",
+        "b4": "Phù hợp gia đình"
+      },
+      "claims": {
+        "c1": "Tiêu chuẩn quốc tế IOS 9001 - 2015",
+        "c2": "Giải thưởng OCOP 3 sao",
+        "c3": "Nguyên liệu tự nhiên"
+      },
+      "imageAlt": "ENSO – Hạt khử mùi",
+      "imageChips": {
+        "c1": "Thân thiện môi trường",
+        "c2": "Hiệu quả lâu dài",
+        "c3": "Kiểm soát mùi hiệu quả"
+      }
+    },
+    "newsSlider": {
+      "aria": "Tin tức — danh sách cuộn ngang",
+      "title": "Tin tức",
+      "viewAll": "Xem tất cả",
+      "readMore": "Đọc tiếp",
+      "prev": "Cuộn sang trái",
+      "next": "Cuộn sang phải"
+    },
+    "benefits": {
+      "eyebrow": "Ưu điểm sản phẩm",
+      "title": "Công dụng nổi bật",
+      "subtitle": "Tập trung vào trải nghiệm, tối giản, tinh tế và dễ áp dụng cho nhiều không gian.",
+      "empty": "Chưa có nội dung cho mục này. Trong quản trị, hãy tạo danh mục nội dung với slug “cong-dung-noi-bat” và thêm các bài đã xuất bản.",
+      "noImage": "Chưa có ảnh",
+      "readMore": "Xem chi tiết",
+      "items": {
+        "safe": { "title": "An toàn", "desc": "Thiết kế thân thiện, dễ dùng mỗi ngày cho cả gia đình." },
+        "effective": { "title": "Hiệu quả", "desc": "Hỗ trợ kiểm soát mùi ổn định, giảm cảm giác bí mùi." },
+        "easy": { "title": "Dễ đặt – dễ dùng", "desc": "Không cần điện, chỉ đặt đúng vị trí là sẵn sàng hoạt động." },
+        "multi": { "title": "Đa dụng nhiều không gian", "desc": "Tủ giày, toilet, xe hơi, tủ quần áo, phòng ngủ… linh hoạt." }
+      }
+    },
+    "useCases": {
+      "title": "Dùng được ở đâu?",
+      "subtitle": "Thiết kế nhỏ gọn, tối giản — đặt vào đúng vị trí, không cần thêm thao tác.",
+      "personalEmpty": "Chưa có bài cho nhóm này. Trong quản trị, tạo danh mục nội dung slug “khong-gian-danh-cho-ca-nhan-gia-dinh” và thêm các bài đã xuất bản.",
+      "commercialEmpty": "Chưa có bài cho nhóm này. Trong quản trị, tạo danh mục nội dung slug “khong-gian-thuong-mai-cong-nghiep” và thêm các bài đã xuất bản.",
+      "noThumb": "Chưa có ảnh",
+      "personalEyebrow": "Gợi ý không gian",
+      "personalCta": "Khám phá",
+      "groups": {
+        "g1": {
+          "label": "Không gian sống cho cá nhân và gia đình",
+          "title": "Không gian sống cá nhân và gia đình",
+          "subtitle": "Tối ưu cho không gian kín, gọn và cần sạch mùi hằng ngày."
+        },
+        "g2": {
+          "label": "Không gian thương mại & công nghiệp",
+          "title": "Không gian thương mại & công nghiệp",
+          "subtitle": "Phù hợp nhu cầu dịch vụ, sản xuất và các khu xử lý khí/khử mùi chuyên dụng."
+        }
+      },
+      "items": {
+        "shoe": { "title": "Tủ giày", "desc": "Giảm mùi ẩm mốc, giữ góc giày sạch cảm giác." },
+        "wc": { "title": "Nhà vệ sinh", "desc": "Hỗ trợ kiểm soát mùi, không át mùi nồng." },
+        "car": { "title": "Xe hơi", "desc": "Dễ chịu khi di chuyển, gọn gàng trong cabin." },
+        "closet": { "title": "Tủ quần áo", "desc": "Hạn chế mùi ẩm, giúp tủ áo thoáng hơn." },
+        "bed": { "title": "Phòng ngủ", "desc": "Tạo cảm giác trong lành, nhẹ mùi." },
+        "multi": { "title": "Không gian đa dụng", "desc": "Góc bếp, kho đồ, tủ đồ… linh hoạt theo nhu cầu." },
+
+        "biogas": { "title": "Lọc mùi biogas", "desc": "Hỗ trợ giảm mùi tại khu biogas/khu xử lý hữu cơ." },
+        "farm": { "title": "Trang trại chăn nuôi", "desc": "Hỗ trợ kiểm soát mùi trong chuồng trại và khu chăn nuôi." },
+        "fishingBoat": { "title": "Tàu cá", "desc": "Gọn nhẹ, dùng cho khoang tàu & khu bảo quản (đi biển)." },
+        "factory": { "title": "Nhà máy", "desc": "Hỗ trợ giảm mùi tại khu sản xuất/nhà xưởng." },
+        "restaurant": { "title": "Nhà hàng", "desc": "Giữ khu bếp/không gian phục vụ dễ chịu hơn." },
+        "exhaust": { "title": "Hệ thống xử lý khí thải", "desc": "Ứng dụng tại khu xử lý khí thải/phòng kỹ thuật theo nhu cầu." }
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "subtitle": "Những câu hỏi thường gặp khi sử dụng sản phẩm ENSO.",
+      "items": {
+        "q1": { "q": "Dùng được bao lâu?", "a": "Tuỳ môi trường & độ ẩm. Khi cảm thấy hiệu quả giảm, bạn thay mới để duy trì (placeholder)." },
+        "q2": { "q": "Đặt ở đâu là tốt nhất?", "a": "Đặt nơi khô thoáng: góc tủ giày, hộc xe, kệ toilet, ngăn tủ áo… Tránh nơi nước trực tiếp." },
+        "q3": { "q": "Có mùi không?", "a": "Thiết kế hướng đến cảm giác sạch mùi, không át mùi nồng (placeholder)." },
+        "q4": { "q": "Khi nào cần thay?", "a": "Khi mùi quay lại rõ rệt hoặc sau chu kỳ sử dụng tuỳ nhu cầu (placeholder)." },
+        "q5": { "q": "Giao hàng thế nào?", "a": "Giao nhanh nội thành / toàn quốc (placeholder). ENSO gọi xác nhận trước khi gửi." },
+        "q6": { "q": "Đổi trả ra sao?", "a": "Hỗ trợ đổi trả theo chính sách (placeholder) nếu sản phẩm lỗi/không đúng đơn." }
+      }
+    },
+    "pricing": {
+      "title": "Combo / Pricing",
+      "subtitle": "Chọn gói phù hợp — tiết kiệm hơn và phủ nhiều không gian trong nhà.",
+      "bestSave": "Tiết kiệm nhất",
+      "trust": { "cod": "COD", "return": "Đổi trả", "advice": "Tư vấn" },
+      "selectPlan": "Chọn gói này",
+      "selected": "Đã chọn: {name}",
+      "goToOrder": "Đi tới đặt hàng"
+    },
+    "combos": {
+      "prefix": "Combo: {name}",
+      "plans": {
+        "single": {
+          "name": "Gói lẻ",
+          "items": {
+            "i1": "1 sản phẩm tuỳ chọn",
+            "i2": "Phù hợp dùng thử",
+            "i3": "Gọn cho 1 không gian"
+          }
+        },
+        "save": {
+          "name": "Combo tiết kiệm",
+          "items": {
+            "i1": "2 sản phẩm đa dụng",
+            "i2": "Phủ 2–3 không gian",
+            "i3": "Tối ưu chi phí"
+          }
+        },
+        "family": {
+          "name": "Combo gia đình",
+          "badge": "Best value",
+          "items": {
+            "i1": "3 sản phẩm đa dụng",
+            "i2": "Phủ nhiều khu vực",
+            "i3": "Phù hợp gia đình"
+          }
+        }
+      }
+    },
+    "order": {
+      "title": "Liên hệ",
+      "subtitle": "Tối ưu chuyển đổi: thông tin ngắn gọn, xác nhận nhanh. ENSO luôn ưu tiên trải nghiệm sạch sẽ và tinh tế.",
+      "quickTitle": "Liên hệ ngay",
+      "quickSubtitle": "Đội ngũ ENSO sẽ liên hệ tư vấn và hỗ trợ trong thời gian sớm nhất",
+      "secure": "Bảo mật thông tin",
+      "chosen": "Đã chọn: {selection}",
+      "successTitle": "Đã ghi nhận!",
+      "successSubtitle": "ENSO sẽ gọi xác nhận.",
+      "orderLine": "Đơn: {selection} · SL {qty}",
+      "fields": {
+        "name": "Họ tên",
+        "phone": "Số điện thoại",
+        "address": "Địa chỉ",
+        "selection": "Chọn sản phẩm/combo",
+        "quantity": "Số lượng",
+        "note": "Ghi chú"
+      },
+      "placeholders": {
+        "name": "Nguyễn Văn A",
+        "phone": "0900 000 000",
+        "address": "Số nhà, đường, phường/xã, quận/huyện…",
+        "note": "Mô tả nhu cầu hợp tác, số lượng dự kiến hoặc yêu cầu tư vấn"
+      },
+      "submit": "Gửi liên hệ",
+      "badgesLine": "",
+      "demoNote": "",
+      "errors": {
+        "name": "Vui lòng nhập họ tên (tối thiểu 2 ký tự).",
+        "phone": "Số điện thoại cần 10–11 chữ số.",
+        "address": "Vui lòng nhập địa chỉ (tối thiểu 6 ký tự).",
+        "selection": "Vui lòng chọn sản phẩm/combo.",
+        "quantity": "Số lượng từ 1 đến 10."
+      },
+      "infoItems": {
+        "i1": "Gọi xác nhận trước khi giao",
+        "i2": "Đóng gói gọn gàng, thẩm mỹ",
+        "i3": "Hỗ trợ tư vấn chọn sản phẩm phù hợp",
+        "i4": "Đổi trả theo chính sách"
+      }
+    },
+    "testimonials": {
+      "title": "Khách hàng nói gì trên Shopee",
+      "subtitle": "",
+      "rating": "⭐ {rating}/5",
+      "count": "{count} đánh giá",
+      "starsAria": "{n} sao",
+      "imageAlt": "Ảnh khách hàng {name}",
+      "fallback": {
+        "tag": "Tủ giày",
+        "name": "Anh Thư",
+        "loc": "TP.HCM",
+        "date": "01/2026",
+        "text": "Tủ giày bớt mùi hẳn, cảm giác sạch sẽ hơn. Gói nhỏ gọn dễ đặt."
+      }
+    },
+    "videoProof": {
+      "title": "Videos Enso - hạt khử mùi",
+      "modalLabel": "Video",
+      "primaryLabel": "Video chính",
+      "clickToWatch": "Click để xem",
+      "featured": "Nổi bật",
+      "youtube": "YouTube",
+      "mp4": "MP4",
+      "closeNote": "Đóng modal để dừng phát (iframe/video sẽ được unmount).",
+      "viewMore": "Xem thêm video",
+      "viewMoreAria": "Xem thêm video"
+    },
+    "howToUse": {
+      "modalTitle": "Video hướng dẫn",
+      "sectionTitle": "Hướng dẫn sử dụng & Bảo quản",
+      "sectionSubtitle": "Đúng cách để đạt hiệu quả khử mùi tối ưu",
+      "cardA": {
+        "tag": "Hạt khử mùi không tinh dầu",
+        "steps": {
+          "s1": "Đặt túi vào khu vực cần khử mùi",
+          "s2": "Đặt vào là dùng ngay",
+          "s3": "Không cần mở túi"
+        },
+        "videoLabel": "Phơi nắng đúng cách",
+        "video": {
+          "title": "Phơi nắng đúng cách",
+          "caption": "Phơi nắng 30 phút | 10h–14h | Giúp phục hồi khả năng hút mùi"
+        },
+        "sunBoxTitle": "Phơi nắng định kỳ 1 tháng/lần",
+        "sunBoxItems": {
+          "i1": "Thời gian: ~30 phút",
+          "i2": "Khung giờ tốt nhất: 10h – 14h"
+        },
+        "warnTitle": "Lưu ý quan trọng",
+        "warnItems": { "i1": "Không để túi tiếp xúc với nước", "i2": "Hạt sẽ tan khi gặp nước" },
+        "lifeTitle": "Vòng đời",
+        "lifeItems": {
+          "i1": "Túi vải tự phân huỷ theo thời gian",
+          "i2": "Thời gian sử dụng: ~18 tháng",
+          "i3": "Phơi nắng quá thường xuyên có thể rút ngắn vòng đời (~12 tháng)"
+        }
+      },
+      "cardB": {
+        "tag": "Hạt khử mùi có hương tinh dầu",
+        "steps": {
+          "s1": "Đặt ở nơi khô ráo, thoáng khí",
+          "s2": "Không cần phơi nắng khi còn mùi",
+          "s3": "Khử mùi, tỏa hương tự nhiên"
+        },
+        "videoLabel": "KHÔNG phơi nắng khi còn mùi",
+        "video": {
+          "title": "KHÔNG phơi nắng khi còn mùi",
+          "caption": "Tránh nắng trực tiếp | Nắng làm bay mùi tinh dầu nhanh"
+        },
+        "timeTitle": "Thời gian hiệu quả",
+        "timeItems": { "i1": "Hiệu quả: 03 – 06 tháng", "i2": "Điều kiện tối ưu: ~25°C" },
+        "noSunTitle": "KHÔNG phơi nắng",
+        "noSunItems": { "i1": "KHÔNG đặt nơi có ánh nắng chiếu trực tiếp", "i2": "Nắng làm bay mùi tinh dầu nhanh" },
+        "whenScentLessTitle": "Khi mùi tinh dầu giảm",
+        "whenScentLessItems": {
+          "i1": "Phơi nắng ngắn để tách ẩm",
+          "i2": "Sau đó dùng tiếp để tăng hiệu quả khử mùi",
+          "i3": "Tổng thời gian khử mùi có thể kéo dài đến ~01 năm"
+        }
+      }
+    },
+    "trustStrip": {
+      "aria": "Chứng nhận & đối tác",
+      "label": "Chứng nhận & đối tác",
+      "viewCert": "Xem chứng chỉ",
+      "modalTitleFallback": "Chứng chỉ",
+      "fallback": {
+        "ocop": { "title": "OCOP 3 Sao", "subtitle": "Đạt chuẩn sản phẩm (placeholder)" },
+        "iso": { "title": "ISO 9001:2015", "subtitle": "Chứng nhận theo tiêu chuẩn quốc tế (placeholder)" },
+        "acv": { "title": "Đối tác ACV", "subtitle": "Hợp tác cùng phát triển (placeholder)" }
+      }
+    },
+    "certifications": {
+      "title": "Chứng nhận, giải thưởng & Đối tác lớn tin cậy",
+      "subtitle": "Những minh chứng giúp bạn yên tâm hơn khi lựa chọn ENSO: minh bạch, dễ hiểu và tập trung vào trải nghiệm sử dụng.",
+      "whyTitle": "Vì sao quan trọng?",
+      "whyDesc": "Chứng nhận/đối tác là “tín hiệu tin cậy” — giúp bạn tự tin về nguồn gốc, quy trình và chất lượng.",
+      "view": "Xem chứng nhận",
+      "modalFallbackTitle": "Chứng nhận"
+    },
+    "footer": {
+      "brandTitle": "Giải pháp khử mùi eco premium",
+      "brandSubtitle": "An toàn cho không gian sống – Hiệu quả bền vững theo thời gian",
+      "contactTitle": "Liên hệ",
+      "supportTitle": "Hỗ trợ",
+      "connectTitle": "Kết nối",
+      "hotlineLabel": "Hotline:",
+      "zaloLabel": "Zalo:",
+      "zaloChatNow": "Chat tư vấn ngay",
+      "shippingLine": "Trở thành đại lý Enso",
+      "supportLinks": {
+        "howToUse": "Cách dùng",
+        "shipping": "Giao hàng",
+        "returns": "Đổi trả",
+        "faq": "Câu hỏi thường gặp",
+        "becomeDealer": "Trở thành đại lý Enso"
+      },
+      "policies": {
+        "shipping": "Liên hệ tư vấn",
+        "returns": "Hỗ trợ về sản phẩm"
+      },
+      "ecoNote": "Sản phẩm thân thiện môi trường – Không hoá chất độc hại",
+      "youtubeLabel": "YouTube"
+    },
+    "header": {
+      "productPill": "Hạt khử mùi",
+      "hotline": "Hotline",
+      "menuDialog": "Menu",
+      "close": "Đóng",
+      "closeMenu": "Đóng menu",
+      "callHotline": "Gọi {hotline}"
+    },
+    "search": {
+      "label": "Tìm sản phẩm",
+      "placeholder": "Tìm theo tên…",
+      "clear": "Xoá tìm kiếm"
+    },
+    "stickyBar": {
+      "callNow": "Gọi ngay",
+      "chatZalo": "Chat Zalo"
+    },
+    "productModal": {
+      "highlights": "Điểm nổi bật",
+      "usage": "Cách dùng",
+      "selectThis": "Chọn sản phẩm này",
+      "note": "Lưu ý: hiệu quả tuỳ môi trường & tần suất sử dụng.",
+      "tipDrawer": "Tip: chạm nền hoặc nhấn Esc để đóng."
+    }
+  },
+  "videos": {
+    "title": "Video ENSO",
+    "subtitle": "Video hướng dẫn, trải nghiệm thực tế và mẹo sử dụng giúp khử mùi hiệu quả hơn.",
+    "empty": "Chưa có video nào."
+  },
+  "news": {
+    "title": "Tin tức",
+    "subtitle": "Chia sẻ kiến thức, hướng dẫn & câu chuyện sản phẩm",
+    "all": "Tất cả",
+    "backHome": "← Về trang chủ",
+    "backAll": "← Tất cả tin tức",
+    "updatedAt": "Cập nhật:",
+    "publishedAt": "Ngày đăng:",
+    "empty": "Chưa có tin tức.",
+    "emptyCategory": "Chưa có bài viết trong danh mục này.",
+    "contentUpdating": "Tin tức đang được cập nhật.",
+    "breadcrumbHome": "Trang chủ",
+    "breadcrumbNews": "Tin tức",
+    "relatedPosts": "Bài viết liên quan",
+    "recentPosts": "Bài viết mới"
+  },
+  "siteContent": {
+    "breadcrumbHome": "Trang chủ",
+    "breadcrumbSection": "Nội dung",
+    "publishedAt": "Ngày đăng:",
+    "contentUpdating": "Nội dung đang được cập nhật."
+  },
+  "productDetail": {
+    "breadcrumbHome": "Trang chủ",
+    "breadcrumbProducts": "Sản phẩm",
+    "galleryThumb": "Ảnh",
+    "quantity": "Số lượng",
+    "qtyMinus": "Giảm số lượng",
+    "qtyPlus": "Tăng số lượng",
+    "ctaOrder": "Liên hệ ngay",
+    "ctaCall": "Gọi 085 279 5939",
+    "metaLine": "{category} · {size}",
+    "infoCategory": "Phù hợp",
+    "infoSize": "Quy cách",
+    "infoSku": "Mã",
+    "highlightsTitle": "Điểm nổi bật",
+    "detailTitle": "Mô tả chi tiết",
+    "detailHint": "Nội dung được soạn trong admin (định dạng giống trình soạn thảo).",
+    "usageTitle": "Hướng dẫn sử dụng",
+    "relatedTitle": "Sản phẩm liên quan",
+    "backAll": "Xem tất cả",
+    "orderTitle": "Liên hệ ngay",
+    "orderSubtitle": "Điền thông tin — ENSODANA sẽ liên hệ xác nhận.",
+    "subnavAria": "Điều hướng nhanh trong trang",
+    "navOverview": "Tổng quan",
+    "navHighlights": "Điểm nổi bật",
+    "navDetail": "Mô tả chi tiết",
+    "navUsage": "Cách dùng",
+    "navOrder": "Liên hệ ngay",
+    "navRelated": "Liên quan",
+    "featuredPill": "Nổi bật",
+    "shortLeadLabel": "Giới thiệu nhanh",
+    "trustLine": "Giá hiển thị theo số lượng bạn chọn. Đặt hàng an toàn — chúng tôi gọi lại xác nhận.",
+    "openLightbox": "Xem ảnh lớn",
+    "zoomHint": "Phóng to",
+    "lightboxAria": "Ảnh sản phẩm phóng to",
+    "lightboxClose": "Đóng"
+  }
+}
+
