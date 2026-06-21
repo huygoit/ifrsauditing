@@ -4,6 +4,23 @@
 
 :root {
   color-scheme: light;
+
+  /* Biến màu thương hiệu — đồng bộ với tailwind.config.cjs (palette brand/accent).
+     Dùng định dạng "R G B" để hỗ trợ alpha qua rgb(var(--brand-500) / .2). */
+  --brand-50: 236 253 243;
+  --brand-100: 209 250 224;
+  --brand-200: 166 244 189;
+  --brand-300: 111 229 153;
+  --brand-400: 54 205 108;
+  --brand-500: 22 177 76;
+  --brand-600: 15 149 64;
+  --brand-700: 11 120 51;
+  --brand-800: 10 95 42;
+  --brand-900: 8 73 36;
+
+  --accent-500: 220 58 58;
+  --accent-600: 196 38 38;
+  --accent-700: 164 27 27;
 }
 
 html,
@@ -21,15 +38,15 @@ html {
   scroll-padding-top: 6.75rem;
 }
 
-/* Selection */
+/* Selection — tone brand */
 ::selection {
-  background: rgb(16 185 129 / 0.2);
+  background: rgb(var(--brand-500) / 0.22);
 }
 
-/* Subtle noise-free focus ring */
+/* Focus ring — quầng sáng brand thay vì emerald cũ */
 *:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.55), 0 0 0 6px rgb(16 185 129 / 0.14);
+  box-shadow: 0 0 0 2px rgb(var(--brand-500) / 0.6), 0 0 0 6px rgb(var(--brand-500) / 0.16);
   border-radius: 12px;
 }
 
@@ -48,10 +65,58 @@ html {
   scrollbar-width: none;
 }
 
-/* Tiêu đề section trang chủ — đồng bộ màu CTA (emerald) */
+/* Dải logo đối tác chạy ngang vô tận (PartnersSection) */
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee-x 36s linear infinite;
+}
+.animate-marquee-rev {
+  animation: marquee-x 46s linear infinite reverse;
+}
+@media (hover: hover) {
+  .marquee-wrap:hover .animate-marquee,
+  .marquee-wrap:hover .animate-marquee-rev {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-rev {
+    animation: none;
+  }
+}
+
+/* Tiêu đề section trang chủ — tone brand, kèm gạch chân đỏ accent nhỏ (giống logo) */
 @layer components {
   .home-section-heading {
-    @apply text-2xl font-semibold tracking-tight text-emerald-700 md:text-3xl;
+    @apply relative inline-block text-2xl font-semibold tracking-tight text-brand-700 md:text-3xl;
+  }
+  .home-section-heading::after {
+    content: "";
+    display: block;
+    width: 2.25rem;
+    height: 3px;
+    margin-top: 0.45rem;
+    border-radius: 9999px;
+    background: rgb(var(--accent-600));
+  }
+
+  /* Gạch nhấn gradient brand dùng chung cho tiêu đề các section */
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 0.25rem;
+    margin-top: 0.85rem;
+    border-radius: 9999px;
+    background: linear-gradient(to right, rgb(var(--brand-500)), rgb(var(--brand-700)));
   }
 }
 
@@ -105,7 +170,7 @@ html {
   margin-bottom: 0.4em;
   font-size: 1.625rem;
   padding-bottom: 0.35rem;
-  border-bottom: 2px solid rgb(16 185 129);
+  border-bottom: 2px solid rgb(var(--brand-500));
 }
 .product-detail-html h2 {
   margin-top: 1.2em;
@@ -172,19 +237,19 @@ html {
   margin: 0.45em 0;
 }
 .product-detail-html a {
-  color: rgb(5 150 105);
+  color: rgb(var(--brand-600));
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 .product-detail-html a:hover {
-  color: rgb(4 120 87);
+  color: rgb(var(--brand-700));
 }
 .product-detail-html blockquote {
   margin: 0.85rem 0;
   padding: 0.75rem 1rem;
-  border-left: 4px solid rgb(16 185 129);
-  background: rgb(236 253 245 / 0.65);
+  border-left: 4px solid rgb(var(--brand-500));
+  background: rgb(var(--brand-50) / 0.85);
   border-radius: 0 0.75rem 0.75rem 0;
   color: rgb(51 65 85);
 }

@@ -1,11 +1,33 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useId, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { SITE } from "@/lib/site";
 import { SERVICE_IDS, type ServiceId, isServiceId } from "@/lib/services";
 import { Reveal } from "@/components/Reveal";
-import { Button } from "@/components/Button";
+
+const ICON_PHONE = (
+  <path
+    d="M6.6 3h3l1.5 4.5-2 1.5a13 13 0 006 6l1.5-2 4.5 1.5v3a2 2 0 01-2.2 2A17 17 0 014 5.2 2 2 0 016.6 3z"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinejoin="round"
+  />
+);
+const ICON_MAIL = (
+  <>
+    <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" strokeWidth="1.7" />
+    <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+  </>
+);
+const ICON_PIN = (
+  <>
+    <path d="M12 21s7-5.5 7-11a7 7 0 10-14 0c0 5.5 7 11 7 11z" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+    <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.7" />
+  </>
+);
 
 type Errors = Partial<Record<"name" | "phone" | "email" | "company" | "service" | "message", string>>;
 
@@ -72,17 +94,42 @@ export function ContactSection({
     <section id="lien-he" className="scroll-mt-32 border-t border-slate-200/80 bg-slate-50 py-20 md:py-28">
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl lg:text-4xl">{t("title")}</h2>
+          <h2 className="text-2xl font-semibold section-title tracking-tight text-emerald-700 md:text-3xl lg:text-4xl">{t("title")}</h2>
           <p className="mt-3 max-w-2xl text-xs font-medium uppercase leading-relaxed tracking-[0.14em] text-slate-500">{t("subtitle")}</p>
         </Reveal>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-5 lg:gap-14">
-          <div className="space-y-4 lg:col-span-2">
-            <ContactCard title={t("cards.hotline")} body={<a href={`tel:${SITE.hotlineTel}`}>{SITE.hotlineDisplay}</a>} />
-            <ContactCard title={t("cards.email")} body={<a href={`mailto:${SITE.email}`}>{SITE.email}</a>} />
-            <ContactCard title={t("cards.hq")} body={hq} />
-            <ContactCard title={t("cards.repHcmc")} body={repHcmc} />
-            <ContactCard title={t("cards.repVt")} body={repVt} />
+        <div className="mt-12 grid gap-8 lg:grid-cols-5 lg:gap-10">
+          <div className="lg:col-span-2">
+            <div className="relative h-full overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-800 via-emerald-900 to-slate-950 p-7 text-white shadow-[0_24px_60px_-24px_rgba(6,78,59,0.65)] md:p-8">
+              <span className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-emerald-400/20 blur-3xl" aria-hidden="true" />
+              <span
+                className="pointer-events-none absolute inset-0 opacity-[0.06]"
+                style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #a7f3d0 1px, transparent 0)", backgroundSize: "22px 22px" }}
+                aria-hidden="true"
+              />
+              <ul className="relative space-y-6">
+                <InfoRow icon={ICON_PHONE} label={t("cards.hotline")}>
+                  <a href={`tel:${SITE.hotlineTel}`} className="font-semibold tabular-nums hover:underline">
+                    {SITE.hotlineDisplay}
+                  </a>
+                </InfoRow>
+                <InfoRow icon={ICON_MAIL} label={t("cards.email")}>
+                  <a href={`mailto:${SITE.email}`} className="font-semibold hover:underline">
+                    {SITE.email}
+                  </a>
+                </InfoRow>
+                <li className="h-px bg-white/10" aria-hidden="true" />
+                <InfoRow icon={ICON_PIN} label={t("cards.hq")}>
+                  {hq}
+                </InfoRow>
+                <InfoRow icon={ICON_PIN} label={t("cards.repHcmc")}>
+                  {repHcmc}
+                </InfoRow>
+                <InfoRow icon={ICON_PIN} label={t("cards.repVt")}>
+                  {repVt}
+                </InfoRow>
+              </ul>
+            </div>
           </div>
 
           <div className="lg:col-span-3">
@@ -172,9 +219,15 @@ export function ContactSection({
                   </div>
                 </div>
                 <div className="mt-8 border-t border-slate-100 pt-8">
-                  <Button type="submit" variant="primary" size="md" className="min-h-[48px] w-full px-8 shadow-md shadow-emerald-900/15 sm:w-auto">
+                  <button
+                    type="submit"
+                    className="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-brand-gradient px-8 text-sm font-semibold text-white shadow-brand ring-1 ring-emerald-400/20 transition hover:brightness-105 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 sm:w-auto"
+                  >
                     {t("submit")}
-                  </Button>
+                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
                 </div>
               </form>
             )}
@@ -185,12 +238,19 @@ export function ContactSection({
   );
 }
 
-function ContactCard({ title, body }: { title: string; body: React.ReactNode }) {
+function InfoRow({ icon, label, children }: { icon: ReactNode; label: string; children: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-[0_2px_16px_rgba(15,23,42,0.04)] transition hover:border-emerald-200/60 hover:shadow-md">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-800/90">{title}</p>
-      <div className="mt-2.5 text-sm leading-relaxed text-slate-700 [&_a]:font-semibold [&_a]:text-emerald-800 [&_a]:underline-offset-2 hover:[&_a]:underline">{body}</div>
-    </div>
+    <li className="flex gap-4">
+      <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-emerald-200 ring-1 ring-white/15" aria-hidden="true">
+        <svg viewBox="0 0 24 24" className="h-5 w-5">
+          {icon}
+        </svg>
+      </span>
+      <div className="min-w-0">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-emerald-300/80">{label}</p>
+        <div className="mt-1 text-sm leading-relaxed text-white/90">{children}</div>
+      </div>
+    </li>
   );
 }
 

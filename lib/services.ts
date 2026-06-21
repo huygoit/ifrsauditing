@@ -12,6 +12,16 @@ export const SERVICE_IDS = [
 
 export type ServiceId = (typeof SERVICE_IDS)[number];
 
+/** 6 dịch vụ tiêu biểu hiển thị ở trang chủ (giữ SERVICE_IDS đầy đủ cho trang chi tiết/drawer). */
+export const FEATURED_SERVICE_IDS = [
+  "audit",
+  "tax",
+  "accounting",
+  "valuation",
+  "advisory",
+  "training"
+] as const satisfies readonly ServiceId[];
+
 export function isServiceId(v: string): v is ServiceId {
   return (SERVICE_IDS as readonly string[]).includes(v);
 }

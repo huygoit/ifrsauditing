@@ -14,10 +14,10 @@ export function IfrsBrandLogo({ className, priority }: Props) {
   const t = useTranslations("ifrs");
   return (
     <Image
-      src="/brand/ifrs-auditing-logo.svg"
+      src="/brand/ifrs-auditing-logo.png"
       alt={t("logoAlt")}
-      width={260}
-      height={48}
+      width={2508}
+      height={627}
       className={className}
       priority={priority}
     />

@@ -205,12 +205,9 @@ export function Header() {
         <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <a
             href={homeBase}
-            className="group/logo flex flex-col rounded-lg py-0.5 pl-0 pr-1 outline-none ring-offset-2 ring-offset-slate-950 transition hover:opacity-[0.92] focus-visible:ring-2 focus-visible:ring-amber-400/70"
+            className="group/logo flex items-center rounded-lg py-0.5 pl-0 pr-1 outline-none ring-offset-2 ring-offset-slate-950 transition hover:opacity-[0.92] focus-visible:ring-2 focus-visible:ring-amber-400/70"
           >
-            <IfrsBrandLogo priority className="h-[32px] w-auto sm:h-[36px] md:h-[40px]" />
-            <span className="mt-1 max-w-[220px] truncate text-[10px] font-medium uppercase leading-tight tracking-[0.14em] text-emerald-200/75 sm:max-w-xs">
-              {currentLocale === "en" ? SITE.companyNameEn : SITE.companyNameVi}
-            </span>
+            <IfrsBrandLogo priority className="h-[52px] w-auto sm:h-[60px] md:h-[68px]" />
           </a>
 
           <nav className="hidden items-center gap-1 text-sm text-slate-200/95 md:flex md:gap-1 lg:gap-2" aria-label={tCommon("mainNav")}>

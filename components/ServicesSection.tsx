@@ -1,8 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { SERVICE_IDS, type ServiceId } from "@/lib/services";
+import { FEATURED_SERVICE_IDS, type ServiceId } from "@/lib/services";
 import { Reveal } from "@/components/Reveal";
+
+// Ảnh minh hoạ cho từng dịch vụ — đổi path tại đây nếu thay ảnh mới
+const SERVICE_IMAGES: Record<ServiceId, string> = {
+  audit: "/images/service/Auditing-3.jpeg",
+  tax: "/images/service/tuvan.png",
+  accounting: "/images/service/lapbaocao.png",
+  valuation: "/images/service/thamdinhgia.jpg",
+  advisory: "/images/service/tuvangiaiphap.jpeg",
+  training: "/images/service/daotaotuyendung.jpg",
+  transferPricing: "/images/service/1.png",
+  ifrsVas: "/images/service/2.png"
+};
 
 function ServiceIcon({ id, className }: { id: ServiceId; className?: string }) {
   const c = className ?? "h-6 w-6 text-emerald-700";
@@ -86,44 +99,41 @@ export function ServicesSection({ onOpenDetail }: { onOpenDetail: (id: ServiceId
         <Reveal>
           <SectionHeadingBlock title={t("title")} subtitle={t("subtitle")} />
         </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-          {SERVICE_IDS.map((id) => (
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURED_SERVICE_IDS.map((id) => (
             <Reveal key={id}>
-              <article className="group flex h-full flex-col rounded-2xl border border-slate-200/90 bg-gradient-to-b from-white to-slate-50/90 p-6 shadow-[0_2px_20px_rgba(15,23,42,0.05)] ring-1 ring-slate-900/[0.02] transition duration-300 hover:-translate-y-1 hover:border-emerald-200/70 hover:shadow-[0_16px_48px_rgba(16,185,129,0.12)]">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-100/90 bg-emerald-50/90 text-emerald-800 shadow-sm transition group-hover:border-emerald-200 group-hover:bg-emerald-50">
-                  <ServiceIcon id={id} />
+              <button
+                type="button"
+                onClick={() => onOpenDetail(id)}
+                className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white text-left shadow-[0_2px_20px_rgba(15,23,42,0.05)] ring-1 ring-slate-900/[0.02] transition duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+              >
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={SERVICE_IMAGES[id]}
+                    alt={t(`items.${id}.title`)}
+                    fill
+                    sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/45 via-slate-950/0 to-slate-950/0" aria-hidden="true" />
+                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-emerald-700/35 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" aria-hidden="true" />
+                  <span className="absolute bottom-0 left-5 inline-flex h-12 w-12 translate-y-1/2 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-700 text-white shadow-brand ring-2 ring-white transition duration-300 group-hover:scale-105">
+                    <ServiceIcon id={id} className="h-6 w-6 text-white" />
+                  </span>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold leading-snug tracking-tight text-slate-900">{t(`items.${id}.title`)}</h3>
-                <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-emerald-800/85">{t(`items.${id}.subtitle`)}</p>
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-600">{t(`items.${id}.desc`)}</p>
-                <ul className="mt-5 space-y-2 text-xs leading-relaxed text-slate-600">
-                  <li className="flex gap-2.5">
-                    <span className="mt-0.5 shrink-0 text-emerald-600" aria-hidden="true">
-                      ·
-                    </span>
-                    {t(`items.${id}.b1`)}
-                  </li>
-                  <li className="flex gap-2.5">
-                    <span className="mt-0.5 shrink-0 text-emerald-600" aria-hidden="true">
-                      ·
-                    </span>
-                    {t(`items.${id}.b2`)}
-                  </li>
-                  <li className="flex gap-2.5">
-                    <span className="mt-0.5 shrink-0 text-emerald-600" aria-hidden="true">
-                      ·
-                    </span>
-                    {t(`items.${id}.b3`)}
-                  </li>
-                </ul>
-                <button
-                  type="button"
-                  className="mt-6 w-full rounded-full border border-slate-200/90 bg-white py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50/80 hover:text-emerald-950 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
-                  onClick={() => onOpenDetail(id)}
-                >
-                  {t("viewDetails")}
-                </button>
-              </article>
+
+                <div className="flex flex-1 flex-col p-6 pt-9">
+                  <h3 className="text-lg font-semibold leading-snug tracking-tight text-slate-900">{t(`items.${id}.title`)}</h3>
+                  <p className="mt-2.5 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-2">{t(`items.${id}.desc`)}</p>
+
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700">
+                    {t("viewDetails")}
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </div>
+              </button>
             </Reveal>
           ))}
         </div>
@@ -135,7 +145,7 @@ export function ServicesSection({ onOpenDetail }: { onOpenDetail: (id: ServiceId
 function SectionHeadingBlock({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <div className="max-w-3xl">
-      <h2 className="text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl lg:text-4xl">{title}</h2>
+      <h2 className="text-2xl font-semibold section-title tracking-tight text-emerald-700 md:text-3xl lg:text-4xl">{title}</h2>
       <p className="mt-4 text-base leading-[1.75] text-slate-600">{subtitle}</p>
     </div>
   );

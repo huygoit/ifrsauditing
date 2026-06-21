@@ -577,7 +577,32 @@
       "checklist2": "Policy alignment",
       "checklist3": "Risk notes",
       "dashboardTitle": "Financial statements",
-      "dashboardSub": "Audit overview"
+      "dashboardSub": "Audit overview",
+      "slideBadge": "IFRS Auditing",
+      "sliderAria": "Homepage slide navigation",
+      "prevSlide": "View previous slide",
+      "nextSlide": "View next slide",
+      "goToSlide": "View slide {index}",
+      "slides": {
+        "about": {
+          "eyebrow": "About us",
+          "title": "An independent audit partner for transparent reporting",
+          "desc": "IFRS Auditing works with businesses across audit, accounting and compliance advisory with a clear and professional engagement approach.",
+          "alt": "Introductory visual for IFRS Auditing Company Limited"
+        },
+        "services": {
+          "eyebrow": "Services",
+          "title": "Audit, tax, accounting and advisory in one structured service suite",
+          "desc": "From financial statements, tax advisory, valuation to IFRS/VAS, our services help businesses keep control and make better decisions.",
+          "alt": "Visual representing IFRS Auditing professional services"
+        },
+        "careers": {
+          "eyebrow": "Careers",
+          "title": "A technical environment for audit professionals to grow",
+          "desc": "IFRS Auditing develops its team through practical training, shared experience and opportunities to work on specialised finance projects.",
+          "alt": "Visual representing recruitment and training at IFRS Auditing"
+        }
+      }
     },
     "trustBar": {
       "title": "How we work",
@@ -595,6 +620,10 @@
           "title": "Fit for local & FDI contexts"
         }
       }
+    },
+    "partners": {
+      "title": "Partners & clients",
+      "subtitle": "Trusted by businesses in Vietnam and abroad."
     },
     "about": {
       "title": "A professional partner for transparent financial governance",
@@ -739,41 +768,51 @@
     "ifrsHighlight": {
       "title": "IFRS/VAS reporting and accounting systems",
       "body": "We help design and refine accounting systems under IFRS/VAS, review financial statements and strengthen processes — for transparency, compliance and better decisions.",
-      "matrixTitle": "Compliance lens",
-      "matrixRows": {
-        "r1": {
-          "label": "Accounting policies",
-          "status": "Review"
+      "needTitle": "When does your business need IFRS?",
+      "needHint": "If any of these apply, consider converting early.",
+      "needs": {
+        "n1": {
+          "label": "Foreign investment (FDI)",
+          "desc": "Parent company or investors require IFRS reporting."
         },
-        "r2": {
-          "label": "Financial statements",
-          "status": "Standardise"
+        "n2": {
+          "label": "Listing or planning to list",
+          "desc": "Preparing for a domestic or international IPO."
         },
-        "r3": {
-          "label": "Internal control",
-          "status": "Recommend"
+        "n3": {
+          "label": "International financing",
+          "desc": "Banks and funds require IFRS financial statements."
         },
-        "r4": {
-          "label": "Disclosures",
-          "status": "Support"
+        "n4": {
+          "label": "Multinational group consolidation",
+          "desc": "Consolidate figures under one common standard."
+        },
+        "n5": {
+          "label": "Vietnam's IFRS adoption roadmap",
+          "desc": "Get ready for the upcoming mandatory application."
         }
       }
     },
     "process": {
       "title": "Engagement process",
       "subtitle": "Clear steps — close coordination with your team.",
+      "stepLabel": "Step {n}",
       "steps": {
         "s1": {
-          "title": "Intake"
+          "title": "Intake",
+          "desc": "We listen to your goals, scope and expectations."
         },
         "s2": {
-          "title": "Scoping & risk"
+          "title": "Scoping & risk",
+          "desc": "Assess the current state, define scope and key risks."
         },
         "s3": {
-          "title": "Fieldwork"
+          "title": "Fieldwork",
+          "desc": "Execute the plan with regular progress updates."
         },
         "s4": {
-          "title": "Reporting & follow-up"
+          "title": "Reporting & follow-up",
+          "desc": "Hand over results, advise improvements and keep supporting you."
         }
       }
     },
@@ -808,28 +847,33 @@
       }
     },
     "insights": {
-      "title": "IFRS, accounting & tax perspectives",
-      "subtitle": "Editorial entry points — links to your existing news area.",
-      "cards": {
-        "c1": {
-          "title": "News",
-          "desc": "Short updates and firm news.",
-          "cta": "Open news"
+      "title": "News & updates",
+      "subtitle": "IFRS, accounting, audit and tax perspectives for your business.",
+      "viewAll": "View all news",
+      "readMore": "Read more",
+      "cats": {
+        "all": "All",
+        "ifrs": "IFRS",
+        "accounting": "Accounting & Audit",
+        "tax": "Tax & compliance",
+        "corporate": "Corporate"
+      },
+      "items": {
+        "n1": {
+          "title": "Vietnam's IFRS adoption roadmap: how to prepare",
+          "excerpt": "An overview of the timeline and steps for a smooth IFRS transition."
         },
-        "c2": {
-          "title": "IFRS",
-          "desc": "Standards and presentation topics.",
-          "cta": "Open IFRS topics"
+        "n2": {
+          "title": "New tax policy updates and their business impact",
+          "excerpt": "Notable tax changes and tips for finalisation filing."
         },
-        "c3": {
-          "title": "Accounting & audit",
-          "desc": "Processes, controls and assurance.",
-          "cta": "Open accounting"
+        "n3": {
+          "title": "Internal control: the foundation of reliable reporting",
+          "excerpt": "Why strong internal controls reduce the risk of material misstatement."
         },
-        "c4": {
-          "title": "Tax & compliance",
-          "desc": "Policies and documentation readiness.",
-          "cta": "Open tax"
+        "n4": {
+          "title": "Business valuation in M&A: key considerations",
+          "excerpt": "Valuation methods and factors that affect enterprise value."
         }
       }
     },

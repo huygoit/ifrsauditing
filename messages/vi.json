@@ -579,7 +579,32 @@
       "checklist2": "Đối chiếu chính sách",
       "checklist3": "Khuyến nghị rủi ro",
       "dashboardTitle": "Báo cáo tài chính",
-      "dashboardSub": "Tổng quan kiểm toán"
+      "dashboardSub": "Tổng quan kiểm toán",
+      "slideBadge": "IFRS Auditing",
+      "sliderAria": "Điều hướng slide trang chủ",
+      "prevSlide": "Xem slide trước",
+      "nextSlide": "Xem slide tiếp theo",
+      "goToSlide": "Xem slide {index}",
+      "slides": {
+        "about": {
+          "eyebrow": "Về chúng tôi",
+          "title": "Đối tác kiểm toán độc lập cho báo cáo minh bạch",
+          "desc": "Đội ngũ IFRS Auditing đồng hành cùng doanh nghiệp trong kiểm toán, kế toán và tư vấn tuân thủ với cách làm rõ ràng, chuyên nghiệp.",
+          "alt": "Không gian giới thiệu Công ty TNHH Kiểm toán IFRS"
+        },
+        "services": {
+          "eyebrow": "Dịch vụ",
+          "title": "Giải pháp kiểm toán, thuế, kế toán và tư vấn trọn mạch",
+          "desc": "Từ báo cáo tài chính, tư vấn thuế, thẩm định giá đến IFRS/VAS, dịch vụ được cấu trúc để doanh nghiệp dễ kiểm soát và ra quyết định.",
+          "alt": "Hình ảnh minh họa dịch vụ chuyên môn của IFRS Auditing"
+        },
+        "careers": {
+          "eyebrow": "Tuyển dụng",
+          "title": "Môi trường chuyên môn cho nhân sự kiểm toán phát triển",
+          "desc": "IFRS Auditing xây dựng đội ngũ qua đào tạo thực tiễn, chia sẻ kinh nghiệm và cơ hội tham gia các dự án tài chính chuyên sâu.",
+          "alt": "Hình ảnh minh họa tuyển dụng và đào tạo tại IFRS Auditing"
+        }
+      }
     },
     "trustBar": {
       "title": "Nền tảng vận hành chuyên nghiệp",
@@ -597,6 +622,10 @@
           "title": "Giải pháp phù hợp cho doanh nghiệp Việt Nam & FDI"
         }
       }
+    },
+    "partners": {
+      "title": "Đối tác & khách hàng",
+      "subtitle": "Được tin tưởng bởi các doanh nghiệp trong và ngoài nước."
     },
     "about": {
       "title": "Đối tác chuyên môn cho quản trị tài chính minh bạch",
@@ -741,41 +770,51 @@
     "ifrsHighlight": {
       "title": "Chuẩn hóa báo cáo và hệ thống kế toán theo IFRS/VAS",
       "body": "Chúng tôi hỗ trợ thiết lập và tối ưu hệ thống kế toán theo IFRS/VAS, soát xét báo cáo tài chính và củng cố quy trình — hướng tới minh bạch, tuân thủ và thông tin phục vụ quyết định.",
-      "matrixTitle": "Khung tuân thủ",
-      "matrixRows": {
-        "r1": {
-          "label": "Chính sách kế toán",
-          "status": "Rà soát"
+      "needTitle": "Khi nào doanh nghiệp cần IFRS?",
+      "needHint": "Nếu thuộc một trong các trường hợp sau, bạn nên chuyển đổi sớm.",
+      "needs": {
+        "n1": {
+          "label": "Có vốn đầu tư nước ngoài (FDI)",
+          "desc": "Công ty mẹ hoặc nhà đầu tư yêu cầu báo cáo theo IFRS."
         },
-        "r2": {
-          "label": "Báo cáo tài chính",
-          "status": "Chuẩn hóa"
+        "n2": {
+          "label": "Niêm yết hoặc dự kiến niêm yết",
+          "desc": "Chuẩn bị lên sàn trong nước hoặc quốc tế."
         },
-        "r3": {
-          "label": "Kiểm soát nội bộ",
-          "status": "Đề xuất"
+        "n3": {
+          "label": "Vay vốn, gọi vốn quốc tế",
+          "desc": "Ngân hàng, quỹ đầu tư yêu cầu BCTC theo IFRS."
         },
-        "r4": {
-          "label": "Công bố thông tin",
-          "status": "Hỗ trợ"
+        "n4": {
+          "label": "Tập đoàn hợp nhất đa quốc gia",
+          "desc": "Hợp nhất số liệu theo một chuẩn mực chung."
+        },
+        "n5": {
+          "label": "Lộ trình IFRS bắt buộc tại Việt Nam",
+          "desc": "Chủ động đáp ứng quy định áp dụng sắp tới."
         }
       }
     },
     "process": {
       "title": "Quy trình làm việc",
       "subtitle": "Rõ ràng từng bước — phối hợp chặt với phía khách hàng.",
+      "stepLabel": "Bước {n}",
       "steps": {
         "s1": {
-          "title": "Tiếp nhận nhu cầu"
+          "title": "Tiếp nhận nhu cầu",
+          "desc": "Lắng nghe mục tiêu, phạm vi và mong đợi của doanh nghiệp."
         },
         "s2": {
-          "title": "Đánh giá phạm vi & rủi ro"
+          "title": "Đánh giá phạm vi & rủi ro",
+          "desc": "Khảo sát hiện trạng, xác định phạm vi và điểm rủi ro trọng yếu."
         },
         "s3": {
-          "title": "Triển khai bởi đội ngũ chuyên môn"
+          "title": "Triển khai bởi đội ngũ chuyên môn",
+          "desc": "Thực hiện theo kế hoạch, cập nhật tiến độ thường xuyên."
         },
         "s4": {
-          "title": "Báo cáo, khuyến nghị & hỗ trợ sau dịch vụ"
+          "title": "Báo cáo, khuyến nghị & hỗ trợ sau dịch vụ",
+          "desc": "Bàn giao kết quả, khuyến nghị cải thiện và đồng hành về sau."
         }
       }
     },
@@ -810,28 +849,33 @@
       }
     },
     "insights": {
-      "title": "Góc nhìn IFRS & cập nhật kế toán – thuế",
-      "subtitle": "Định hướng đọc — liên kết tới khu vực tin tức hiện có trên website.",
-      "cards": {
-        "c1": {
-          "title": "Tin tức",
-          "desc": "Cập nhật ngắn gọn về thị trường và nội bộ công ty.",
-          "cta": "Mở mục tin"
+      "title": "Tin tức & cập nhật",
+      "subtitle": "Góc nhìn IFRS, kế toán – kiểm toán và thuế dành cho doanh nghiệp.",
+      "viewAll": "Xem tất cả tin tức",
+      "readMore": "Đọc tiếp",
+      "cats": {
+        "all": "Tất cả",
+        "ifrs": "IFRS",
+        "accounting": "Kế toán – Kiểm toán",
+        "tax": "Thuế & tuân thủ",
+        "corporate": "Doanh nghiệp"
+      },
+      "items": {
+        "n1": {
+          "title": "Lộ trình áp dụng IFRS tại Việt Nam: doanh nghiệp cần chuẩn bị gì?",
+          "excerpt": "Tổng quan các mốc thời gian và bước chuẩn bị để chuyển đổi sang IFRS suôn sẻ."
         },
-        "c2": {
-          "title": "IFRS",
-          "desc": "Chủ đề chuẩn mực và trình bày báo cáo.",
-          "cta": "Mở mục IFRS"
+        "n2": {
+          "title": "Cập nhật chính sách thuế mới và tác động tới doanh nghiệp",
+          "excerpt": "Những thay đổi đáng chú ý về thuế và lưu ý khi lập hồ sơ quyết toán."
         },
-        "c3": {
-          "title": "Kế toán – kiểm toán",
-          "desc": "Quy trình, kiểm soát và kiểm toán nội bộ.",
-          "cta": "Mở mục kế toán"
+        "n3": {
+          "title": "Kiểm soát nội bộ: nền tảng cho báo cáo tài chính đáng tin cậy",
+          "excerpt": "Vì sao hệ thống kiểm soát nội bộ tốt giúp giảm rủi ro sai sót trọng yếu."
         },
-        "c4": {
-          "title": "Thuế & tuân thủ",
-          "desc": "Chính sách và chuẩn bị hồ sơ.",
-          "cta": "Mở mục thuế"
+        "n4": {
+          "title": "Thẩm định giá doanh nghiệp khi M&A: những điểm cần lưu ý",
+          "excerpt": "Phương pháp định giá và các yếu tố ảnh hưởng tới giá trị doanh nghiệp."
         }
       }
     },

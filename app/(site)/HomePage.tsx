@@ -11,6 +11,7 @@ import { ServiceDrawer } from "@/components/ServiceDrawer";
 import { IFRSHighlight } from "@/components/IFRSHighlight";
 import { ProcessSection } from "@/components/ProcessSection";
 import { IndustriesSection } from "@/components/IndustriesSection";
+import { PartnersSection } from "@/components/PartnersSection";
 import { InsightsSection } from "@/components/InsightsSection";
 import { RecruitmentCTA } from "@/components/RecruitmentCTA";
 import { ContactSection } from "@/components/ContactSection";
@@ -70,6 +71,7 @@ export function HomePageClient({ locale: _locale }: { locale?: "vi" | "en" }) {
         <IFRSHighlight />
         <ProcessSection />
         <IndustriesSection />
+        <PartnersSection />
         <InsightsSection />
         <RecruitmentCTA />
         <ContactSection selectedServiceId={contactPrefillService} onConsumedService={clearContactPrefill} />
