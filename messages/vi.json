@@ -671,6 +671,7 @@
       "dashboardTitle": "Báo cáo tài chính",
       "dashboardSub": "Tổng quan kiểm toán",
       "slideBadge": "IFRS Auditing",
+      "emptyAdmin": "Xin vui lòng thêm slide ở Admin để hiển thị",
       "sliderAria": "Điều hướng slide trang chủ",
       "prevSlide": "Xem slide trước",
       "nextSlide": "Xem slide tiếp theo",

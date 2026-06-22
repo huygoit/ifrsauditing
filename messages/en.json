@@ -669,6 +669,7 @@
       "dashboardTitle": "Financial statements",
       "dashboardSub": "Audit overview",
       "slideBadge": "IFRS Auditing",
+      "emptyAdmin": "Please add slides in Admin to display here",
       "sliderAria": "Homepage slide navigation",
       "prevSlide": "View previous slide",
       "nextSlide": "View next slide",

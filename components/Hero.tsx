@@ -1,52 +1,43 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { PatternBg } from "@/components/PatternBg";
 import { LinkButton } from "@/components/Button";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { SITE } from "@/lib/site";
 import { useTranslations } from "next-intl";
+import type { HeroSlide } from "@/lib/slides/getSlides";
 
-const SLIDES = [
-  { image: "/slides/img01.jpg", key: "about" },
-  { image: "/slides/img02.jpg", key: "services" },
-  { image: "/slides/img03.jpg", key: "careers" }
-] as const;
-
-export function Hero() {
+export function Hero({ slides = [] }: { slides?: HeroSlide[] }) {
   const t = useTranslations("ifrs.hero");
   const tc = useTranslations("ifrs");
   const reducedMotion = useReducedMotion();
   const [activeSlide, setActiveSlide] = useState(0);
+  const hasSlides = slides.length > 0;
 
-  const slides = useMemo(
-    () =>
-      SLIDES.map((slide) => ({
-        ...slide,
-        eyebrow: t(`slides.${slide.key}.eyebrow`),
-        title: t(`slides.${slide.key}.title`),
-        desc: t(`slides.${slide.key}.desc`),
-        alt: t(`slides.${slide.key}.alt`)
-      })),
-    [t]
-  );
+  // Kẹp chỉ số slide khi danh sách thay đổi để tránh trỏ ngoài mảng
+  useEffect(() => {
+    setActiveSlide((current) => (current >= slides.length ? 0 : current));
+  }, [slides.length]);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || slides.length <= 1) return;
     const timer = window.setInterval(() => {
-      setActiveSlide((current) => (current + 1) % SLIDES.length);
+      setActiveSlide((current) => (current + 1) % slides.length);
     }, 5200);
 
     return () => window.clearInterval(timer);
-  }, [reducedMotion]);
+  }, [reducedMotion, slides.length]);
 
   const goToPrevSlide = () => {
-    setActiveSlide((current) => (current - 1 + SLIDES.length) % SLIDES.length);
+    if (!slides.length) return;
+    setActiveSlide((current) => (current - 1 + slides.length) % slides.length);
   };
 
   const goToNextSlide = () => {
-    setActiveSlide((current) => (current + 1) % SLIDES.length);
+    if (!slides.length) return;
+    setActiveSlide((current) => (current + 1) % slides.length);
   };
 
   return (
@@ -107,83 +98,91 @@ export function Hero() {
 
         <div className="relative lg:col-span-7 lg:self-start">
           <div className="pointer-events-none absolute -inset-5 rounded-[2rem] bg-emerald-400/10 blur-3xl" aria-hidden="true" />
-          <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] shadow-[0_30px_90px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.08] backdrop-blur-md sm:rounded-[2rem]">
-            <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/11] lg:aspect-[16/10]">
-              {slides.map((slide, index) => (
-                <Image
-                  key={slide.image}
-                  src={slide.image}
-                  alt={slide.alt}
-                  fill
-                  priority={index === 0}
-                  sizes="(min-width: 1024px) 560px, 100vw"
-                  className={[
-                    "object-cover object-center transition duration-700 ease-out",
-                    activeSlide === index ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
-                  ].join(" ")}
-                />
-              ))}
-              {/* Tint rất nhẹ giữ chiều sâu nhưng ảnh vẫn rõ */}
-              <div className="absolute inset-0 bg-slate-950/10" aria-hidden="true" />
-              {/* Đậm đáy cho caption — gom badge + tiêu đề về đây để không che mặt người */}
-              <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" aria-hidden="true" />
-
-              {/* Caption gọn: badge + thanh nhấn brand + tiêu đề slide, đặt ở đáy ảnh */}
-              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
-                <div className="mb-3 flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-white/15 bg-slate-950/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-100 shadow-sm backdrop-blur-md sm:px-3.5 sm:py-1.5 sm:text-[11px] sm:tracking-[0.16em]">
-                    {slides[activeSlide].eyebrow}
-                  </span>
-                  <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-100 backdrop-blur-md sm:px-3.5 sm:py-1.5 sm:text-[11px] sm:tracking-[0.16em]">
-                    {t("slideBadge")}
-                  </span>
-                </div>
-                <div className="flex items-start gap-3 sm:gap-3.5">
-                  <span className="mt-1 h-8 w-1 shrink-0 rounded-full bg-gradient-to-b from-emerald-300 to-emerald-500 sm:h-9" aria-hidden="true" />
-                  <h2 className="max-w-md text-pretty text-lg font-semibold leading-snug tracking-tight text-white [text-shadow:0_2px_12px_rgba(2,6,23,0.55)] sm:text-2xl md:text-[1.7rem]">
-                    {slides[activeSlide].title}
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-slate-950/72 px-3 py-3 sm:px-6 sm:py-4">
-              <div className="flex items-center gap-2" aria-label={t("sliderAria")}>
+          {hasSlides ? (
+            <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-white/[0.06] shadow-[0_30px_90px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.08] backdrop-blur-md sm:rounded-[2rem]">
+              <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/11] lg:aspect-[16/10]">
                 {slides.map((slide, index) => (
-                  <button
-                    key={slide.key}
-                    type="button"
+                  <Image
+                    key={slide.id}
+                    src={slide.image}
+                    alt={slide.alt}
+                    fill
+                    priority={index === 0}
+                    sizes="(min-width: 1024px) 560px, 100vw"
                     className={[
-                      "h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:h-2.5",
-                      activeSlide === index ? "w-7 bg-emerald-300 sm:w-9" : "w-2 bg-white/30 hover:bg-white/55 sm:w-2.5"
+                      "object-cover object-center transition duration-700 ease-out",
+                      activeSlide === index ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"
                     ].join(" ")}
-                    aria-label={t("goToSlide", { index: index + 1 })}
-                    aria-current={activeSlide === index ? "true" : undefined}
-                    onClick={() => setActiveSlide(index)}
                   />
                 ))}
+                {/* Tint rất nhẹ giữ chiều sâu nhưng ảnh vẫn rõ */}
+                <div className="absolute inset-0 bg-slate-950/10" aria-hidden="true" />
+                {/* Đậm đáy cho caption — gom badge + tiêu đề về đây để không che mặt người */}
+                <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" aria-hidden="true" />
+
+                {/* Caption gọn: badge + thanh nhấn brand + tiêu đề slide, đặt ở đáy ảnh */}
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
+                    {slides[activeSlide]?.eyebrow ? (
+                      <span className="rounded-full border border-white/15 bg-slate-950/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-100 shadow-sm backdrop-blur-md sm:px-3.5 sm:py-1.5 sm:text-[11px] sm:tracking-[0.16em]">
+                        {slides[activeSlide]?.eyebrow}
+                      </span>
+                    ) : null}
+                    <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-100 backdrop-blur-md sm:px-3.5 sm:py-1.5 sm:text-[11px] sm:tracking-[0.16em]">
+                      {t("slideBadge")}
+                    </span>
+                  </div>
+                  <div className="flex items-start gap-3 sm:gap-3.5">
+                    <span className="mt-1 h-8 w-1 shrink-0 rounded-full bg-gradient-to-b from-emerald-300 to-emerald-500 sm:h-9" aria-hidden="true" />
+                    <h2 className="max-w-md text-pretty text-lg font-semibold leading-snug tracking-tight text-white [text-shadow:0_2px_12px_rgba(2,6,23,0.55)] sm:text-2xl md:text-[1.7rem]">
+                      {slides[activeSlide]?.title}
+                    </h2>
+                  </div>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:border-white/30 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:h-10 sm:w-10"
-                  aria-label={t("prevSlide")}
-                  onClick={goToPrevSlide}
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:border-white/30 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:h-10 sm:w-10"
-                  aria-label={t("nextSlide")}
-                  onClick={goToNextSlide}
-                >
-                  ›
-                </button>
+              <div className="flex items-center justify-between gap-3 border-t border-white/10 bg-slate-950/72 px-3 py-3 sm:px-6 sm:py-4">
+                <div className="flex items-center gap-2" aria-label={t("sliderAria")}>
+                  {slides.map((slide, index) => (
+                    <button
+                      key={slide.id}
+                      type="button"
+                      className={[
+                        "h-2 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:h-2.5",
+                        activeSlide === index ? "w-7 bg-emerald-300 sm:w-9" : "w-2 bg-white/30 hover:bg-white/55 sm:w-2.5"
+                      ].join(" ")}
+                      aria-label={t("goToSlide", { index: index + 1 })}
+                      aria-current={activeSlide === index ? "true" : undefined}
+                      onClick={() => setActiveSlide(index)}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:border-white/30 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:h-10 sm:w-10"
+                    aria-label={t("prevSlide")}
+                    onClick={goToPrevSlide}
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:border-white/30 hover:bg-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 sm:h-10 sm:w-10"
+                    aria-label={t("nextSlide")}
+                    onClick={goToNextSlide}
+                  >
+                    ›
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-dashed border-white/20 bg-white/[0.04] p-6 text-center shadow-[0_30px_90px_rgba(0,0,0,0.42)] ring-1 ring-white/[0.08] backdrop-blur-md sm:aspect-[16/11] sm:rounded-[2rem] lg:aspect-[16/10]">
+              <p className="max-w-xs text-sm font-medium leading-relaxed text-slate-200/90">{t("emptyAdmin")}</p>
+            </div>
+          )}
 
           {/* Điểm tin cậy — luôn 3 chip trên 1 hàng, chữ không xuống dòng */}
           <ul className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-3">

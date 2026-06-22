@@ -22,6 +22,7 @@ const NAV: NavEntry[] = [
   // },
   // { type: "link", href: "/admin/combos", label: "admin.nav.combos" },
   // { type: "link", href: "/admin/certifications", label: "admin.nav.certifications" },
+  { type: "link", href: "/admin/slides", label: "admin.nav.slides" },
   { type: "link", href: "/admin/partners", label: "admin.nav.partners" },
   { type: "link", href: "/admin/videos", label: "admin.nav.videos" },
   {

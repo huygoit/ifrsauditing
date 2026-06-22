@@ -363,6 +363,38 @@ model VideoTranslation {
   @@map("videotranslation")
 }
 
+model Slide {
+  id        String   @id @default(cuid())
+  image     String
+  link      String?
+  status    Status   @default(PUBLISHED)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  translations SlideTranslation[]
+
+  @@index([status])
+  @@index([sortOrder])
+  @@map("slide")
+}
+
+model SlideTranslation {
+  id      String  @id @default(cuid())
+  slideId String
+  lang    Lang
+  eyebrow String?
+  title   String
+  desc    String? @db.Text
+  alt     String?
+
+  slide Slide @relation(fields: [slideId], references: [id], onDelete: Cascade)
+
+  @@unique([slideId, lang])
+  @@index([lang])
+  @@map("slidetranslation")
+}
+
 model Post {
   id          String     @id @default(cuid())
   coverImage  String?

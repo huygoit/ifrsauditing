@@ -19,6 +19,7 @@ import { Reveal } from "@/components/Reveal";
 import type { NewsCategory, NewsPostCard } from "@/lib/news/types";
 import type { SiteContentCard } from "@/lib/siteContent/getSiteContents";
 import type { PartnerLogo } from "@/lib/partners/getPartnerLogos";
+import type { HeroSlide } from "@/lib/slides/getSlides";
 
 export function HomePage() {
   return <HomePageClient locale="vi" />;
@@ -35,19 +36,21 @@ export function HomePageClient({
   insightsPosts = [],
   insightsCategories = [],
   servicesItems = [],
-  partners = []
+  partners = [],
+  slides = []
 }: {
   locale?: "vi" | "en";
   insightsPosts?: NewsPostCard[];
   insightsCategories?: NewsCategory[];
   servicesItems?: SiteContentCard[];
   partners?: PartnerLogo[];
+  slides?: HeroSlide[];
 }) {
   return (
     <div className="min-h-screen bg-white pb-[calc(6.25rem+env(safe-area-inset-bottom,0px))] md:pb-28">
       <Header />
       <main>
-        <Hero />
+        <Hero slides={slides} />
         <Reveal>
           <TrustBar />
         </Reveal>
