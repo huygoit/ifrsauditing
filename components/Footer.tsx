@@ -71,7 +71,7 @@ export function Footer() {
       <div className="relative mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <a href={homeBase} className="inline-flex flex-col rounded-xl text-white outline-none ring-offset-2 ring-offset-emerald-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-amber-400/60">
+            <a href={homeBase} className="inline-flex flex-col items-start rounded-xl text-white outline-none ring-offset-2 ring-offset-emerald-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-amber-400/60">
               <IfrsBrandLogo className="h-9 w-auto sm:h-10" />
               <span className="mt-2 text-xs text-emerald-100/65">{t("brandTitle")}</span>
             </a>

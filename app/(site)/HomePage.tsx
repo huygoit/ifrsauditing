@@ -47,7 +47,7 @@ export function HomePageClient({
   slides?: HeroSlide[];
 }) {
   return (
-    <div className="min-h-screen bg-white pb-[calc(6.25rem+env(safe-area-inset-bottom,0px))] md:pb-28">
+    <div className="min-h-screen bg-white pb-[calc(6.25rem+env(safe-area-inset-bottom,0px))] md:pb-0">
       <Header />
       <main>
         <Hero slides={slides} />
