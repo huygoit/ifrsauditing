@@ -50,7 +50,7 @@ export function ProcessSection() {
   const t = useTranslations("ifrs.process");
 
   return (
-    <section className="bg-white py-20 md:py-28">
+    <section className="bg-white py-10 md:py-14">
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="section-title text-2xl font-semibold tracking-tight text-emerald-700 md:text-3xl lg:text-4xl">{t("title")}</h2>
@@ -66,10 +66,10 @@ export function ProcessSection() {
 
           {STEPS.map((key, i) => (
             <Reveal key={key}>
-              <li className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_2px_18px_rgba(15,23,42,0.05)] transition duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-brand md:p-7">
-                {/* Số bước cỡ lớn dạng watermark — không còn bé tí như trước */}
+              <li className="group relative flex h-full flex-col rounded-2xl border border-slate-200/90 bg-white p-6 shadow-[0_2px_18px_rgba(15,23,42,0.05)] transition duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-brand md:p-7">
+                {/* Số bước cỡ lớn dạng watermark — đặt trong mép card để không bị cắt */}
                 <span
-                  className="pointer-events-none absolute -right-1 -top-3 select-none text-7xl font-bold leading-none text-emerald-700/[0.07] transition group-hover:text-emerald-700/[0.12]"
+                  className="pointer-events-none absolute right-3 top-2 select-none text-7xl font-bold leading-none text-emerald-700/[0.07] transition group-hover:text-emerald-700/[0.12]"
                   aria-hidden="true"
                 >
                   {i + 1}

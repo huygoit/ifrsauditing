@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { requireAdminSession } from "@/lib/admin/requireAdmin";
 import { slugifyAscii } from "@/lib/slug";
+import { SITE_CONTENT_TYPES } from "@/lib/siteContentTypes";
 
 async function suggestUniqueSlug(lang: "vi" | "en", baseSlug: string) {
   const rows = await prisma.siteContentTranslation.findMany({
@@ -40,8 +41,13 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
   `) as Array<{ lang: "vi" | "en"; contentJson: any }>;
   const byLang = new Map(jsonRows.map((r) => [r.lang, r.contentJson]));
 
+  const typeRows = (await prisma.$queryRaw`
+    SELECT type FROM sitecontent WHERE id = ${id}
+  `) as Array<{ type: string }>;
+
   const merged = {
     ...item,
+    type: typeRows[0]?.type ?? "SERVICE",
     translations: item.translations.map((t: any) => ({ ...t, contentJson: byLang.get(t.lang) ?? null }))
   };
 
@@ -51,6 +57,7 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 const PatchBody = z.object({
   lang: z.enum(["vi", "en"]),
   status: z.enum(["DRAFT", "PUBLISHED", "SCHEDULED"]).optional(),
+  type: z.enum(SITE_CONTENT_TYPES).optional(),
   publishedAt: z.string().optional().nullable(),
   siteContentCategoryId: z.string().max(191).optional().nullable(),
   coverImage: z.string().max(500).optional().nullable(),
@@ -75,7 +82,7 @@ export async function PATCH(req: NextRequest, ctx: { params: { id: string } }) {
   const parsed = PatchBody.safeParse(json);
   if (!parsed.success) return NextResponse.json({ error: "invalid_input" }, { status: 400 });
 
-  const { lang, slug, title, excerpt, contentMarkdown, contentJson, seoTitle, seoDesc, siteContentCategoryId, publishedAt, ...base } = parsed.data;
+  const { lang, slug, title, excerpt, contentMarkdown, contentJson, seoTitle, seoDesc, siteContentCategoryId, publishedAt, type, ...base } = parsed.data;
   const exists = await prisma.siteContent.findUnique({ where: { id }, select: { id: true } });
   if (!exists) return NextResponse.json({ error: "not_found" }, { status: 404 });
 
@@ -102,6 +109,14 @@ export async function PATCH(req: NextRequest, ctx: { params: { id: string } }) {
         await tx.$executeRaw`
           UPDATE sitecontent
           SET siteContentCategoryId = ${siteContentCategoryId || null}, updatedAt = CURRENT_TIMESTAMP(3)
+          WHERE id = ${id}
+        `;
+      }
+
+      if (type !== undefined) {
+        await tx.$executeRaw`
+          UPDATE sitecontent
+          SET type = ${type}, updatedAt = CURRENT_TIMESTAMP(3)
           WHERE id = ${id}
         `;
       }

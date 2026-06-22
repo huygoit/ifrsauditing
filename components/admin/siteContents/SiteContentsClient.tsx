@@ -7,6 +7,7 @@ import { tAdmin } from "@/lib/admin/i18n";
 import { sanitizeHtmlForNews } from "@/lib/markdown";
 import { NewsEditor } from "@/components/admin/news/NewsEditor";
 import { slugifyAscii } from "@/lib/slug";
+import { SITE_CONTENT_TYPES, SITE_CONTENT_TYPE_LABELS, type SiteContentType } from "@/lib/siteContentTypes";
 
 type Lang = "vi" | "en";
 type PostStatus = "DRAFT" | "PUBLISHED" | "SCHEDULED";
@@ -52,6 +53,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
   const [lang, setLang] = useState<Lang>(initialLang);
   const [q, setQ] = useState("");
   const [statusFilter, setStatusFilter] = useState<"" | PostStatus>("");
+  const [typeFilter, setTypeFilter] = useState<SiteContentType>(SITE_CONTENT_TYPES[0]);
   const [loading, setLoading] = useState(true);
   const [items, setItems] = useState<Row[]>([]);
   const [selected, setSelected] = useState<Record<string, boolean>>({});
@@ -63,6 +65,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
 
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [slugTouched, setSlugTouched] = useState(false);
   const [excerpt, setExcerpt] = useState("");
   const [siteContentCategoryId, setSiteContentCategoryId] = useState<string>("");
   const [contentMarkdown, setContentMarkdown] = useState("");
@@ -84,7 +87,26 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
   const previewHtml = useMemo(() => sanitizeHtmlForNews(contentMarkdown), [contentMarkdown]);
   const editorSnapshotRef = useRef<null | (() => { json: any; html: string })>(null);
   const [editorKey, setEditorKey] = useState(() => `init:${Date.now()}`);
-  const [siteContentCategories, setSiteContentCategories] = useState<Array<{ id: string; name: string; slug: string }>>([]);
+  const [siteContentCategories, setSiteContentCategories] = useState<Array<{ id: string; name: string; slug: string; parentId: string | null; type: SiteContentType }>>([]);
+
+  // Cây danh mục cha → con, CHỈ thuộc loại của tab đang chọn
+  const categoryTree = useMemo(() => {
+    const cats = siteContentCategories.filter((c) => c.type === typeFilter);
+    const roots = cats.filter((c) => !c.parentId);
+    const childrenOf = (pid: string) => cats.filter((c) => c.parentId === pid);
+    const out: Array<{ id: string; name: string; slug: string; depth: number }> = [];
+    for (const r of roots) {
+      out.push({ id: r.id, name: r.name, slug: r.slug, depth: 0 });
+      for (const c of childrenOf(r.id)) out.push({ id: c.id, name: c.name, slug: c.slug, depth: 1 });
+    }
+    // Danh mục con mà cha không thuộc loại này vẫn liệt kê để không bị mất
+    for (const c of cats) {
+      if (c.parentId && !cats.some((p) => p.id === c.parentId) && !out.some((o) => o.id === c.id)) {
+        out.push({ id: c.id, name: c.name, slug: c.slug, depth: 1 });
+      }
+    }
+    return out;
+  }, [siteContentCategories, typeFilter]);
 
   function statusLabel(s: PostStatus) {
     if (s === "DRAFT") return tAdmin(lang as any, "admin.posts.status.draft");
@@ -112,7 +134,9 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
             .map((x: any) => ({
               id: String(x.id ?? ""),
               name: String(x?.translation?.name ?? ""),
-              slug: String(x?.translation?.slug ?? "")
+              slug: String(x?.translation?.slug ?? ""),
+              parentId: x?.parentId ? String(x.parentId) : null,
+              type: (SITE_CONTENT_TYPES as readonly string[]).includes(x?.type) ? (x.type as SiteContentType) : SITE_CONTENT_TYPES[0]
             }))
             .filter((x: any) => x.id)
         );
@@ -135,6 +159,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
       sp.set("lang", lang);
       if (q.trim()) sp.set("q", q.trim());
       if (statusFilter) sp.set("status", statusFilter);
+      sp.set("type", typeFilter);
       const res = await fetch(`/api/admin/site-contents?${sp.toString()}`, { cache: "no-store" });
       const json = await res.json();
       setItems(json.items ?? []);
@@ -147,7 +172,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang, statusFilter]);
+  }, [lang, statusFilter, typeFilter]);
 
   useEffect(() => {
     const t = window.setTimeout(() => load(), 220);
@@ -160,6 +185,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
     setEditing(null);
     setTitle("");
     setSlug("");
+    setSlugTouched(false);
     setExcerpt("");
     setSiteContentCategoryId("");
     setContentMarkdown("");
@@ -191,6 +217,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
     setSortOrder(row?.sortOrder ?? "");
     setTitle(row?.translation?.title ?? "");
     setSlug(row?.translation?.slug ?? "");
+    setSlugTouched(true);
     setExcerpt(row?.translation?.excerpt ?? "");
     setSiteContentCategoryId(String((row as any)?.siteContentCategoryId ?? ""));
     setContentMarkdown("");
@@ -243,6 +270,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
       const payload = {
         lang,
         status,
+        type: typeFilter,
         publishedAt: publishedAt ? new Date(publishedAt).toISOString() : null,
         siteContentCategoryId: siteContentCategoryId.trim() ? siteContentCategoryId.trim() : null,
         coverImage: coverImage.trim() ? coverImage.trim() : null,
@@ -315,9 +343,6 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight text-slate-900">{tAdmin(lang as any, "admin.site_contents.title")}</h1>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">
-              {tAdmin(lang as any, "admin.site_contents.subtitle")} <span className="font-semibold">?lang</span>.
-            </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center rounded-full border border-slate-200 bg-white p-1 shadow-sm">
@@ -327,6 +352,22 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
             <button type="button" onClick={openCreate} className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700">+ {tAdmin(lang as any, "common.add")}</button>
           </div>
         </div>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          {SITE_CONTENT_TYPES.map((tp) => (
+            <button
+              key={tp}
+              type="button"
+              onClick={() => setTypeFilter(tp)}
+              className={cn(
+                "rounded-full px-4 py-1.5 text-sm font-semibold transition",
+                typeFilter === tp ? "bg-emerald-600 text-white shadow-sm" : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+              )}
+            >
+              {SITE_CONTENT_TYPE_LABELS[tp][lang]}
+            </button>
+          ))}
+        </div>
+
         <div className="mt-4 grid gap-3 md:grid-cols-4 md:items-end">
           <label className="grid gap-2 md:col-span-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">{tAdmin(lang as any, "common.search")}</span>
@@ -455,7 +496,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
-                if (!slug.trim()) setSlug(slugifyAscii(e.target.value));
+                if (!slugTouched) setSlug(slugifyAscii(e.target.value));
               }}
               className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
             />
@@ -471,8 +512,9 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
               className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
             >
               <option value="">{tAdmin(lang as any, "admin.site_contents.form.category_none")}</option>
-              {siteContentCategories.map((c) => (
+              {categoryTree.map((c) => (
                 <option key={c.id} value={c.id}>
+                  {c.depth > 0 ? "\u00A0\u00A0\u00A0\u00A0└─ " : ""}
                   {c.name ? c.name : c.slug ? `/${c.slug}` : c.id}
                   {c.slug ? `  (/${c.slug})` : ""}
                 </option>

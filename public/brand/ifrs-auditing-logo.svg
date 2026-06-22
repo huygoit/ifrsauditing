@@ -1,22 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" role="img" aria-labelledby="ifrsLogoTitle">
-  <title id="ifrsLogoTitle">IFRS Auditing</title>
-  <text
-    x="0"
-    y="36"
-    fill="#166534"
-    font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
-    font-size="38"
-    font-weight="700"
-    letter-spacing="-0.03em"
-  >IFRS</text>
-  <text
-    x="112"
-    y="22"
-    fill="#166534"
-    font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
-    font-size="17.5"
-    font-weight="600"
-    letter-spacing="-0.02em"
-  >Auditing</text>
-  <rect x="112" y="28" width="108" height="5.5" fill="#c62828" rx="0.5" />
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="260" viewBox="0 0 1180 260" fill="none">
+  <defs>
+    <linearGradient id="ifrsGradient" x1="20" y1="36" x2="520" y2="225" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F7F9FA"/>
+      <stop offset="45%" stop-color="#CFDAE2"/>
+      <stop offset="100%" stop-color="#809AAF"/>
+    </linearGradient>
+
+    <linearGradient id="auditGradient" x1="680" y1="70" x2="1080" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E6EEF3"/>
+      <stop offset="52%" stop-color="#C3D3DE"/>
+      <stop offset="100%" stop-color="#8FA9BC"/>
+    </linearGradient>
+
+    <linearGradient id="underlineGradient" x1="680" y1="0" x2="1110" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1E8FD9"/>
+      <stop offset="100%" stop-color="#2AA7EE"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-8%" y="-10%" width="116%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3.5" flood-color="#111820" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <!-- Transparent background: no background rectangle -->
+
+  <g filter="url(#softShadow)">
+    <text x="18" y="190"
+          font-family="Arial, Helvetica, sans-serif"
+          font-size="178"
+          font-weight="800"
+          letter-spacing="-6"
+          fill="url(#ifrsGradient)">IFRS</text>
+
+    <text x="675" y="158"
+          font-family="Arial, Helvetica, sans-serif"
+          font-size="88"
+          font-weight="800"
+          letter-spacing="-2"
+          fill="url(#auditGradient)">Auditing</text>
+
+    <rect x="675" y="178" width="445" height="12" rx="2"
+          fill="url(#underlineGradient)"/>
+  </g>
 </svg>

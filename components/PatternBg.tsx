@@ -15,18 +15,20 @@ export function PatternBg({
     const baseDark = "pointer-events-none absolute inset-0 z-0 overflow-hidden";
     return (
       <div className={[baseDark, className ?? ""].join(" ")} aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-950" />
+        {/* Nền slate tối với dải teal chủ đạo — trầm, sang */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#212A31] via-[#124E66] to-[#161D22]" />
+        {/* Vầng sáng teal làm nền có chiều sâu, sáng dần từ góc trên trái */}
         <div
-          className="absolute inset-0 opacity-[0.055]"
+          className="absolute inset-0 opacity-95"
           style={{
-            backgroundImage: `radial-gradient(circle at 18% 18%, rgb(16 185 129 / 0.28), transparent 42%),
-              radial-gradient(circle at 82% 58%, rgb(6 78 59 / 0.32), transparent 38%)`
+            backgroundImage: `radial-gradient(65% 60% at 15% 10%, rgb(31 106 135 / 0.42), transparent 58%),
+              radial-gradient(55% 55% at 90% 88%, rgb(18 78 102 / 0.25), transparent 55%)`
           }}
         />
         <svg className="absolute inset-0 h-full w-full opacity-[0.045]" viewBox="0 0 1200 600" preserveAspectRatio="none">
           <defs>
             <pattern id="dots-hero-dark" width="24" height="24" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1.2" fill="#a7f3d0" />
+              <circle cx="2" cy="2" r="1.2" fill="#94ABAF" />
             </pattern>
           </defs>
           <rect width="1200" height="600" fill="url(#dots-hero-dark)" />
@@ -76,7 +78,7 @@ export function PatternBg({
       <svg className="absolute inset-0 h-full w-full opacity-[0.06]" viewBox="0 0 1200 600" preserveAspectRatio="none">
         <defs>
           <pattern id={`dots-${variant}`} width="24" height="24" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.2" fill="#10b981" />
+            <circle cx="2" cy="2" r="1.2" fill="#124E66" />
           </pattern>
         </defs>
         <rect width="1200" height="600" fill={`url(#dots-${variant})`} />

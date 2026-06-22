@@ -61,10 +61,10 @@ export function Hero() {
       <div className="relative z-[2] mx-auto grid max-w-[1200px] gap-12 px-4 sm:px-6 lg:min-h-[calc(100svh-7rem)] lg:grid-cols-12 lg:items-center lg:gap-14 lg:px-8">
         <div className="lg:col-span-5">
           <div className="flex flex-wrap gap-2.5">
-            <span className="rounded-full border border-white/12 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-emerald-50/95 shadow-sm backdrop-blur-md">
+            <span className="rounded-full border border-amber-400/25 bg-amber-400/[0.08] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-amber-100 shadow-sm backdrop-blur-md">
               {t("badgeIndependence")}
             </span>
-            <span className="rounded-full border border-white/12 bg-white/[0.06] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-emerald-50/95 shadow-sm backdrop-blur-md">
+            <span className="rounded-full border border-amber-400/25 bg-amber-400/[0.08] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-amber-100 shadow-sm backdrop-blur-md">
               {t("badgeTransparency")}
             </span>
             <span className="rounded-full border border-amber-400/25 bg-amber-400/[0.08] px-3.5 py-1.5 text-xs font-semibold tracking-wide text-amber-100 shadow-sm backdrop-blur-md">
@@ -123,10 +123,10 @@ export function Hero() {
                   ].join(" ")}
                 />
               ))}
-              {/* Tint tổng thể tạo chiều sâu — tránh ảnh quá sáng/trắng trông như mất hình trên desktop */}
-              <div className="absolute inset-0 bg-gradient-to-br from-slate-950/35 via-slate-950/10 to-emerald-950/30" aria-hidden="true" />
+              {/* Tint rất nhẹ giữ chiều sâu nhưng ảnh vẫn rõ */}
+              <div className="absolute inset-0 bg-slate-950/10" aria-hidden="true" />
               {/* Đậm đáy cho caption — gom badge + tiêu đề về đây để không che mặt người */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/88 via-slate-950/10 to-transparent" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-transparent" aria-hidden="true" />
 
               {/* Caption gọn: badge + thanh nhấn brand + tiêu đề slide, đặt ở đáy ảnh */}
               <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">

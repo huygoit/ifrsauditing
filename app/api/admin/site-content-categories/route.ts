@@ -5,6 +5,7 @@ import { prisma } from "@/lib/db";
 import { requireAdminSession } from "@/lib/admin/requireAdmin";
 import { parseLang } from "@/lib/admin/lang";
 import { slugifyAscii } from "@/lib/slug";
+import { SITE_CONTENT_TYPES, DEFAULT_SITE_CONTENT_TYPE } from "@/lib/siteContentTypes";
 
 const Query = z.object({
   lang: z.enum(["vi", "en"]).optional(),
@@ -50,7 +51,7 @@ export async function GET(req: NextRequest) {
   const like = q ? `%${q}%` : null;
   const rows = (await prisma.$queryRaw`
     SELECT
-      scc.id, scc.status, scc.sortOrder, scc.createdAt, scc.updatedAt,
+      scc.id, scc.parentId, scc.type, scc.status, scc.sortOrder, scc.createdAt, scc.updatedAt,
       tl.name AS name_lang, tl.slug AS slug_lang, tl.description AS description_lang, tl.seoTitle AS seoTitle_lang, tl.seoDesc AS seoDesc_lang,
       tv.name AS name_vi,   tv.slug AS slug_vi,   tv.description AS description_vi,   tv.seoTitle AS seoTitle_vi,   tv.seoDesc AS seoDesc_vi
     FROM sitecontentcategory scc
@@ -69,6 +70,8 @@ export async function GET(req: NextRequest) {
     ORDER BY scc.sortOrder ASC, scc.createdAt DESC
   `) as Array<{
     id: string;
+    parentId: string | null;
+    type: string | null;
     status: "ACTIVE" | "INACTIVE" | string;
     sortOrder: number;
     createdAt: Date;
@@ -111,6 +114,8 @@ export async function GET(req: NextRequest) {
 
       return {
         id: r.id,
+        parentId: r.parentId ?? null,
+        type: r.type ?? DEFAULT_SITE_CONTENT_TYPE,
         status: r.status,
         sortOrder: r.sortOrder,
         createdAt: r.createdAt,
@@ -125,6 +130,8 @@ export async function GET(req: NextRequest) {
 const CreateBody = z.object({
   lang: z.enum(["vi", "en"]),
   status: z.enum(["ACTIVE", "INACTIVE"]).default("ACTIVE"),
+  parentId: z.string().max(191).optional().nullable(),
+  type: z.enum(SITE_CONTENT_TYPES).optional(),
   sortOrder: z.number().int().min(0).max(999999).optional(),
   name: z.string().min(1).max(160),
   slug: z.string().max(160).optional(),
@@ -141,9 +148,21 @@ export async function POST(req: NextRequest) {
   const parsed = CreateBody.safeParse(json);
   if (!parsed.success) return NextResponse.json({ error: "invalid_input" }, { status: 400 });
 
-  const { lang, status, sortOrder, name, slug, description, seoTitle, seoDesc } = parsed.data;
+  const { lang, status, parentId, type, sortOrder, name, slug, description, seoTitle, seoDesc } = parsed.data;
+  const cleanType = type ?? DEFAULT_SITE_CONTENT_TYPE;
   const baseSlug = slugifyAscii(slug?.trim() || name);
   if (!baseSlug) return NextResponse.json({ error: "invalid_input" }, { status: 400 });
+
+  // Chỉ cho phân cấp 2 tầng: danh mục cha phải là cấp 1 (không có cha)
+  const cleanParentId = parentId?.trim() ? parentId.trim() : null;
+  if (cleanParentId) {
+    const parentRows = (await prisma.$queryRaw`
+      SELECT id, parentId FROM sitecontentcategory WHERE id = ${cleanParentId} LIMIT 1
+    `) as Array<{ id: string; parentId: string | null }>;
+    if (!parentRows.length || parentRows[0].parentId) {
+      return NextResponse.json({ error: "invalid_parent" }, { status: 400 });
+    }
+  }
 
   const maxRow = (await prisma.$queryRaw`SELECT MAX(sortOrder) AS maxSort FROM sitecontentcategory`) as Array<{ maxSort: number | null }>;
   const nextSort = sortOrder ?? (((maxRow?.[0]?.maxSort ?? 0) as number) + 10);
@@ -154,8 +173,8 @@ export async function POST(req: NextRequest) {
   try {
     await prisma.$transaction([
       prisma.$executeRaw`
-        INSERT INTO sitecontentcategory (id, status, sortOrder, createdAt, updatedAt)
-        VALUES (${id}, ${status}, ${nextSort}, NOW(3), NOW(3))
+        INSERT INTO sitecontentcategory (id, parentId, type, status, sortOrder, createdAt, updatedAt)
+        VALUES (${id}, ${cleanParentId}, ${cleanType}, ${status}, ${nextSort}, NOW(3), NOW(3))
       `,
       prisma.$executeRaw`
         INSERT INTO sitecontentcategorytranslation (id, siteContentCategoryId, lang, name, slug, description, seoTitle, seoDesc)

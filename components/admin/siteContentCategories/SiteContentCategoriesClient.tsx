@@ -4,11 +4,14 @@ import { useEffect, useMemo, useState } from "react";
 import { QuickEditDrawer } from "@/components/admin/QuickEditDrawer";
 import { tAdmin } from "@/lib/admin/i18n";
 import { slugifyAscii } from "@/lib/slug";
+import { SITE_CONTENT_TYPES, SITE_CONTENT_TYPE_LABELS, DEFAULT_SITE_CONTENT_TYPE, type SiteContentType } from "@/lib/siteContentTypes";
 
 type Lang = "vi" | "en";
 
 type Row = {
   id: string;
+  parentId: string | null;
+  type: SiteContentType;
   sortOrder: number;
   status: "ACTIVE" | "INACTIVE";
   translation: { lang: Lang; name: string; slug: string; description: string; seoTitle?: string; seoDesc?: string };
@@ -59,6 +62,13 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
   const [selected, setSelected] = useState<Record<string, boolean>>({});
   const selectedIds = useMemo(() => Object.entries(selected).filter(([, v]) => v).map(([k]) => k), [selected]);
 
+  // Map id -> tên để hiển thị nhãn danh mục cha
+  const nameById = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const it of items) m.set(it.id, it.translation.name || `/${it.translation.slug}`);
+    return m;
+  }, [items]);
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [editing, setEditing] = useState<Row | null>(null);
   const [mode, setMode] = useState<"create" | "edit">("edit");
@@ -66,6 +76,9 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
   // form state
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
+  const [slugTouched, setSlugTouched] = useState(false);
+  const [parentId, setParentId] = useState("");
+  const [type, setType] = useState<SiteContentType>(DEFAULT_SITE_CONTENT_TYPE);
   const [description, setDescription] = useState("");
   const [seoTitle, setSeoTitle] = useState("");
   const [seoDesc, setSeoDesc] = useState("");
@@ -74,6 +87,18 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
   const [saveLoading, setSaveLoading] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [viFallback, setViFallback] = useState<{ name: string; slug: string; description: string; seoTitle: string; seoDesc: string } | null>(null);
+
+  // Danh mục đang sửa có con thì không cho gán cha (giữ phân cấp 2 tầng)
+  const editingHasChildren = useMemo(
+    () => (editing ? items.some((x) => x.parentId === editing.id) : false),
+    [items, editing]
+  );
+
+  // Chỉ danh mục cấp 1 (không có cha) mới được làm cha, và không phải chính nó
+  const parentOptions = useMemo(
+    () => items.filter((x) => !x.parentId && x.id !== editing?.id),
+    [items, editing]
+  );
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -119,6 +144,9 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
     setEditing(null);
     setName("");
     setSlug("");
+    setSlugTouched(false);
+    setParentId("");
+    setType(DEFAULT_SITE_CONTENT_TYPE);
     setDescription("");
     setSeoTitle("");
     setSeoDesc("");
@@ -135,6 +163,9 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
     setEditing(row);
     setName(row?.translation?.name ?? "");
     setSlug(row?.translation?.slug ?? "");
+    setSlugTouched(true);
+    setParentId(row?.parentId ?? "");
+    setType(row?.type ?? DEFAULT_SITE_CONTENT_TYPE);
     setDescription(row?.translation?.description ?? "");
     setSeoTitle(String((row as any)?.translation?.seoTitle ?? ""));
     setSeoDesc(String((row as any)?.translation?.seoDesc ?? ""));
@@ -172,6 +203,8 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
       const payload: any = {
         lang,
         status: baseStatus,
+        parentId: parentId.trim() ? parentId.trim() : null,
+        type,
         sortOrder: sortOrder === "" ? undefined : Number(sortOrder),
         name: name.trim(),
         slug: slugifyAscii(slug.trim() || name.trim()),
@@ -364,9 +397,15 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
 
                   <button type="button" className="min-w-0 text-left" onClick={() => openEdit(row.id)}>
                     <div className="flex flex-wrap items-center gap-2">
+                      {row.parentId ? <span className="text-slate-400" aria-hidden="true">↳</span> : null}
                       <p className="truncate text-sm font-semibold text-slate-900">
                         {row.translation.name || <span className="text-slate-400">{tAdmin(lang as any, "common.none")}</span>}
                       </p>
+                      {row.parentId ? (
+                        <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-800">
+                          {tAdmin(lang as any, "admin.site_content_categories.child_of")} {nameById.get(row.parentId) ?? "—"}
+                        </span>
+                      ) : null}
                       {row.meta.missingLang ? (
                         <span className="rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-800">
                           {tAdmin(lang as any, "admin.common.missing_en")}
@@ -374,6 +413,9 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
                       ) : null}
                       <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-700">
                         /{row.translation.slug}
+                      </span>
+                      <span className="rounded-full bg-sky-50 px-2.5 py-1 text-[11px] font-semibold text-sky-800">
+                        {SITE_CONTENT_TYPE_LABELS[row.type]?.[lang] ?? row.type}
                       </span>
                     </div>
                     <p className="mt-1 truncate text-xs text-slate-600">{row.translation.description}</p>
@@ -465,7 +507,7 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
-                if (!slug.trim()) setSlug(slugifyAscii(e.target.value));
+                if (!slugTouched) setSlug(slugifyAscii(e.target.value));
               }}
               className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
             />
@@ -473,10 +515,51 @@ export function SiteContentCategoriesClient({ initialLang }: { initialLang: Lang
           <Field label={tAdmin(lang as any, "admin.site_content_categories.form.slug")} hint={tAdmin(lang as any, "admin.site_content_categories.form.slug_hint")}>
             <input
               value={slug}
-              onChange={(e) => setSlug(slugifyAscii(e.target.value))}
+              onChange={(e) => {
+                setSlugTouched(true);
+                setSlug(slugifyAscii(e.target.value));
+              }}
               className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
               placeholder={tAdmin(lang as any, "admin.site_content_categories.form.slug_placeholder")}
             />
+          </Field>
+          <Field
+            label={tAdmin(lang as any, "admin.site_content_categories.form.type")}
+            hint={tAdmin(lang as any, "admin.site_content_categories.form.type_hint")}
+          >
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value as SiteContentType)}
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+            >
+              {SITE_CONTENT_TYPES.map((tp) => (
+                <option key={tp} value={tp}>
+                  {SITE_CONTENT_TYPE_LABELS[tp][lang]}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field
+            label={tAdmin(lang as any, "admin.site_content_categories.form.parent")}
+            hint={
+              editingHasChildren
+                ? tAdmin(lang as any, "admin.site_content_categories.form.parent_locked")
+                : tAdmin(lang as any, "admin.site_content_categories.form.parent_hint")
+            }
+          >
+            <select
+              value={parentId}
+              onChange={(e) => setParentId(e.target.value)}
+              disabled={editingHasChildren}
+              className="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm transition focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+            >
+              <option value="">{tAdmin(lang as any, "admin.site_content_categories.form.parent_none")}</option>
+              {parentOptions.map((opt) => (
+                <option key={opt.id} value={opt.id}>
+                  {opt.translation.name || `/${opt.translation.slug}`}
+                </option>
+              ))}
+            </select>
           </Field>
           <Field label={tAdmin(lang as any, "admin.site_content_categories.form.description")}>
             <textarea

@@ -62,13 +62,9 @@ export function TrustBar() {
         </div>
 
         <div className="mt-10 grid gap-5 sm:gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-4">
-          {keys.map((k, index) => (
+          {keys.map((k) => (
             <Reveal key={k}>
               <div className="group relative h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_2px_16px_rgba(15,23,42,0.04)] transition duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-brand">
-                {/* Số thứ tự mờ ở góc — tạo nhịp, không gây rối */}
-                <span className="pointer-events-none absolute -right-1 top-1 text-5xl font-bold leading-none text-slate-900/[0.04] transition group-hover:text-emerald-700/[0.07]" aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
                 {/* Quầng sáng brand hiện khi hover */}
                 <span className="pointer-events-none absolute inset-0 rounded-2xl bg-emerald-50/70 opacity-0 transition duration-300 group-hover:opacity-100" aria-hidden="true" />
 

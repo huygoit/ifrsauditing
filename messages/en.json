@@ -491,7 +491,7 @@
   },
   "news": {
     "title": "News",
-    "subtitle": "Knowledge, guides & product stories",
+    "subtitle": "Latest news, professional insights and fresh perspectives from IFRS Auditing",
     "all": "All",
     "backHome": "← Back to home",
     "backAll": "← All news",
@@ -503,13 +503,102 @@
     "breadcrumbHome": "Home",
     "breadcrumbNews": "News",
     "relatedPosts": "Related posts",
-    "recentPosts": "Recent posts"
+    "recentPosts": "Recent posts",
+    "categoriesTitle": "Categories",
+    "ctaTitle": "Need expert advice?",
+    "ctaDesc": "The IFRS Auditing team is ready to support your business.",
+    "ctaButton": "Get a consultation"
+  },
+  "ifrsPage": {
+    "metaTitle": "IFRS – International Financial Reporting Standards",
+    "metaDesc": "Knowledge, adoption roadmap and IFRS conversion solutions for Vietnamese enterprises.",
+    "hero": {
+      "eyebrow": "Professional topic",
+      "title": "IFRS – International Financial Reporting Standards",
+      "subtitle": "Knowledge, adoption roadmap and IFRS conversion solutions for Vietnamese enterprises.",
+      "ctaPrimary": "IFRS conversion advisory",
+      "ctaSecondary": "Read in-depth articles"
+    },
+    "what": {
+      "title": "What is IFRS?",
+      "body": "IFRS (International Financial Reporting Standards) is a set of standards issued by the IASB to unify how financial statements are prepared and presented across countries. Adopting IFRS makes financial statements transparent, reliable and comparable on a global scale.",
+      "stats": {
+        "s1": { "value": "140+", "label": "countries adopting IFRS" },
+        "s2": { "value": "2025+", "label": "adoption roadmap in Vietnam" },
+        "s3": { "value": "VAS → IFRS", "label": "end-to-end conversion support" }
+      }
+    },
+    "why": {
+      "title": "Why do businesses need IFRS?",
+      "subtitle": "When and why enterprises should prepare to adopt IFRS.",
+      "items": {
+        "i1": { "title": "Raising international capital", "desc": "Foreign investors and lenders require IFRS-based reporting." },
+        "i2": { "title": "Multinational groups", "desc": "Consolidating reports with overseas parent or subsidiaries." },
+        "i3": { "title": "Listing & M&A", "desc": "Preparing for IPO, international listing or M&A transactions." },
+        "i4": { "title": "Transparency & governance", "desc": "Improving financial information quality and governance." }
+      }
+    },
+    "roadmap": {
+      "title": "IFRS adoption roadmap in Vietnam",
+      "subtitle": "Under Decision 345/QD-BTC of the Ministry of Finance.",
+      "steps": {
+        "s1": { "period": "2020 – 2021", "title": "Preparation phase", "desc": "Building the legal framework, training resources and publishing IFRS translations." },
+        "s2": { "period": "2022 – 2025", "title": "Voluntary adoption", "desc": "Eligible enterprises may voluntarily apply IFRS for consolidated reports." },
+        "s3": { "period": "After 2025", "title": "Mandatory adoption", "desc": "Mandatory for enterprise groups defined by the Ministry of Finance." }
+      }
+    },
+    "diff": {
+      "title": "Differences between VAS and IFRS",
+      "subtitle": "Core differences to note when converting.",
+      "aspect": "Aspect",
+      "vas": "VAS",
+      "ifrs": "IFRS",
+      "rows": {
+        "r1": { "aspect": "Measurement basis", "vas": "Mainly historical cost", "ifrs": "Wide use of fair value" },
+        "r2": { "aspect": "Asset impairment", "vas": "Limited recognition", "ifrs": "Periodic assessment & recognition" },
+        "r3": { "aspect": "Disclosures", "vas": "Basic level", "ifrs": "Detailed, transparency-oriented" },
+        "r4": { "aspect": "Currency of updates", "vas": "Updated slowly", "ifrs": "Continuously updated by IASB" }
+      }
+    },
+    "service": {
+      "title": "How IFRS Auditing supports you",
+      "desc": "We accompany you end-to-end: VAS – IFRS gap assessment, conversion planning, IFRS financial statements and team training.",
+      "items": {
+        "i1": "Impact assessment & conversion gap analysis",
+        "i2": "Preparing and converting financial statements to IFRS",
+        "i3": "IFRS training for accounting & finance teams"
+      },
+      "cta": "Explore services"
+    },
+    "articles": {
+      "title": "In-depth IFRS articles",
+      "subtitle": "Knowledge, analysis and the latest IFRS updates.",
+      "empty": "Content is being updated.",
+      "viewAll": "View all IFRS articles"
+    },
+    "cta": {
+      "title": "Ready to convert to IFRS?",
+      "desc": "Book a consultation with IFRS Auditing experts to build the right roadmap for your business.",
+      "button": "Get a consultation"
+    }
   },
   "siteContent": {
     "breadcrumbHome": "Home",
     "breadcrumbSection": "Content",
     "publishedAt": "Published:",
-    "contentUpdating": "This page is being updated."
+    "contentUpdating": "This page is being updated.",
+    "readMore": "Read more"
+  },
+  "recruitment": {
+    "title": "Careers",
+    "subtitle": "Career opportunities at IFRS Auditing — grow with us in audit, accounting and advisory.",
+    "empty": "No open positions right now. Please check back later.",
+    "breadcrumbHome": "Home",
+    "categoriesTitle": "Job groups",
+    "ctaTitle": "Didn't find a suitable role?",
+    "ctaDesc": "Send us your CV and our recruitment team will reach out when a matching opportunity arises.",
+    "ctaButton": "Contact to apply",
+    "readMore": "Read more"
   },
   "productDetail": {
     "breadcrumbHome": "Home",
@@ -552,6 +641,7 @@
     "ctaExplore": "Explore services",
     "logoAlt": "IFRS Auditing",
     "nav": {
+      "home": "Home",
       "about": "About",
       "services": "Services",
       "ifrs": "IFRS",

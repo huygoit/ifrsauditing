@@ -91,7 +91,7 @@ export function ContactSection({
   }
 
   return (
-    <section id="lien-he" className="scroll-mt-32 border-t border-slate-200/80 bg-slate-50 py-20 md:py-28">
+    <section id="lien-he" className="border-t border-slate-200/80 bg-slate-50 py-10 md:py-14">
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-2xl font-semibold section-title tracking-tight text-emerald-700 md:text-3xl lg:text-4xl">{t("title")}</h2>
@@ -104,7 +104,7 @@ export function ContactSection({
               <span className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-emerald-400/20 blur-3xl" aria-hidden="true" />
               <span
                 className="pointer-events-none absolute inset-0 opacity-[0.06]"
-                style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #a7f3d0 1px, transparent 0)", backgroundSize: "22px 22px" }}
+                style={{ backgroundImage: "radial-gradient(circle at 2px 2px, #94ABAF 1px, transparent 0)", backgroundSize: "22px 22px" }}
                 aria-hidden="true"
               />
               <ul className="relative space-y-6">
@@ -136,7 +136,7 @@ export function ContactSection({
             {success ? (
               <div
                 role="status"
-                className="rounded-3xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-slate-50 p-8 shadow-[0_8px_32px_rgba(16,185,129,0.1)]"
+                className="rounded-3xl border border-emerald-200/70 bg-gradient-to-br from-emerald-50 via-white to-slate-50 p-8 shadow-[0_8px_32px_rgba(18,78,102,0.12)]"
               >
                 <p className="text-lg font-semibold text-emerald-950">{t("success")}</p>
                 <p className="mt-3 text-sm leading-relaxed text-emerald-900/85">{t("successHint")}</p>

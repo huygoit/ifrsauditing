@@ -5,11 +5,13 @@ import { prisma } from "@/lib/db";
 import { requireAdminSession } from "@/lib/admin/requireAdmin";
 import { parseLang } from "@/lib/admin/lang";
 import { slugifyAscii } from "@/lib/slug";
+import { SITE_CONTENT_TYPES } from "@/lib/siteContentTypes";
 
 const Query = z.object({
   lang: z.enum(["vi", "en"]).optional(),
   q: z.string().optional(),
-  status: z.enum(["DRAFT", "PUBLISHED", "SCHEDULED"]).optional()
+  status: z.enum(["DRAFT", "PUBLISHED", "SCHEDULED"]).optional(),
+  type: z.enum(SITE_CONTENT_TYPES).optional()
 });
 
 export async function GET(req: NextRequest) {
@@ -23,10 +25,23 @@ export async function GET(req: NextRequest) {
   const lang = parseLang(parsed.data.lang);
   const q = (parsed.data.q ?? "").trim();
   const status = parsed.data.status ?? undefined;
+  const type = parsed.data.type ?? undefined;
+
+  // Lọc theo loại nội dung — `type` nằm trên chính bài viết. Dùng raw vì
+  // Prisma client có thể chưa biết field `type` của SiteContent.
+  let idFilter: string[] | null = null;
+  if (type) {
+    const rows = (await prisma.$queryRaw`
+      SELECT id FROM sitecontent WHERE type = ${type}
+    `) as Array<{ id: string }>;
+    idFilter = rows.map((r) => r.id);
+    if (!idFilter.length) return NextResponse.json({ items: [] });
+  }
 
   const items = await prisma.siteContent.findMany({
     where: {
       ...(status ? { status } : {}),
+      ...(idFilter ? { id: { in: idFilter } } : {}),
       ...(q
         ? {
             translations: {
@@ -82,6 +97,7 @@ export async function GET(req: NextRequest) {
 const CreateBody = z.object({
   lang: z.enum(["vi", "en"]),
   status: z.enum(["DRAFT", "PUBLISHED", "SCHEDULED"]).default("DRAFT"),
+  type: z.enum(SITE_CONTENT_TYPES).optional(),
   publishedAt: z.string().optional().nullable(),
   siteContentCategoryId: z.string().max(191).optional().nullable(),
   coverImage: z.string().max(500).optional().nullable(),
@@ -125,6 +141,7 @@ export async function POST(req: NextRequest) {
   const {
     lang,
     status,
+    type,
     publishedAt,
     siteContentCategoryId,
     coverImage,
@@ -170,6 +187,9 @@ export async function POST(req: NextRequest) {
       },
       select: { id: true }
     });
+    if (type) {
+      await prisma.$executeRaw`UPDATE sitecontent SET type = ${type} WHERE id = ${created.id}`;
+    }
     return NextResponse.json({ ok: true, id: created.id });
   } catch (e: unknown) {
     const code = (e as any)?.code as string | undefined;

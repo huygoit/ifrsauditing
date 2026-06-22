@@ -16,8 +16,8 @@ export function IfrsBrandLogo({ className, priority }: Props) {
     <Image
       src="/brand/ifrs-auditing-logo.png"
       alt={t("logoAlt")}
-      width={2508}
-      height={627}
+      width={2048}
+      height={682}
       className={className}
       priority={priority}
     />

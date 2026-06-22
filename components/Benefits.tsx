@@ -132,7 +132,7 @@ export function Benefits({ locale, items }: Props) {
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.07]"
         style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(16 185 129 / 0.2) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(18 78 102 / 0.2) 1px, transparent 0)`,
           backgroundSize: "28px 28px"
         }}
         aria-hidden

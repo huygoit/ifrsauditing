@@ -4,6 +4,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/db";
 import { requireAdminSession } from "@/lib/admin/requireAdmin";
 import { slugifyAscii } from "@/lib/slug";
+import { SITE_CONTENT_TYPES } from "@/lib/siteContentTypes";
 
 function isDuplicateSlugError(e: unknown) {
   const msg = String((e as any)?.message ?? "");
@@ -34,11 +35,11 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 
   const id = ctx.params.id;
   const rows = (await prisma.$queryRaw`
-    SELECT id, status, sortOrder, createdAt, updatedAt
+    SELECT id, parentId, type, status, sortOrder, createdAt, updatedAt
     FROM sitecontentcategory
     WHERE id = ${id}
     LIMIT 1
-  `) as Array<{ id: string; status: string; sortOrder: number; createdAt: Date; updatedAt: Date }>;
+  `) as Array<{ id: string; parentId: string | null; type: string | null; status: string; sortOrder: number; createdAt: Date; updatedAt: Date }>;
 
   const item = rows[0] ?? null;
   if (!item) return NextResponse.json({ error: "not_found" }, { status: 404 });
@@ -63,6 +64,8 @@ export async function GET(req: NextRequest, ctx: { params: { id: string } }) {
 const PatchBody = z.object({
   lang: z.enum(["vi", "en"]),
   status: z.enum(["ACTIVE", "INACTIVE"]).optional(),
+  parentId: z.string().max(191).optional().nullable(),
+  type: z.enum(SITE_CONTENT_TYPES).optional(),
   sortOrder: z.number().int().min(0).max(999999).optional(),
   name: z.string().min(1).max(160).optional(),
   slug: z.string().max(160).optional(),
@@ -80,7 +83,7 @@ export async function PATCH(req: NextRequest, ctx: { params: { id: string } }) {
   const parsed = PatchBody.safeParse(json);
   if (!parsed.success) return NextResponse.json({ error: "invalid_input" }, { status: 400 });
 
-  const { lang, status, sortOrder, name, slug, description, seoTitle, seoDesc } = parsed.data;
+  const { lang, status, parentId, type, sortOrder, name, slug, description, seoTitle, seoDesc } = parsed.data;
 
   const exists = (await prisma.$queryRaw`
     SELECT id
@@ -89,6 +92,26 @@ export async function PATCH(req: NextRequest, ctx: { params: { id: string } }) {
     LIMIT 1
   `) as Array<{ id: string }>;
   if (!exists.length) return NextResponse.json({ error: "not_found" }, { status: 404 });
+
+  // Xử lý cập nhật danh mục cha (phân cấp 2 tầng)
+  let cleanParentId: string | null | undefined = undefined;
+  if (parentId !== undefined) {
+    cleanParentId = parentId?.trim() ? parentId.trim() : null;
+    if (cleanParentId) {
+      if (cleanParentId === id) return NextResponse.json({ error: "invalid_parent" }, { status: 400 });
+      const parentRows = (await prisma.$queryRaw`
+        SELECT id, parentId FROM sitecontentcategory WHERE id = ${cleanParentId} LIMIT 1
+      `) as Array<{ id: string; parentId: string | null }>;
+      if (!parentRows.length || parentRows[0].parentId) {
+        return NextResponse.json({ error: "invalid_parent" }, { status: 400 });
+      }
+      // Danh mục đang có con thì không được tự biến thành con
+      const childRows = (await prisma.$queryRaw`
+        SELECT id FROM sitecontentcategory WHERE parentId = ${id} LIMIT 1
+      `) as Array<{ id: string }>;
+      if (childRows.length) return NextResponse.json({ error: "invalid_parent" }, { status: 400 });
+    }
+  }
 
   const normalizedSlug = slug !== undefined ? slugifyAscii(slug) : undefined;
   const baseForSuggestion = (normalizedSlug ?? (name ? slugifyAscii(name) : "")).trim();
@@ -112,6 +135,22 @@ export async function PATCH(req: NextRequest, ctx: { params: { id: string } }) {
         UPDATE sitecontentcategory
         SET sortOrder = ${sortOrder}, updatedAt = NOW(3)
         WHERE id = ${id}
+        `;
+      }
+
+      if (cleanParentId !== undefined) {
+        await tx.$executeRaw`
+          UPDATE sitecontentcategory
+          SET parentId = ${cleanParentId}, updatedAt = NOW(3)
+          WHERE id = ${id}
+        `;
+      }
+
+      if (type !== undefined) {
+        await tx.$executeRaw`
+          UPDATE sitecontentcategory
+          SET type = ${type}, updatedAt = NOW(3)
+          WHERE id = ${id}
         `;
       }
 

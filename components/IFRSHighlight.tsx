@@ -9,7 +9,7 @@ export function IFRSHighlight() {
   const needs = ["n1", "n2", "n3", "n4", "n5"] as const;
 
   return (
-    <section id="ifrs" className="relative scroll-mt-32 overflow-hidden border-t border-slate-200/80 py-20 md:py-28">
+    <section id="ifrs" className="relative overflow-hidden border-t border-slate-200/80 py-10 md:py-14">
       <PatternBg variant="emerald" />
       <div className="relative mx-auto grid max-w-[1200px] gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
         <Reveal>

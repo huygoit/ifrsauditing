@@ -65,7 +65,7 @@ export function WhyChoose() {
   const t = useTranslations("ifrs.why");
 
   return (
-    <section className="border-t border-slate-200/80 bg-slate-50 py-20 md:py-28">
+    <section className="border-t border-slate-200/80 bg-slate-50 py-10 md:py-14">
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
         <Reveal>
           <h2 className="text-2xl font-semibold section-title tracking-tight text-emerald-700 md:text-3xl lg:text-4xl">{t("title")}</h2>

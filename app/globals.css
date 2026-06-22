@@ -5,22 +5,23 @@
 :root {
   color-scheme: light;
 
-  /* Biến màu thương hiệu — đồng bộ với tailwind.config.cjs (palette brand/accent).
+  /* Biến màu thương hiệu — đồng bộ với tailwind.config.cjs (palette teal/slate).
      Dùng định dạng "R G B" để hỗ trợ alpha qua rgb(var(--brand-500) / .2). */
-  --brand-50: 236 253 243;
-  --brand-100: 209 250 224;
-  --brand-200: 166 244 189;
-  --brand-300: 111 229 153;
-  --brand-400: 54 205 108;
-  --brand-500: 22 177 76;
-  --brand-600: 15 149 64;
-  --brand-700: 11 120 51;
-  --brand-800: 10 95 42;
-  --brand-900: 8 73 36;
+  --brand-50: 241 244 244;
+  --brand-100: 211 217 212;
+  --brand-200: 183 196 198;
+  --brand-300: 148 171 175;
+  --brand-400: 116 141 146;
+  --brand-500: 63 111 128;
+  --brand-600: 18 78 102;
+  --brand-700: 16 63 84;
+  --brand-800: 46 57 68;
+  --brand-900: 33 42 49;
 
-  --accent-500: 220 58 58;
-  --accent-600: 196 38 38;
-  --accent-700: 164 27 27;
+  /* Đơn sắc: accent dùng chung tone teal (đã bỏ đỏ). */
+  --accent-500: 30 106 135;
+  --accent-600: 18 78 102;
+  --accent-700: 16 63 84;
 }
 
 html,
@@ -32,10 +33,12 @@ body {
   @apply bg-white text-slate-900 antialiased;
 }
 
-/* Cuộn mượt + chừa khoảng cho header dính (topbar + thanh điều hướng) */
+/* Cuộn mượt + chừa khoảng cho header dính (topbar + thanh điều hướng).
+   Đặt nhỏ hơn chiều cao header để phần padding-top lớn của section lùi gọn
+   dưới header, tránh khoảng trống thừa khi nhảy tới anchor. */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6.75rem;
+  scroll-padding-top: 3rem;
 }
 
 /* Selection — tone brand */

@@ -10,17 +10,18 @@ type NavEntry = { type: "link"; href: string; label: string } | { type: "group";
 
 const NAV: NavEntry[] = [
   { type: "link", href: "/admin", label: "admin.nav.dashboard" },
-  {
-    type: "group",
-    groupLabel: "admin.nav.products_management",
-    defaultCollapsed: true,
-    children: [
-      { href: "/admin/categories", label: "admin.nav.categories" },
-      { href: "/admin/products", label: "admin.nav.products" }
-    ]
-  },
-  { type: "link", href: "/admin/combos", label: "admin.nav.combos" },
-  { type: "link", href: "/admin/certifications", label: "admin.nav.certifications" },
+  // Tạm ẩn: Quản lý sản phẩm, Combo, Chứng nhận (bỏ comment để bật lại)
+  // {
+  //   type: "group",
+  //   groupLabel: "admin.nav.products_management",
+  //   defaultCollapsed: true,
+  //   children: [
+  //     { href: "/admin/categories", label: "admin.nav.categories" },
+  //     { href: "/admin/products", label: "admin.nav.products" }
+  //   ]
+  // },
+  // { type: "link", href: "/admin/combos", label: "admin.nav.combos" },
+  // { type: "link", href: "/admin/certifications", label: "admin.nav.certifications" },
   { type: "link", href: "/admin/partners", label: "admin.nav.partners" },
   { type: "link", href: "/admin/videos", label: "admin.nav.videos" },
   {
@@ -109,7 +110,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               </svg>
             </button>
             <Link href={`/admin?lang=${lang}`} className="inline-flex items-center gap-2 rounded-xl">
-              <img src="/logo.png" alt="ENSO" className="h-7 w-auto" />
+              <img src="/brand/ifrs-auditing-logo.png" alt="IFRS Auditing" className="h-7 w-auto" />
               <span className="text-sm font-semibold">Admin</span>
             </Link>
           </div>

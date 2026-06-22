@@ -61,32 +61,38 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200">
-      <div className="mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#2E3944] to-[#161D22] text-slate-100/90">
+      {/* Vầng sáng teal nhẹ ở mép trên cho liền mạch với hero/header */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-48"
+        style={{ backgroundImage: "radial-gradient(60% 100% at 18% 0%, rgba(18,78,102,0.28), transparent 70%)" }}
+        aria-hidden="true"
+      />
+      <div className="relative mx-auto max-w-[1200px] px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <a href={homeBase} className="inline-flex flex-col rounded-xl text-white outline-none ring-offset-2 ring-offset-slate-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-amber-400/60">
+            <a href={homeBase} className="inline-flex flex-col rounded-xl text-white outline-none ring-offset-2 ring-offset-emerald-950 transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-amber-400/60">
               <IfrsBrandLogo className="h-9 w-auto sm:h-10" />
-              <span className="mt-2 text-xs text-slate-400">{t("brandTitle")}</span>
+              <span className="mt-2 text-xs text-emerald-100/65">{t("brandTitle")}</span>
             </a>
-            <p className="mt-4 text-sm leading-relaxed text-slate-400">{t("brandDesc")}</p>
+            <p className="mt-4 text-sm leading-relaxed text-emerald-100/65">{t("brandDesc")}</p>
           </div>
 
           <div>
             <p className="text-sm font-semibold text-white">{t("servicesTitle")}</p>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
-                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#dich-vu")}>
+                <a className="text-emerald-100/65 transition hover:text-emerald-300" href={h("#dich-vu")}>
                   {t("links.services")}
                 </a>
               </li>
               <li>
-                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#ifrs")}>
+                <a className="text-emerald-100/65 transition hover:text-emerald-300" href={h("#ifrs")}>
                   IFRS / VAS
                 </a>
               </li>
               <li>
-                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#tuyen-dung")}>
+                <a className="text-emerald-100/65 transition hover:text-emerald-300" href={h("#tuyen-dung")}>
                   {t("links.careers")}
                 </a>
               </li>
@@ -97,22 +103,22 @@ export function Footer() {
             <p className="text-sm font-semibold text-white">{t("infoTitle")}</p>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
-                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#gioi-thieu")}>
+                <a className="text-emerald-100/65 transition hover:text-emerald-300" href={h("#gioi-thieu")}>
                   {t("links.about")}
                 </a>
               </li>
               <li>
-                <a className="text-slate-400 transition hover:text-emerald-300" href={`${homeBase}/news`}>
+                <a className="text-emerald-100/65 transition hover:text-emerald-300" href={`${homeBase}/news`}>
                   {t("links.news")}
                 </a>
               </li>
               <li>
-                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#lien-he")}>
+                <a className="text-emerald-100/65 transition hover:text-emerald-300" href={h("#lien-he")}>
                   {t("links.privacy")}
                 </a>
               </li>
               <li>
-                <a className="text-slate-400 transition hover:text-emerald-300" href={h("#lien-he")}>
+                <a className="text-emerald-100/65 transition hover:text-emerald-300" href={h("#lien-he")}>
                   {t("links.terms")}
                 </a>
               </li>
@@ -122,33 +128,33 @@ export function Footer() {
           <div>
             <p className="text-sm font-semibold text-white">{t("contactTitle")}</p>
             <ul className="mt-4 space-y-3 text-sm">
-              <li className="flex gap-3">
+              <li className="flex items-start gap-3">
                 <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-emerald-300">
-                  <IconPhone className="h-4 w-4" />
+                  <IconPhone className="h-4 w-4 shrink-0" />
                 </span>
-                <a href={`tel:${SITE.hotlineTel}`} className="font-medium text-slate-200 hover:text-white">
+                <a href={`tel:${SITE.hotlineTel}`} className="font-medium text-emerald-50 hover:text-white">
                   {SITE.hotlineDisplay}
                 </a>
               </li>
-              <li className="flex gap-3">
+              <li className="flex items-start gap-3">
                 <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-emerald-300">
-                  <IconMail className="h-4 w-4" />
+                  <IconMail className="h-4 w-4 shrink-0" />
                 </span>
-                <a href={`mailto:${SITE.email}`} className="font-medium text-slate-200 hover:text-white">
+                <a href={`mailto:${SITE.email}`} className="font-medium text-emerald-50 hover:text-white">
                   {SITE.email}
                 </a>
               </li>
-              <li className="flex gap-3">
+              <li className="flex items-start gap-3">
                 <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-emerald-300">
-                  <IconPin className="h-4 w-4" />
+                  <IconPin className="h-4 w-4 shrink-0" />
                 </span>
-                <span className="text-slate-400">{SITE.hqAddressVi}</span>
+                <span className="text-emerald-100/65">{SITE.hqAddressVi}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-xs text-slate-500">
+        <div className="mt-10 border-t border-white/10 pt-6 text-xs text-emerald-100/45">
           <p>{t("copyright", { year })}</p>
         </div>
       </div>

@@ -493,7 +493,7 @@
   },
   "news": {
     "title": "Tin tức",
-    "subtitle": "Chia sẻ kiến thức, hướng dẫn & câu chuyện sản phẩm",
+    "subtitle": "Cập nhật tin tức, kiến thức chuyên môn và góc nhìn mới từ IFRS Auditing",
     "all": "Tất cả",
     "backHome": "← Về trang chủ",
     "backAll": "← Tất cả tin tức",
@@ -505,13 +505,102 @@
     "breadcrumbHome": "Trang chủ",
     "breadcrumbNews": "Tin tức",
     "relatedPosts": "Bài viết liên quan",
-    "recentPosts": "Bài viết mới"
+    "recentPosts": "Bài viết mới",
+    "categoriesTitle": "Danh mục",
+    "ctaTitle": "Cần tư vấn chuyên môn?",
+    "ctaDesc": "Đội ngũ IFRS Auditing sẵn sàng đồng hành cùng doanh nghiệp của bạn.",
+    "ctaButton": "Đăng ký tư vấn"
+  },
+  "ifrsPage": {
+    "metaTitle": "IFRS – Chuẩn mực Báo cáo Tài chính Quốc tế",
+    "metaDesc": "Cập nhật kiến thức, lộ trình áp dụng và giải pháp chuyển đổi IFRS dành cho doanh nghiệp Việt Nam.",
+    "hero": {
+      "eyebrow": "Chuyên đề chuyên môn",
+      "title": "IFRS – Chuẩn mực Báo cáo Tài chính Quốc tế",
+      "subtitle": "Cập nhật kiến thức, lộ trình áp dụng và giải pháp chuyển đổi IFRS dành cho doanh nghiệp Việt Nam.",
+      "ctaPrimary": "Tư vấn chuyển đổi IFRS",
+      "ctaSecondary": "Xem bài viết chuyên sâu"
+    },
+    "what": {
+      "title": "IFRS là gì?",
+      "body": "IFRS (International Financial Reporting Standards) là bộ Chuẩn mực Báo cáo Tài chính Quốc tế do IASB ban hành, nhằm thống nhất cách lập và trình bày báo cáo tài chính giữa các quốc gia. Việc áp dụng IFRS giúp báo cáo tài chính minh bạch, đáng tin cậy và so sánh được trên phạm vi toàn cầu.",
+      "stats": {
+        "s1": { "value": "140+", "label": "quốc gia áp dụng IFRS" },
+        "s2": { "value": "2025+", "label": "lộ trình áp dụng tại Việt Nam" },
+        "s3": { "value": "VAS → IFRS", "label": "hỗ trợ chuyển đổi toàn diện" }
+      }
+    },
+    "why": {
+      "title": "Vì sao doanh nghiệp cần IFRS?",
+      "subtitle": "Những thời điểm và lý do doanh nghiệp nên chuẩn bị áp dụng IFRS.",
+      "items": {
+        "i1": { "title": "Huy động vốn quốc tế", "desc": "Nhà đầu tư và tổ chức tín dụng nước ngoài yêu cầu báo cáo theo IFRS." },
+        "i2": { "title": "Tập đoàn đa quốc gia", "desc": "Hợp nhất báo cáo với công ty mẹ hoặc công ty con ở nước ngoài." },
+        "i3": { "title": "Niêm yết & M&A", "desc": "Chuẩn bị IPO, niêm yết quốc tế hoặc giao dịch mua bán – sáp nhập." },
+        "i4": { "title": "Minh bạch & quản trị", "desc": "Nâng cao chất lượng thông tin tài chính và năng lực quản trị." }
+      }
+    },
+    "roadmap": {
+      "title": "Lộ trình áp dụng IFRS tại Việt Nam",
+      "subtitle": "Theo Quyết định 345/QĐ-BTC của Bộ Tài chính.",
+      "steps": {
+        "s1": { "period": "2020 – 2021", "title": "Giai đoạn chuẩn bị", "desc": "Xây dựng khuôn khổ pháp lý, đào tạo nguồn lực và công bố bản dịch IFRS." },
+        "s2": { "period": "2022 – 2025", "title": "Áp dụng tự nguyện", "desc": "Doanh nghiệp đủ điều kiện tự nguyện áp dụng IFRS cho báo cáo hợp nhất." },
+        "s3": { "period": "Sau 2025", "title": "Áp dụng bắt buộc", "desc": "Áp dụng bắt buộc với nhóm doanh nghiệp theo quy định của Bộ Tài chính." }
+      }
+    },
+    "diff": {
+      "title": "Khác biệt giữa VAS và IFRS",
+      "subtitle": "Một số khác biệt cốt lõi doanh nghiệp cần lưu ý khi chuyển đổi.",
+      "aspect": "Tiêu chí",
+      "vas": "VAS",
+      "ifrs": "IFRS",
+      "rows": {
+        "r1": { "aspect": "Cơ sở đo lường", "vas": "Chủ yếu theo giá gốc", "ifrs": "Sử dụng rộng rãi giá trị hợp lý" },
+        "r2": { "aspect": "Suy giảm giá trị tài sản", "vas": "Hạn chế ghi nhận", "ifrs": "Đánh giá và ghi nhận định kỳ" },
+        "r3": { "aspect": "Thuyết minh báo cáo", "vas": "Mức độ cơ bản", "ifrs": "Chi tiết, hướng tới minh bạch" },
+        "r4": { "aspect": "Tính cập nhật", "vas": "Cập nhật chậm", "ifrs": "Cập nhật liên tục theo IASB" }
+      }
+    },
+    "service": {
+      "title": "IFRS Auditing hỗ trợ doanh nghiệp",
+      "desc": "Chúng tôi đồng hành toàn trình: đánh giá khác biệt VAS – IFRS, lập kế hoạch chuyển đổi, lập báo cáo tài chính theo IFRS và đào tạo đội ngũ.",
+      "items": {
+        "i1": "Đánh giá tác động & khoảng cách chuyển đổi",
+        "i2": "Lập và chuyển đổi báo cáo tài chính theo IFRS",
+        "i3": "Đào tạo IFRS cho đội ngũ kế toán – tài chính"
+      },
+      "cta": "Tìm hiểu dịch vụ"
+    },
+    "articles": {
+      "title": "Bài viết chuyên sâu về IFRS",
+      "subtitle": "Kiến thức, phân tích và cập nhật mới nhất về IFRS.",
+      "empty": "Nội dung đang được cập nhật.",
+      "viewAll": "Xem tất cả bài IFRS"
+    },
+    "cta": {
+      "title": "Sẵn sàng chuyển đổi sang IFRS?",
+      "desc": "Đặt lịch tư vấn cùng chuyên gia IFRS Auditing để xây dựng lộ trình phù hợp cho doanh nghiệp của bạn.",
+      "button": "Đăng ký tư vấn ngay"
+    }
   },
   "siteContent": {
     "breadcrumbHome": "Trang chủ",
     "breadcrumbSection": "Nội dung",
     "publishedAt": "Ngày đăng:",
-    "contentUpdating": "Nội dung đang được cập nhật."
+    "contentUpdating": "Nội dung đang được cập nhật.",
+    "readMore": "Xem chi tiết"
+  },
+  "recruitment": {
+    "title": "Tuyển dụng",
+    "subtitle": "Cơ hội nghề nghiệp tại IFRS Auditing — cùng phát triển sự nghiệp trong lĩnh vực kiểm toán, kế toán và tư vấn.",
+    "empty": "Hiện chưa có vị trí tuyển dụng. Vui lòng quay lại sau.",
+    "breadcrumbHome": "Trang chủ",
+    "categoriesTitle": "Nhóm vị trí",
+    "ctaTitle": "Chưa tìm thấy vị trí phù hợp?",
+    "ctaDesc": "Gửi hồ sơ cho chúng tôi, đội ngũ tuyển dụng sẽ liên hệ khi có cơ hội phù hợp.",
+    "ctaButton": "Liên hệ ứng tuyển",
+    "readMore": "Xem chi tiết"
   },
   "productDetail": {
     "breadcrumbHome": "Trang chủ",
@@ -554,6 +643,7 @@
     "ctaExplore": "Khám phá dịch vụ",
     "logoAlt": "IFRS Auditing",
     "nav": {
+      "home": "Trang chủ",
       "about": "Giới thiệu",
       "services": "Dịch vụ",
       "ifrs": "IFRS",
@@ -850,7 +940,7 @@
     },
     "insights": {
       "title": "Tin tức & cập nhật",
-      "subtitle": "Góc nhìn IFRS, kế toán – kiểm toán và thuế dành cho doanh nghiệp.",
+      "subtitle": "Cập nhật tin tức, kiến thức chuyên môn và góc nhìn mới từ IFRS Auditing",
       "viewAll": "Xem tất cả tin tức",
       "readMore": "Đọc tiếp",
       "cats": {

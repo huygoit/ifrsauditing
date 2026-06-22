@@ -7,8 +7,12 @@ import { IfrsBrandLogo } from "@/components/IfrsBrandLogo";
 import { TopBar } from "@/components/TopBar";
 import { SITE } from "@/lib/site";
 import { useTranslations } from "next-intl";
+import type { ServiceMenuItem } from "@/lib/siteContent/getServiceMenu";
 
 type NavItem = { label: string; href: string };
+
+// Cache menu dịch vụ theo ngôn ngữ để không gọi lại API mỗi lần điều hướng
+const serviceMenuCache: Partial<Record<"vi" | "en", ServiceMenuItem[]>> = {};
 
 function isLocaleHomePath(pathname: string | null, homeBase: string) {
   if (!pathname) return false;
@@ -32,8 +36,18 @@ function IconX({ className }: { className?: string }) {
   );
 }
 
+function IconChevron({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [serviceMenu, setServiceMenu] = useState<ServiceMenuItem[]>([]);
+  const [mobileSvcOpen, setMobileSvcOpen] = useState(false);
   const mobileScrollRef = useRef<HTMLDivElement | null>(null);
   const t = useTranslations("ifrs");
   const tCommon = useTranslations("common");
@@ -46,13 +60,35 @@ export function Header() {
     return "vi";
   }, [pathname]);
 
+  useEffect(() => {
+    const cached = serviceMenuCache[currentLocale];
+    if (cached) {
+      setServiceMenu(cached);
+      return;
+    }
+    let alive = true;
+    fetch(`/api/service-menu?lang=${currentLocale}`, { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : { items: [] }))
+      .then((j) => {
+        const items: ServiceMenuItem[] = Array.isArray(j?.items) ? j.items : [];
+        serviceMenuCache[currentLocale] = items;
+        if (alive) setServiceMenu(items);
+      })
+      .catch(() => {
+        if (alive) setServiceMenu([]);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [currentLocale]);
+
   const nav = useMemo<NavItem[]>(
     () => [
-      { label: t("nav.about"), href: "#gioi-thieu" },
+      { label: t("nav.home"), href: "/" },
       { label: t("nav.services"), href: "#dich-vu" },
-      { label: t("nav.ifrs"), href: "#ifrs" },
+      { label: t("nav.ifrs"), href: "/ifrs" },
       { label: t("nav.insights"), href: "/news" },
-      { label: t("nav.careers"), href: "#tuyen-dung" },
+      { label: t("nav.careers"), href: "/tuyen-dung" },
       { label: t("nav.contact"), href: "#lien-he" }
     ],
     [t]
@@ -201,7 +237,7 @@ export function Header() {
   return (
     <div className="sticky top-0 z-50">
       <TopBar />
-      <header className="border-b border-white/[0.08] bg-slate-950/[0.94] shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-xl">
+      <header className="border-b border-emerald-400/10 bg-[#212A31]/90 shadow-[0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <a
             href={homeBase}
@@ -211,22 +247,78 @@ export function Header() {
           </a>
 
           <nav className="hidden items-center gap-1 text-sm text-slate-200/95 md:flex md:gap-1 lg:gap-2" aria-label={tCommon("mainNav")}>
-            {nav.map((item) => (
-              <a
-                key={item.href}
-                href={resolveHref(item.href)}
-                className="group/nav relative rounded-lg px-2.5 py-2 font-medium transition hover:text-white"
-                onClick={(e) => {
-                  if (item.href.startsWith("#")) onNavAnchorClick(e, item.href);
-                }}
-              >
-                <span className="relative z-[1] text-white/95">{item.label}</span>
-                <span
-                  className="absolute bottom-1 left-3 right-3 h-[2px] origin-center scale-x-0 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-500/70 transition duration-300 group-hover/nav:scale-x-100"
-                  aria-hidden="true"
-                />
-              </a>
-            ))}
+            {nav.map((item) => {
+              const isServices = item.href === "#dich-vu" && serviceMenu.length > 0;
+              if (isServices) {
+                return (
+                  <div key={item.href} className="group/svc relative">
+                    <a
+                      href={resolveHref(item.href)}
+                      className="group/nav relative inline-flex items-center gap-1 rounded-lg px-2.5 py-2 font-medium transition hover:text-white"
+                      onClick={(e) => onNavAnchorClick(e, item.href)}
+                      aria-haspopup="true"
+                    >
+                      <span className="relative z-[1] text-white/95">{item.label}</span>
+                      <IconChevron className="relative z-[1] h-3.5 w-3.5 text-white/70 transition duration-300 group-hover/svc:rotate-180" />
+                      <span
+                        className="absolute bottom-1 left-3 right-3 h-[2px] origin-center scale-x-0 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-500/70 transition duration-300 group-hover/svc:scale-x-100"
+                        aria-hidden="true"
+                      />
+                    </a>
+
+                    <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition duration-200 group-hover/svc:visible group-hover/svc:translate-y-0 group-hover/svc:opacity-100 group-focus-within/svc:visible group-focus-within/svc:translate-y-0 group-focus-within/svc:opacity-100">
+                      <div className="relative max-w-[min(94vw,1040px)] overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl shadow-emerald-950/15 ring-1 ring-black/5">
+                        <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-600" aria-hidden="true" />
+                        <div className="flex flex-wrap gap-x-10 gap-y-6">
+                          {serviceMenu.map((parent) => (
+                            <div key={parent.slug} className="w-64">
+                              <a
+                                href={resolveHref(`/noi-dung/${parent.slug}`)}
+                                className="flex items-start gap-2 text-sm font-bold leading-snug tracking-tight text-emerald-700 transition hover:text-emerald-800"
+                              >
+                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" aria-hidden="true" />
+                                <span>{parent.name}</span>
+                              </a>
+                              {parent.children.length ? (
+                                <ul className="mt-2 space-y-0.5 border-l border-slate-100 pl-3">
+                                  {parent.children.map((child) => (
+                                    <li key={child.slug}>
+                                      <a
+                                        href={resolveHref(`/noi-dung/${child.slug}`)}
+                                        className="block rounded-lg px-2 py-1.5 text-[13px] font-medium leading-snug text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-800"
+                                      >
+                                        {child.name}
+                                      </a>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <a
+                  key={item.href}
+                  href={resolveHref(item.href)}
+                  className="group/nav relative rounded-lg px-2.5 py-2 font-medium transition hover:text-white"
+                  onClick={(e) => {
+                    if (item.href.startsWith("#")) onNavAnchorClick(e, item.href);
+                  }}
+                >
+                  <span className="relative z-[1] text-white/95">{item.label}</span>
+                  <span
+                    className="absolute bottom-1 left-3 right-3 h-[2px] origin-center scale-x-0 rounded-full bg-gradient-to-r from-amber-400/90 to-amber-500/70 transition duration-300 group-hover/nav:scale-x-100"
+                    aria-hidden="true"
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -258,7 +350,7 @@ export function Header() {
             <button type="button" className="absolute inset-0 z-0 bg-slate-950/70 backdrop-blur-sm" aria-label={tCommon("close")} onClick={() => setOpen(false)} />
             <div
               id="mobile-nav"
-              className="fixed inset-y-0 right-0 z-10 flex h-[100dvh] w-[88%] max-w-sm flex-col border-l border-white/10 bg-slate-950 text-white shadow-2xl"
+              className="fixed inset-y-0 right-0 z-10 flex h-[100dvh] w-[88%] max-w-sm flex-col border-l border-emerald-400/10 bg-[#212A31] text-white shadow-2xl"
             >
               <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
                 <IfrsBrandLogo className="h-8 w-auto" />
@@ -274,19 +366,63 @@ export function Header() {
 
               <div ref={mobileScrollRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-4">
                 <div className="space-y-1">
-                  {nav.map((item) => (
-                    <a
-                      key={item.href}
-                      href={resolveHref(item.href)}
-                      className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
-                      onClick={(e) => {
-                        if (item.href.startsWith("#")) onNavAnchorClick(e, item.href);
-                        else setOpen(false);
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  ))}
+                  {nav.map((item) => {
+                    const isServices = item.href === "#dich-vu" && serviceMenu.length > 0;
+                    if (isServices) {
+                      return (
+                        <div key={item.href} className="rounded-xl">
+                          <button
+                            type="button"
+                            className="flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
+                            onClick={() => setMobileSvcOpen((v) => !v)}
+                            aria-expanded={mobileSvcOpen}
+                          >
+                            <span>{item.label}</span>
+                            <IconChevron className={`h-4 w-4 text-white/70 transition ${mobileSvcOpen ? "rotate-180" : ""}`} />
+                          </button>
+                          {mobileSvcOpen ? (
+                            <div className="mb-1 ml-3 border-l border-white/10 pl-3">
+                              {serviceMenu.map((parent) => (
+                                <div key={parent.slug} className="py-1">
+                                  <a
+                                    href={resolveHref(`/noi-dung/${parent.slug}`)}
+                                    className="block rounded-lg px-2 py-2 text-[13px] font-bold text-emerald-300 hover:bg-white/5"
+                                    onClick={() => setOpen(false)}
+                                  >
+                                    {parent.name}
+                                  </a>
+                                  {parent.children.map((child) => (
+                                    <a
+                                      key={child.slug}
+                                      href={resolveHref(`/noi-dung/${child.slug}`)}
+                                      className="block rounded-lg px-2 py-2 text-[13px] font-medium text-white/80 hover:bg-white/5"
+                                      onClick={() => setOpen(false)}
+                                    >
+                                      {child.name}
+                                    </a>
+                                  ))}
+                                </div>
+                              ))}
+                            </div>
+                          ) : null}
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <a
+                        key={item.href}
+                        href={resolveHref(item.href)}
+                        className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
+                        onClick={(e) => {
+                          if (item.href.startsWith("#")) onNavAnchorClick(e, item.href);
+                          else setOpen(false);
+                        }}
+                      >
+                        {item.label}
+                      </a>
+                    );
+                  })}
                 </div>
                 <div className="mt-6 flex justify-end">
                   <LangSwitch onAfterClick={() => setOpen(false)} />

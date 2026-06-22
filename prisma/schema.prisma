@@ -441,16 +441,21 @@ model PostTranslation {
 // --- Quản trị nội dung website (danh mục + bài), tách khỏi tin tức ---
 model SiteContentCategory {
   id        String   @id @default(cuid())
+  parentId  String?
+  type      String   @default("SERVICE")
   status    Status   @default(ACTIVE)
   sortOrder Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  parent       SiteContentCategory?  @relation("SiteContentCategoryTree", fields: [parentId], references: [id], onDelete: SetNull)
+  children     SiteContentCategory[] @relation("SiteContentCategoryTree")
   translations SiteContentCategoryTranslation[]
   siteContents SiteContent[]
 
   @@index([status])
   @@index([sortOrder])
+  @@index([parentId])
   @@map("sitecontentcategory")
 }
 
@@ -475,6 +480,8 @@ model SiteContentCategoryTranslation {
 model SiteContent {
   id                    String     @id @default(cuid())
   coverImage            String?
+  iconKey               String?
+  type                  String     @default("SERVICE")
   author                String?
   publishedAt           DateTime?
   status                PostStatus @default(DRAFT)

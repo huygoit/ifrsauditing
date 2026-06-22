@@ -9,7 +9,7 @@ export function TopBar() {
   const hours = locale === "en" ? SITE.workingHoursEn : SITE.workingHoursVi;
 
   return (
-    <div className="border-b border-emerald-900/30 bg-gradient-to-r from-emerald-950 via-emerald-950 to-slate-950 text-[13px] text-emerald-100/90 sm:text-sm">
+    <div className="border-b border-emerald-400/10 bg-gradient-to-r from-[#161D22] via-[#212A31] to-[#161D22] text-[13px] text-emerald-100/90 sm:text-sm">
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between gap-x-5 gap-y-2 px-4 py-2.5 sm:px-6 lg:px-8">
         <p className="flex max-w-full items-center gap-1.5 font-medium tracking-wide text-emerald-50/90">
           <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 text-amber-300" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
