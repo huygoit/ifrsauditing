@@ -3,3 +3,6 @@
 out/
 .next/
 node_modules/
+
+# Database dumps (chứa dữ liệu, không commit)
+backups/
