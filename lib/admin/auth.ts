@@ -25,6 +25,23 @@ export function sessionExpiryDate() {
   return d;
 }
 
+export function shouldUseSecureAdminCookie() {
+  const raw = process.env.ADMIN_COOKIE_SECURE?.trim().toLowerCase();
+  if (raw === "false" || raw === "0" || raw === "no") return false;
+  if (raw === "true" || raw === "1" || raw === "yes") return true;
+  return process.env.NODE_ENV === "production";
+}
+
+export function adminSessionCookieOptions(expiresAt: Date) {
+  return {
+    httpOnly: true,
+    sameSite: "lax" as const,
+    secure: shouldUseSecureAdminCookie(),
+    path: "/",
+    expires: expiresAt
+  };
+}
+
 export async function createSession(userId: string) {
   const token = newSessionToken();
   const expiresAt = sessionExpiryDate();
@@ -40,20 +57,14 @@ export async function revokeSession(token: string) {
 }
 
 export function setSessionCookie(token: string, expiresAt: Date) {
-  cookies().set(ADMIN_SESSION_COOKIE, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    expires: expiresAt
-  });
+  cookies().set(ADMIN_SESSION_COOKIE, token, adminSessionCookieOptions(expiresAt));
 }
 
 export function clearSessionCookie() {
   cookies().set(ADMIN_SESSION_COOKIE, "", {
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: shouldUseSecureAdminCookie(),
     path: "/",
     expires: new Date(0)
   });

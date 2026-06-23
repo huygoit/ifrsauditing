@@ -28,10 +28,12 @@ export default function AdminLoginPage({
         body: JSON.stringify({ username, password })
       });
       if (!res.ok) {
-        setError("Sai tài khoản hoặc mật khẩu.");
+        setError(res.status === 401 ? "Sai tài khoản hoặc mật khẩu." : `Không đăng nhập được (HTTP ${res.status}).`);
         return;
       }
       window.location.href = next;
+    } catch {
+      setError("Không kết nối được máy chủ đăng nhập. Kiểm tra API/log production.");
     } finally {
       setLoading(false);
     }
