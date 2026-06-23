@@ -12,3 +12,10 @@ Nhớ là cấu hình UPLOAD_BASE_PATH trên production server
 DATABASE_URL="mysql://enso:MatKhauManh123!@localhost:3306/ensodb"
 UPLOAD_BASE_PATH=/var/www/data/ensodana
 
+CREATE USER 'ifrs_user'@'localhost' IDENTIFIED BY 'theomau';
+
+GRANT ALL PRIVILEGES ON ifrs_db.* TO 'ifrs_user'@'localhost';
+
+FLUSH PRIVILEGES;
+
+EXIT;
