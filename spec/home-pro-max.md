@@ -168,8 +168,8 @@ Create mock product list in lib/products.ts:
 - Format price with Intl.NumberFormat('vi-VN').
 
 CONFIG CONSTANTS
-- HOTLINE = "0900000000"
-- ZALO_URL = "https://zalo.me/0900000000"
+- HOTLINE = "077 919 5577"
+- ZALO_URL = "https://zalo.me/0779195577"
 
 SEO
 - metadata title/description in layout

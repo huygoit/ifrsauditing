@@ -1,5 +1,7 @@
 # Deploy folder
 .env
+.env.local
+.env.*.local
 out/
 .next/
 node_modules/

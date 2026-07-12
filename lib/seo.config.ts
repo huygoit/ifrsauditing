@@ -22,13 +22,13 @@ export const SEO = {
     url: "https://ifrsauditing.com",
     logo: "https://ifrsauditing.com/logo.png",
     address: {
-      streetAddress: "13C Nguyễn Văn Mai, đường Võ Thị Sáu",
-      addressLocality: "Quận 3",
-      addressRegion: "TP.HCM",
+      streetAddress: "13C Nguyễn Văn Mai",
+      addressLocality: "Phường Xuân Hòa",
+      addressRegion: "TP Hồ Chí Minh",
       addressCountry: "VN",
-      full: "13C Nguyễn Văn Mai, đường Võ Thị Sáu, Quận 3, TP.HCM, Việt Nam"
+      full: "13C Nguyễn Văn Mai, Phường Xuân Hòa, TP Hồ Chí Minh, Việt Nam"
     },
-    contact: "+84779195577"
+    contact: "077 919 5577"
   },
   socialLinks: {
     facebook: "https://ifrsauditing.com",

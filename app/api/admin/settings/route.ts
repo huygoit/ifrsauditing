@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
         })
       : null;
 
-  const base = setting ?? (await prisma.setting.create({ data: { id: "default", hotline: "0852795939", zaloUrl: "https://zalo.me/0852795939" } }));
+  const base = setting ?? (await prisma.setting.create({ data: { id: "default", hotline: "077 919 5577", zaloUrl: "https://zalo.me/0779195577" } }));
   const t = setting?.translations?.[0] ?? null;
 
   return NextResponse.json({
@@ -80,8 +80,8 @@ export async function PATCH(req: NextRequest) {
       where: { id: "default" },
       create: {
         id: "default",
-        hotline: base.hotline ?? "0852795939",
-        zaloUrl: base.zaloUrl ?? "https://zalo.me/0852795939",
+        hotline: base.hotline ?? "077 919 5577",
+        zaloUrl: base.zaloUrl ?? "https://zalo.me/0779195577",
         address: base.address ?? null,
         socialLinks: base.socialLinks ?? null,
         ordersEnabled: base.ordersEnabled ?? true

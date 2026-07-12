@@ -11,8 +11,9 @@ import type { ServiceMenuItem } from "@/lib/siteContent/getServiceMenu";
 
 type NavItem = { label: string; href: string };
 
-// Cache menu dịch vụ theo ngôn ngữ để không gọi lại API mỗi lần điều hướng
-const serviceMenuCache: Partial<Record<"vi" | "en", ServiceMenuItem[]>> = {};
+/** Cache menu theo locale, hết hạn sau 60s để không giữ thứ tự cũ mãi */
+const MENU_CACHE_TTL_MS = 60_000;
+const serviceMenuCache: Partial<Record<"vi" | "en", { items: ServiceMenuItem[]; at: number }>> = {};
 
 function isLocaleHomePath(pathname: string | null, homeBase: string) {
   if (!pathname) return false;
@@ -62,8 +63,8 @@ export function Header() {
 
   useEffect(() => {
     const cached = serviceMenuCache[currentLocale];
-    if (cached) {
-      setServiceMenu(cached);
+    if (cached && Date.now() - cached.at < MENU_CACHE_TTL_MS) {
+      setServiceMenu(cached.items);
       return;
     }
     let alive = true;
@@ -71,7 +72,7 @@ export function Header() {
       .then((r) => (r.ok ? r.json() : { items: [] }))
       .then((j) => {
         const items: ServiceMenuItem[] = Array.isArray(j?.items) ? j.items : [];
-        serviceMenuCache[currentLocale] = items;
+        serviceMenuCache[currentLocale] = { items, at: Date.now() };
         if (alive) setServiceMenu(items);
       })
       .catch(() => {

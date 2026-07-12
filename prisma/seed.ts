@@ -16,26 +16,26 @@ async function main() {
   await prisma.setting.upsert({
     where: { id: "default" },
     update: {
-      hotline: "0852795939",
-      zaloUrl: "https://zalo.me/0852795939",
+      hotline: "077 919 5577",
+      zaloUrl: "https://zalo.me/0779195577",
       address: "TP.HCM",
       ordersEnabled: true,
       socialLinks: {
         facebook: "https://facebook.com",
         youtube: "https://youtube.com",
-        zaloOA: "https://zalo.me/0852795939"
+        zaloOA: "https://zalo.me/0779195577"
       }
     },
     create: {
       id: "default",
-      hotline: "0852795939",
-      zaloUrl: "https://zalo.me/0852795939",
+      hotline: "077 919 5577",
+      zaloUrl: "https://zalo.me/0779195577",
       address: "TP.HCM",
       ordersEnabled: true,
       socialLinks: {
         facebook: "https://facebook.com",
         youtube: "https://youtube.com",
-        zaloOA: "https://zalo.me/0852795939"
+        zaloOA: "https://zalo.me/0779195577"
       },
       translations: {
         createMany: {

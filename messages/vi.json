@@ -298,7 +298,7 @@
       },
       "placeholders": {
         "name": "Nguyễn Văn A",
-        "phone": "0900 000 000",
+        "phone": "077 919 5577",
         "address": "Số nhà, đường, phường/xã, quận/huyện…",
         "note": "Mô tả nhu cầu hợp tác, số lượng dự kiến hoặc yêu cầu tư vấn"
       },
@@ -610,7 +610,7 @@
     "qtyMinus": "Giảm số lượng",
     "qtyPlus": "Tăng số lượng",
     "ctaOrder": "Liên hệ ngay",
-    "ctaCall": "Gọi +(84)0779.195.577",
+    "ctaCall": "Gọi 077 919 5577",
     "metaLine": "{category} · {size}",
     "infoCategory": "Phù hợp",
     "infoSize": "Quy cách",
@@ -983,9 +983,9 @@
       "cards": {
         "hotline": "Hotline",
         "email": "Email",
-        "hq": "Trụ sở",
-        "repHcmc": "VP đại diện · TP.HCM",
-        "repVt": "VP đại diện · Vũng Tàu"
+        "hq": "Trụ sở chính",
+        "repHcmc": "Văn phòng giao dịch",
+        "repVt": "Văn phòng đại diện"
       },
       "fields": {
         "name": "Họ và tên",
@@ -998,6 +998,7 @@
         "messagePlaceholder": "Mô tả nhu cầu, thời gian mong muốn làm việc…"
       },
       "submit": "Gửi thông tin",
+      "submitting": "Đang gửi…",
       "success": "Cảm ơn anh/chị. IFRS Auditing đã ghi nhận thông tin tư vấn.",
       "successHint": "Đội ngũ sẽ liên hệ qua điện thoại hoặc email trong giờ làm việc.",
       "errors": {
@@ -1006,7 +1007,8 @@
         "email": "Email không hợp lệ.",
         "company": "Vui lòng nhập tên doanh nghiệp hoặc tổ chức.",
         "service": "Vui lòng chọn hoặc mô tả dịch vụ.",
-        "message": "Vui lòng nhập nội dung cần tư vấn (ít nhất 10 ký tự)."
+        "message": "Vui lòng nhập nội dung cần tư vấn (ít nhất 10 ký tự).",
+        "submit": "Không gửi được thông tin. Vui lòng thử lại hoặc gọi hotline."
       }
     },
     "footer": {

@@ -66,6 +66,8 @@ export function ContactSection({
   const [errors, setErrors] = useState<Errors>({});
   const [success, setSuccess] = useState(false);
   const [successChip, setSuccessChip] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const hq = locale === "en" ? SITE.hqAddressEn : SITE.hqAddressVi;
   const repHcmc = locale === "en" ? SITE.repHcmcEn : SITE.repHcmcVi;
@@ -77,17 +79,42 @@ export function ContactSection({
     onConsumedService?.();
   }, [selectedServiceId, onConsumedService]);
 
-  function onSubmit(ev: React.FormEvent) {
+  async function onSubmit(ev: React.FormEvent) {
     ev.preventDefault();
     setSuccess(false);
     setSuccessChip(null);
+    setSubmitError(null);
     const svc = service.trim();
     const err = runValidate({ name, phone, email, company, service: svc, message }, t);
     setErrors(err);
     if (Object.keys(err).length) return;
-    const chip = isServiceId(svc) ? (ts(`${svc}.title`) as string) : svc;
-    setSuccessChip(chip);
-    setSuccess(true);
+
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/consult", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
+          company: company.trim(),
+          service: svc,
+          message: message.trim()
+        })
+      });
+      if (!res.ok) {
+        setSubmitError(t("errors.submit"));
+        return;
+      }
+      const chip = isServiceId(svc) ? (ts(`${svc}.title`) as string) : svc;
+      setSuccessChip(chip);
+      setSuccess(true);
+    } catch {
+      setSubmitError(t("errors.submit"));
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -219,11 +246,13 @@ export function ContactSection({
                   </div>
                 </div>
                 <div className="mt-8 border-t border-slate-100 pt-8">
+                  {submitError ? <p className="mb-3 text-sm font-medium text-rose-600">{submitError}</p> : null}
                   <button
                     type="submit"
-                    className="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-brand-gradient px-8 text-sm font-semibold text-white shadow-brand ring-1 ring-emerald-400/20 transition hover:brightness-105 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 sm:w-auto"
+                    disabled={submitting}
+                    className="inline-flex min-h-[50px] w-full items-center justify-center gap-2 rounded-full bg-brand-gradient px-8 text-sm font-semibold text-white shadow-brand ring-1 ring-emerald-400/20 transition hover:brightness-105 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                   >
-                    {t("submit")}
+                    {submitting ? t("submitting") : t("submit")}
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                       <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

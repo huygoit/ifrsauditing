@@ -31,7 +31,7 @@ The company positioning:
 
 Contact information:
 - Company: Công ty TNHH Kiểm toán IFRS
-- Hotline: +(84)0779.195.577
+- Hotline: 077 919 5577
 - Email: info@ifrsauditing.com
 - Website: ifrsauditing.com
 - Headquarter: 13C Nguyen Van Mai Street, Vo Thi Sau Street, District 3, Ho Chi Minh City

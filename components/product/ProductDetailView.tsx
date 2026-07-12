@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { OrderForm } from "@/components/OrderForm";
-import { HOTLINE } from "@/lib/constants";
+import { SITE } from "@/lib/site";
 import { formatVnd } from "@/lib/format";
 import type { Product } from "@/lib/products";
 import type { ProductGalleryItem } from "@/lib/public/getProductDetail";
@@ -268,7 +268,7 @@ export function ProductDetailView({
                       {t("ctaOrder")}
                     </button>
                     <a
-                      href={`tel:${HOTLINE}`}
+                      href={`tel:${SITE.hotlineTel}`}
                       className="w-full rounded-2xl border-2 border-slate-200 py-3.5 text-center text-sm font-bold text-slate-800 transition hover:border-emerald-300 hover:bg-emerald-50/50"
                     >
                       {t("ctaCall")}

@@ -296,7 +296,7 @@
       },
       "placeholders": {
         "name": "John Doe",
-        "phone": "0900 000 000",
+        "phone": "077 919 5577",
         "address": "Street, ward, district…",
         "note": "Deliver during office hours, call before delivery… (optional)"
       },
@@ -608,7 +608,7 @@
     "qtyMinus": "Decrease quantity",
     "qtyPlus": "Increase quantity",
     "ctaOrder": "Contact now",
-    "ctaCall": "Call +(84)0779.195.577",
+    "ctaCall": "Call 077 919 5577",
     "metaLine": "{category} · {size}",
     "infoCategory": "Best for",
     "infoSize": "Size",
@@ -981,9 +981,9 @@
       "cards": {
         "hotline": "Hotline",
         "email": "Email",
-        "hq": "Head office",
-        "repHcmc": "Rep. office · HCMC",
-        "repVt": "Rep. office · Vung Tau"
+        "hq": "Headquarters",
+        "repHcmc": "Transaction office",
+        "repVt": "Representative office"
       },
       "fields": {
         "name": "Full name",
@@ -996,6 +996,7 @@
         "messagePlaceholder": "Describe your needs and preferred timing…"
       },
       "submit": "Submit",
+      "submitting": "Sending…",
       "success": "Thank you. IFRS Auditing has recorded your consultation request.",
       "successHint": "Our team will reach out by phone or email during business hours.",
       "errors": {
@@ -1004,7 +1005,8 @@
         "email": "Invalid email address.",
         "company": "Please enter a company or organisation name.",
         "service": "Please select or describe a service.",
-        "message": "Please enter your message (at least 10 characters)."
+        "message": "Please enter your message (at least 10 characters).",
+        "submit": "Could not send your request. Please try again or call the hotline."
       }
     },
     "footer": {

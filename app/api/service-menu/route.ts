@@ -16,9 +16,10 @@ export async function GET(req: NextRequest) {
   const lang = parsed.data.lang ?? "vi";
   try {
     const items = await getServiceMenu(lang);
+    // Cache ngắn: nhanh khi điều hướng, admin đổi thứ tự vẫn cập nhật trong ~1 phút
     return NextResponse.json(
       { items },
-      { headers: { "cache-control": "public, max-age=60, s-maxage=300, stale-while-revalidate=600" } }
+      { headers: { "cache-control": "public, max-age=60, s-maxage=60, stale-while-revalidate=30" } }
     );
   } catch {
     return NextResponse.json({ items: [] });
