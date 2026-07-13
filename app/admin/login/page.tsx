@@ -44,9 +44,9 @@ export default function AdminLoginPage({
       <div className="mx-auto flex max-w-[520px] flex-col px-4 py-16 sm:px-6">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="ENSO" className="h-9 w-auto" />
+            <img src="/brand/ifrs-auditing-logo.png" alt="IFRS Auditing" className="h-9 w-auto" />
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">ENSO Admin</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">IFRS Admin</p>
               <p className="text-lg font-semibold text-slate-900">Đăng nhập</p>
             </div>
           </div>

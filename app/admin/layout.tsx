@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ENSO Admin",
+  title: "IFRS Admin",
   robots: { index: false, follow: false }
 };
 
