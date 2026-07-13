@@ -9,7 +9,7 @@ import { SITE } from "@/lib/site";
 import { useTranslations } from "next-intl";
 import type { ServiceMenuItem } from "@/lib/siteContent/getServiceMenu";
 
-type NavItem = { label: string; href: string };
+type NavItem = { label: string; href: string; external?: boolean };
 
 /** Cache menu theo locale, hết hạn sau 60s để không giữ thứ tự cũ mãi */
 const MENU_CACHE_TTL_MS = 60_000;
@@ -90,6 +90,7 @@ export function Header() {
       { label: t("nav.ifrs"), href: "/ifrs" },
       { label: t("nav.insights"), href: "/news" },
       { label: t("nav.careers"), href: "/tuyen-dung" },
+      { label: "KK Home", href: "https://www.hkdkkhome.com/tax", external: true },
       { label: t("nav.contact"), href: "#lien-he" }
     ],
     [t]
@@ -306,8 +307,9 @@ export function Header() {
               return (
                 <a
                   key={item.href}
-                  href={resolveHref(item.href)}
+                  href={item.external ? item.href : resolveHref(item.href)}
                   className="group/nav relative rounded-lg px-2.5 py-2 font-medium transition hover:text-white"
+                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onClick={(e) => {
                     if (item.href.startsWith("#")) onNavAnchorClick(e, item.href);
                   }}
@@ -413,8 +415,9 @@ export function Header() {
                     return (
                       <a
                         key={item.href}
-                        href={resolveHref(item.href)}
+                        href={item.external ? item.href : resolveHref(item.href)}
                         className="block rounded-xl px-3 py-3 text-sm font-semibold text-white hover:bg-white/5"
+                        {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                         onClick={(e) => {
                           if (item.href.startsWith("#")) onNavAnchorClick(e, item.href);
                           else setOpen(false);
