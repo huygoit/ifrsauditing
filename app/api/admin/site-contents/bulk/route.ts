@@ -5,7 +5,7 @@ import { requireAdminSession } from "@/lib/admin/requireAdmin";
 
 const Body = z.object({
   ids: z.array(z.string().min(1)).min(1),
-  action: z.enum(["set_status_draft", "set_status_published", "set_status_scheduled"])
+  action: z.enum(["set_status_draft", "set_status_published", "set_status_scheduled", "delete"])
 });
 
 export async function POST(req: NextRequest) {
@@ -15,6 +15,12 @@ export async function POST(req: NextRequest) {
   const json = await req.json().catch(() => null);
   const parsed = Body.safeParse(json);
   if (!parsed.success) return NextResponse.json({ error: "invalid_input" }, { status: 400 });
+
+  // Xóa cứng hàng loạt (bản dịch cascade theo schema)
+  if (parsed.data.action === "delete") {
+    await prisma.siteContent.deleteMany({ where: { id: { in: parsed.data.ids } } });
+    return NextResponse.json({ ok: true });
+  }
 
   const status =
     parsed.data.action === "set_status_draft"

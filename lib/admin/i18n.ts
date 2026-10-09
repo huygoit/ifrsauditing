@@ -330,6 +330,9 @@ const DICT: Record<Lang, Record<AdminI18nKey, string>> = {
   "admin.site_contents.drawer.edit_prefix": "Sửa:",
   "admin.site_contents.form.category": "Danh mục nội dung",
   "admin.site_contents.form.category_none": "Không chọn",
+  "admin.site_contents.delete": "Xoá",
+  "admin.site_contents.confirm_delete": "Xoá nội dung này vĩnh viễn? Không thể hoàn tác.",
+  "admin.site_contents.confirm_delete_bulk": "Xoá vĩnh viễn các nội dung đã chọn? Không thể hoàn tác.",
 
   "admin.site_content_categories.title": "Danh mục nội dung",
   "admin.site_content_categories.subtitle": "Nhóm nội dung tĩnh (vd. Giải pháp, Công dụng): slug theo ngôn ngữ, thứ tự, trạng thái.",
@@ -646,6 +649,9 @@ const DICT: Record<Lang, Record<AdminI18nKey, string>> = {
     "admin.site_contents.drawer.edit_prefix": "Edit:",
     "admin.site_contents.form.category": "Content category",
     "admin.site_contents.form.category_none": "None",
+    "admin.site_contents.delete": "Delete",
+    "admin.site_contents.confirm_delete": "Permanently delete this content? This cannot be undone.",
+    "admin.site_contents.confirm_delete_bulk": "Permanently delete selected content? This cannot be undone.",
 
     "admin.site_content_categories.title": "Content categories",
     "admin.site_content_categories.subtitle": "Groups for site pages (e.g. Solutions, Benefits): per-locale slug, sort order, status.",

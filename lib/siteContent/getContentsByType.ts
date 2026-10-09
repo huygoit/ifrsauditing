@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db";
 import type { SiteContentLocale } from "@/lib/siteContent/getSiteContentDetail";
 import type { SiteContentCard } from "@/lib/siteContent/getSiteContents";
-import type { SiteContentType } from "@/lib/siteContentTypes";
+import { pathSlugForType, typeLabel, type SiteContentType } from "@/lib/siteContentTypes";
 
 /**
  * Nội dung thuộc danh mục có `type` cho trước (gom mọi danh mục cùng loại).
@@ -59,6 +59,9 @@ export async function getContentsByType(
     cat_name_vi: string | null;
   }>;
 
+  // Fallback danh mục theo loại khi bài chưa được gán category
+  const fallbackCat = { slug: pathSlugForType(type), name: typeLabel(type, locale) };
+
   return rows
     .map((r) => {
       const hasLocale = Boolean(r.slug_lang && r.title_lang);
@@ -76,7 +79,7 @@ export async function getContentsByType(
         coverImage: r.coverImage,
         publishedAt: r.publishedAt,
         updatedAt: r.updatedAt,
-        category: catSlug && catName ? { slug: catSlug, name: catName } : null
+        category: catSlug && catName ? { slug: catSlug, name: catName } : fallbackCat
       } satisfies SiteContentCard;
     })
     .filter(Boolean) as SiteContentCard[];

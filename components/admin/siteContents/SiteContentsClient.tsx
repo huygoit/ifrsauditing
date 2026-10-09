@@ -77,7 +77,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
   const [publishedAt, setPublishedAt] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [author, setAuthor] = useState("");
-  const [tags, setTags] = useState("enso, eco");
+  const [tags, setTags] = useState("");
   const [sortOrder, setSortOrder] = useState<number | "">("");
 
   const [viFallback, setViFallback] = useState<{ title: string; excerpt: string; slug: string; contentMarkdown: string } | null>(null);
@@ -196,7 +196,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
     setPublishedAt("");
     setCoverImage("");
     setAuthor("");
-    setTags("enso, eco");
+    setTags("");
     setSortOrder("");
     setViFallback(null);
     setSaveError(null);
@@ -316,10 +316,25 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
     }
   }
 
-  async function bulk(action: "set_status_draft" | "set_status_published" | "set_status_scheduled") {
+  async function bulk(action: "set_status_draft" | "set_status_published" | "set_status_scheduled" | "delete") {
     const ids = selectedIds;
     if (!ids.length) return;
+    // Xóa cứng: hỏi xác nhận trước
+    if (action === "delete" && !window.confirm(tAdmin(lang as any, "admin.site_contents.confirm_delete_bulk"))) return;
     await fetch("/api/admin/site-contents/bulk", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ids, action }) });
+    if (action === "delete") setSelected({});
+    await load();
+  }
+
+  /** Xóa cứng một bài (kèm bản dịch). */
+  async function remove(id: string) {
+    if (!window.confirm(tAdmin(lang as any, "admin.site_contents.confirm_delete"))) return;
+    await fetch(`/api/admin/site-contents/${id}`, { method: "DELETE" });
+    setSelected((p) => {
+      const next = { ...p };
+      delete next[id];
+      return next;
+    });
     await load();
   }
 
@@ -393,6 +408,7 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
               <button type="button" onClick={() => bulk("set_status_draft")} className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50">{tAdmin(lang as any, "admin.posts.bulk.draft")}</button>
               <button type="button" onClick={() => bulk("set_status_published")} className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700">{tAdmin(lang as any, "admin.posts.bulk.publish")}</button>
               <button type="button" onClick={() => bulk("set_status_scheduled")} className="inline-flex items-center justify-center rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-900 shadow-sm transition hover:bg-amber-100">{tAdmin(lang as any, "admin.posts.bulk.schedule")}</button>
+              <button type="button" onClick={() => bulk("delete")} className="inline-flex items-center justify-center rounded-full border border-rose-200 bg-rose-50 px-3 py-1.5 text-xs font-semibold text-rose-800 shadow-sm transition hover:bg-rose-100">{tAdmin(lang as any, "admin.site_contents.delete")}</button>
               <button type="button" onClick={() => setSelected({})} className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50">{tAdmin(lang as any, "common.clear")}</button>
             </div>
           </div>
@@ -420,6 +436,9 @@ export function SiteContentsClient({ initialLang }: { initialLang: Lang }) {
                 <div className="flex items-center gap-2">
                   <button type="button" className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-2 py-2 text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:opacity-40" onClick={() => move(row.id, "up")} disabled={idx === 0}>↑</button>
                   <button type="button" className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-2 py-2 text-slate-700 shadow-sm transition hover:bg-slate-50 disabled:opacity-40" onClick={() => move(row.id, "down")} disabled={idx === items.length - 1}>↓</button>
+                  <button type="button" onClick={() => remove(row.id)} className="inline-flex items-center justify-center rounded-full border border-rose-200 bg-white px-3 py-2 text-xs font-semibold text-rose-700 shadow-sm transition hover:bg-rose-50">
+                    {tAdmin(lang as any, "admin.site_contents.delete")}
+                  </button>
                 </div>
               </div>
             ))}

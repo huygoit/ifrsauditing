@@ -83,7 +83,8 @@ export default async function RecruitmentPage({ params }: { params: { locale: Si
               {items.length ? (
                 <div className="grid gap-6 sm:grid-cols-2">
                   {items.map((item) => {
-                    const href = `/${locale}/noi-dung/${item.category?.slug ?? ""}/${item.slug}`;
+                    // Bài chưa gán danh mục dùng segment theo loại: tuyen-dung
+                    const href = `/${locale}/noi-dung/${item.category?.slug ?? "tuyen-dung"}/${item.slug}`;
                     const dateText = formatDate(locale, item.publishedAt ?? item.updatedAt);
                     return (
                       <a

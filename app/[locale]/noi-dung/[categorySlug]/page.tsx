@@ -1,9 +1,10 @@
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { getCategoryWithContents } from "@/lib/siteContent/getCategoryWithContents";
+import { getSiteContentBySlug } from "@/lib/siteContent/getSiteContentDetail";
 import type { SiteContentLocale } from "@/lib/siteContent/getSiteContentDetail";
 
 export const runtime = "nodejs";
@@ -38,7 +39,14 @@ export default async function SiteContentCategoryPage({
   const t = await getTranslations({ locale, namespace: "siteContent" });
 
   const data = await getCategoryWithContents(locale, categorySlug);
-  if (!data) return notFound();
+  if (!data) {
+    // URL thiếu segment danh mục: /noi-dung/{slug-bai} → chuyển sang URL đầy đủ
+    const bySlug = await getSiteContentBySlug(locale, categorySlug);
+    if (bySlug?.slug) {
+      redirect(`/${locale}/noi-dung/${bySlug.category.slug}/${bySlug.slug}`);
+    }
+    return notFound();
+  }
 
   const emptyText = locale === "en" ? "No content in this category yet." : "Chưa có nội dung trong danh mục này.";
 

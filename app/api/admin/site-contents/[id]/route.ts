@@ -189,3 +189,16 @@ export async function PATCH(req: NextRequest, ctx: { params: { id: string } }) {
     return NextResponse.json({ error: "server_error" }, { status: 500 });
   }
 }
+
+/** Xóa cứng nội dung + bản dịch (cascade). */
+export async function DELETE(req: NextRequest, ctx: { params: { id: string } }) {
+  const { response } = await requireAdminSession(req);
+  if (response) return response;
+
+  const id = ctx.params.id;
+  const exists = await prisma.siteContent.findUnique({ where: { id }, select: { id: true } });
+  if (!exists) return NextResponse.json({ error: "not_found" }, { status: 404 });
+
+  await prisma.siteContent.delete({ where: { id } });
+  return NextResponse.json({ ok: true });
+}

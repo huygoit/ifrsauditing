@@ -74,7 +74,7 @@ export function PostsClient({ initialLang }: { initialLang: Lang }) {
   const [publishedAt, setPublishedAt] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [author, setAuthor] = useState("");
-  const [tags, setTags] = useState("enso, eco");
+  const [tags, setTags] = useState("");
   const [sortOrder, setSortOrder] = useState<number | "">("");
 
   const [viFallback, setViFallback] = useState<{ title: string; excerpt: string; slug: string; contentMarkdown: string } | null>(null);
@@ -170,7 +170,7 @@ export function PostsClient({ initialLang }: { initialLang: Lang }) {
     setPublishedAt("");
     setCoverImage("");
     setAuthor("");
-    setTags("enso, eco");
+    setTags("");
     setSortOrder("");
     setViFallback(null);
     setSaveError(null);
